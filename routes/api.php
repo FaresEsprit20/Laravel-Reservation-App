@@ -20,14 +20,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-
-Route::get('/reservations/{id?}',function($id = null){
-    return 'Hi Reservations id =  '. $id;
- })->where('id','[0-9]+');
- //->where('id','[a-zA-Z]+');
-
- Route::match(['POST','GET'],'/groups',function(Request $request){
-  return 'Request Method is   '. $request->method();
- });
-
-

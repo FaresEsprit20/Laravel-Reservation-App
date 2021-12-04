@@ -7,11 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocatairesController;
 use App\Http\Controllers\LocationsController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProfesseursController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\SeancesController;
-use App\Http\Controllers\SuitesVidesController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
