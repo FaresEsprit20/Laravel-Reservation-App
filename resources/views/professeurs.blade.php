@@ -100,7 +100,7 @@
 
   <div class="col-12">
     <div class="form-check">
-      <input name="chk" class="form-check-input" type="checkbox" id="reservCheck" required>
+      <input name="chk" class="form-check-input" type="checkbox" id="reservCheck">
       <label class="form-check-label" for="reservCheck">
         Cochez moi
       </label>
