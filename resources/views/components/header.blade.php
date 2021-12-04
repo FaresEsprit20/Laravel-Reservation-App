@@ -59,7 +59,7 @@
                       <i class="navbar-fa fa fa-area-chart fa-2x d-inline-block"></i>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link d-inline-block" href="{{ route('suitesvides.index') }}">Suites Vides</a>
+                      <a class="nav-link d-inline-block" href="{{ route('suitesvides.list') }}">Suites Vides</a>
                       <i class="navbar-fa fa fa-mail-forward fa-2x d-inline-block"></i>
                     </li>
                     

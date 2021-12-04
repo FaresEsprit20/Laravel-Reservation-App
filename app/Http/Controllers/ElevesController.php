@@ -14,11 +14,11 @@ class ElevesController extends Controller
 
     public function CreateEleve(Request $request){
         $validateData = $request->validate([
-        'groupes'=>'required',
+        'groupes'=>'required|integer|min:1',
         'prenom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'nom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
-        'classe'=>'required',
-        'tel'=>'required|min:8|max:8|numeric',
+        'classe'=>'required|min:3',
+        'tel'=>'required|integer|digits:8',
         'chk'=>'required'
         ]);
         $groupes = $request->input('groupes');
@@ -32,12 +32,12 @@ class ElevesController extends Controller
 
       public function UpdateEleve(Request $request){
         $validateData = $request->validate([
-        'groupesu'=>'required',
-        'eleve'=>'required',
+        'groupesu'=>'required|integer|min:1',
+        'eleve'=>'required|integer',
         'prenomu'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'nomu'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
-        'classeu'=>'required',
-        'telu'=>'required|min:8|max:8|numeric',
+        'classeu'=>'required|min:3',
+        'telu'=>'required|integer|digits:8',
         'chku'=>'required'
         ]);
         $groupes = $request->input('groupesu');

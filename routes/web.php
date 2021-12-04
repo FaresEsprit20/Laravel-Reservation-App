@@ -46,6 +46,8 @@ Route::put('/groupes/update', [GroupesController::class,'UpdateGroup'])->name('u
 Route::get('/locations', [LocationsController::class,'index'])->name('locations.index');
 Route::post('/locations/create', [LocationsController::class,'CreateLocation'])->name('create.location');
 Route::put('/locations/update', [LocationsController::class,'UpdateLocation'])->name('update.location');
+Route::get('/locations/suitesvides', [LocationsController::class,'suitesvidesView'])->name('suitesvides.list');
+Route::post('/locations/suitesvides/list', [LocationsController::class,'getSuitesVides'])->name('suitesvides.list.get');
 
 Route::get('/professeurs', [LocatairesController::class,'professeursView'])->name('professeurs.index');
 Route::post('/professeurs/create', [LocatairesController::class,'CreateProfesseur'])->name('create.professeur');
@@ -53,7 +55,7 @@ Route::post('/professeurs/create', [LocatairesController::class,'CreateProfesseu
 Route::get('/seances', [SeancesController::class,'index'])->name('seances.index');
 Route::post('/seances/create', [SeancesController::class,'CreateSeance'])->name('create.seance');
 
-Route::get('/suitesvides', [SuitesVidesController::class,'index'])->name('suitesvides.index');
+
 
 
 

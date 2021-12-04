@@ -184,6 +184,5 @@
    <x-bootstrapdt />
     <script src="assets/js/Locataires/datatableLocataires.js" ></script> 
     
-    
   </body>
 </html>

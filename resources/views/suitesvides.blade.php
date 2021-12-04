@@ -19,75 +19,7 @@
     <body>
         <a id="button-scroll-top"></a>
         <header>
-    <nav class="navbar fixed-top navbar-light bg-light" id="navbar">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="assets/images/logo/logo.jpeg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-            Reserv App
-          </a>
-          <!--bouton fermée de toggle  btn-close -->
-          <button class="navbar-toggler shadow-none" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-               
-                <a class="nav-link d-inline-block" aria-current="page" href="index.php">Accueil</a>
-                <i class="navbar-fa fa fa-home fa-2x  d-inline-block"></i>
-              </li>
-              <li class="nav-item">
-                
-                <a class="nav-link d-inline-block" href="#features">Nos services</a>
-                <i class="navbar-fa fa fa-pencil-square fa-2x d-inline-block"></i>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link d-inline-block" href="RéservationsView.php">Réservations</a>
-                <i class="navbar-fa fa fa-product-hunt fa-2x d-inline-block"></i>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link d-inline-block" href="GroupesView.php">Groupes</a>
-                <i class="navbar-fa fa fa-users fa-2x d-inline-block"></i>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link d-inline-block" href="ElevesView.php">Eleves</a>
-                <i class="navbar-fa fa fa-users fa-2x d-inline-block"></i>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link d-inline-block" href="FactureView.php">Payement</a>
-                <i class="navbar-fa fa fa-users fa-2x d-inline-block"></i>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link d-inline-block" href="SeancesView.php">Seances</a>
-                <i class="navbar-fa fa fa-users fa-2x d-inline-block"></i>
-              </li>
-              <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Archive
-          </a>
-          <i class="navbar-fa fa fa-archive fa-2x d-inline-block"></i>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="LocationsView.php">Locations</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="ProfesseurView.php">Enseignants</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="FacturesView.php">Factures</a></li>
-          </ul>
-        </li>
-              <li class="nav-item">
-                <a class="nav-link d-inline-block" href="#stats">Statistiques</a>
-                <i class="navbar-fa fa fa-area-chart fa-2x d-inline-block"></i>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link d-inline-block" href="#contact">Suites Vides</a>
-                <i class="navbar-fa fa fa-mail-forward fa-2x d-inline-block"></i>
-              </li>
-            
-              
-            </ul>
-          </div>
-        </div>
-      </nav>
+<x-header />
 </header>
        
 <main>
@@ -105,11 +37,12 @@
       <div class="products-table mt-5 mb-5 pt-5 pb-5">
         <div class="table-reservations">
   
-        <form class="row g-3" id="createloc">
-  <div class="col-md-4">
-  <label for="inputJour"  class="form-label">Début de réservation</label>
-    <select id="inputJour" class="form-select">
-      <option selected  value="nil">Jour...</option>
+ <form action="{{ route('suitesvides.list.get') }}" method="POST" class="row g-3" id="createloc">
+   @csrf
+   <div class="col-md-4">
+   <label for="inputJour"  class="form-label">Début de réservation</label>
+    <select name="jourdeb" id="inputJour" class="form-select">
+      <option selected  disabled value="nil">Jour...</option>
           <option value="01">1</option>
           <option value="02">2</option>
           <option value="03">3</option>
@@ -141,14 +74,14 @@
           <option value="30">30</option>
           <option value="31">31</option>
     </select>
-    <div id="ij" style="visibility:hidden">
-      
-    </div>
+    @error('jourdeb')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-4">
   <label for="inputMois" style="visibility:hidden" class="form-label">Début de réservation</label>
-    <select id="inputMois" class="form-select">
-      <option selected  value="nil">Mois...</option>
+    <select name="moisdeb" id="inputMois" class="form-select">
+      <option selected disabled value="nil">Mois...</option>
           <option value="01">Janvier</option>
           <option value="02">Février</option>
           <option value="03">Mars</option>
@@ -162,36 +95,36 @@
           <option value="11">Novembre</option>
           <option value="12">Décembre</option>
     </select>
-    <div id="im" style="visibility:hidden">
-      
-    </div>
+    @error('moisdeb')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-4">
   <label for="inputAndeb" style="visibility:hidden" class="form-label">Début de réservation</label>
-    <select id="inputAndeb" class="form-select">
-      <option selected  value="nil">An début...</option>
+    <select name="andeb" id="inputAndeb" class="form-select">
+      <option selected disabled value="nil">An début...</option>
       <option value="2021">2021</option>
       <option value="2022">2022</option>
       <option value="2023">2023</option>
       <option value="2024">2024</option>  
     </select>
-    <div id="ia" style="visibility:hidden">
-      
-    </div>
+    @error('andeb')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-8">
   <label for="hour_id" class="form-label">Heure</label>
-    <input type="time" id="hour_id" class="form-control" required>
-    <div id="ih" style="visibility:hidden">
-      
-    </div>
+    <input name="heuredeb" type="time" id="hour_id" class="form-control" >
+    @error('heuredeb')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <!-- Partie Fin de Réservation -->
   
   <div class="col-md-4">
   <label for="inputJourFin" class="form-label">Fin de réservation</label>
-    <select id="inputJourFin" class="form-select">
-      <option selected  value="nil">Jour...</option>
+    <select name="jourfin" id="inputJourFin" class="form-select">
+      <option selected  disabled value="nil">Jour...</option>
           <option value="01">1</option>
           <option value="02">2</option>
           <option value="03">3</option>
@@ -223,14 +156,14 @@
           <option value="30">30</option>
           <option value="31">31</option>
     </select>
-    <div id="ijf" style="visibility:hidden">
-      
-    </div>
+    @error('jourfin')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-4">
   <label for="inputMoisFin" style="visibility:hidden" class="form-label">Fin de réservation</label>
-    <select id="inputMoisFin" class="form-select">
-      <option selected  value="nil">Mois...</option>
+    <select name="moisfin" id="inputMoisFin" class="form-select">
+      <option selected disabled value="nil">Mois...</option>
           <option value="01">Janvier</option>
           <option value="02">Février</option>
           <option value="03">Mars</option>
@@ -244,38 +177,41 @@
           <option value="11">Novembre</option>
           <option value="12">Décembre</option>
     </select>
-    <div id="imf" style="visibility:hidden">
-      
-    </div>
+    @error('moisfin')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-4">
   <label for="inputAnFin" style="visibility:hidden" class="form-label">Fin de réservation</label>
-    <select id="inputAnFin" class="form-select">
-      <option selected  value="nil">An début...</option>
+    <select name="anfin" id="inputAnFin" class="form-select">
+      <option selected disabled value="nil">An début...</option>
       <option value="2021">2021</option>
       <option value="2022">2022</option>
       <option value="2023">2023</option>
       <option value="2024">2024</option>  
     </select>
-    <div id="iaf" style="visibility:hidden">
-      
-    </div>
+    @error('anfin')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-8">
   <label for="hour_ids" class="form-label">Heure Fin</label>
-    <input type="time" id="hour_ids" class="form-control" required>
-    <div id="ih" style="visibility:hidden">
-      
-    </div>
+    <input name="heurefin" type="time" id="hour_ids" class="form-control" >
+    @error('heurefin')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
 <!-- Fin Partie Fin de Réservation -->
   
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservCheck" required>
+      <input name="chks" class="form-check-input" type="checkbox" id="reservCheck" >
       <label class="form-check-label" for="reservCheck">
         Cochez moi
       </label>
+      @error('chk')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
     </div>
   </div>
   <div class="col-12">

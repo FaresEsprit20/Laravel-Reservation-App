@@ -17,12 +17,12 @@ class LocatairesController extends Controller
         $validateData = $request->validate([
         'nom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'prenom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
-        'cin'=>'required|numeric/[min:8|max:8',
-        'ville'=>'required|max:50|regex:/^[a-zA-ZÑñ\s]',
-        'rue'=>'required|max:50',
-        'postal'=>'required|numeric/[min:4|max:4',
+        'cin'=>'required|integer|digits:8',
+        'ville'=>'required|min:3|max:50|regex:/^[a-zA-ZÑñ\s]',
+        'rue'=>'required|min:3|max:50',
+        'postal'=>'required|integer/digits:4',
         'email'=>'required|email:rfc',
-        'tel'=>'required|numeric/[min:8|max:8',
+        'tel'=>'required|integer|digits:8',
         'chk'=>'required',
         ]);
         $nom = $request->input('nom');
