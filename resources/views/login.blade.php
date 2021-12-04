@@ -22,20 +22,6 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
 
                 
                 <div class="container bg-white dark:bg-gray-800  shadow ">
@@ -43,21 +29,19 @@
                      <div class="col-3" style="visibility: hidden">
                      </div>
                      <div class="col-6" style="padding-top: 50px;padding-bottom:50px;">
-                        <form >
+                        <form action="{{ route('login.submit') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <input type="text" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
                               <div id="emailHelp" class="form-text">type your email.</div>
                             </div>
                             <div class="mb-3">
                               <label for="exampleInputPassword1" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passHelp">
+                              <input type="password" name="password" class="form-control" id="exampleInputPassword1" aria-describedby="passHelp">
                               <div id="passHelp" class="form-text">type your password.</div>
                             </div>
-                            <div class="mb-3 form-check">
-                              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                              <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
+                        
                             <button type="submit" class="btn btn-primary">Login</button>
                           </form>
                     </div>

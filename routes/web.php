@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class,'index'])->name('login.index');
 
+Route::post('/login', [LoginController::class,'loginSubmit'])->name('login.submit');
+
 Route::get('/home', [HomeController::class,'index'])->name('home.index');
 
 Route::get('/reservations', [ReservationsController::class,'index'])->name('reservations.index');
