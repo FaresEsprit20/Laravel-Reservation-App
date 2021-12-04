@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ElevesController;
+use App\Http\Controllers\FacturesController;
 use App\Http\Controllers\GroupesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocatairesController;

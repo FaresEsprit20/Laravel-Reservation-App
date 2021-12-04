@@ -144,7 +144,7 @@
         </div>
       </div>
 </footer>
-  <x-bootsrapdt /> 
+  <x-bootstrapdt /> 
     <script src="assets/js/Factures/datatablefac.js" ></script> 
   
     
