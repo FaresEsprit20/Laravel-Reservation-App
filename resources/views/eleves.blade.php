@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Internship Project</title>
+        <title>Reservations Project</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
@@ -35,46 +35,54 @@
     <div class="col-12 col-sm-12 col-lg-8">
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
-        <form class="row g-3" id="creategroup">
-  
+        <form class="row g-3" id="creategroup" action="{{ route('create.eleve') }}" method="POST" name="createEleve">
+     @csrf
     <div class="col-md-12">
-      <label for="group_id" class="form-label">Groupe</label>
-      <select id="group_id" class="form-select"  multiple>
+      <label for="group_id" class="form-label">Groupes</label>
+      <select id="group_id" name="groupes" class="form-select"  multiple>
       </select>
-    <div id="ig" style="visibility:hidden">
-      
-    </div>
+      @error('groupes')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
   </div>
   <div class="col-md-6">
     <label for="ln_eleve" class="form-label" >Prénom Eleve</label>
-    <input type="text" class="form-control" pattern="[a-zA-Z ]+" id="ln_eleve">
-    <div id="iln" style="visibility:hidden">
-    </div>
+    <input type="text" name="prenom" class="form-control"  id="ln_eleve">
+    @error('prenom')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
+    
   </div>
   <div class="col-md-6">
     <label for="n_eleve" class="form-label" >Nom Eleve</label>
-    <input type="text" class="form-control" pattern="[a-zA-Z ]+" id="n_eleve">
-    <div id="in" style="visibility:hidden">
-  </div>
+    <input type="text" name="nom" class="form-control"  id="n_eleve">
+    @error('nom')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-6">
     <label for="c_eleve" class="form-label">Classe Eleve</label>
-    <input type="text" class="form-control" id="c_eleve">
-    <div id="ic" style="visibility:hidden">
-    </div>
+    <input type="text" name="classe" class="form-control" id="c_eleve">
+    @error('classe')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-6">
     <label for="t_eleve" class="form-label" >Tel Eleve</label>
-    <input type="number" class="form-control" id="t_eleve">
-    <div id="it" style="visibility:hidden">
-    </div>
+    <input type="number" name="tel" class="form-control" id="t_eleve">
+    @error('tel')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservCheckss" required>
+      <input class="form-check-input" name="chk" type="checkbox" id="reservCheckss">
       <label class="form-check-label" for="reservCheckss">
         Cochez moi
       </label>
+      @error('chk')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
     </div>
   </div>
   <div class="col-12">
@@ -104,55 +112,63 @@
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
   
-        <form class="row g-3" id="editgroup">
-       
+        <form action="{{ route('update.eleve') }}" method="POST" class="row g-3" id="editgroup" name="updateEleve">
+          @method('PUT')
+          @csrf
         <div class="col-md-12">
-      <label for="group_ide" class="form-label">Groupe</label>
-      <select id="group_ide" class="form-select" multiple>
+      <label for="group_ide" class="form-label">Groupes</label>
+      <select name="groupesu" id="group_ide" class="form-select" multiple>
       </select>
-    <div id="ige" style="visibility:hidden">
-      
-    </div>
+      @error('groupesu')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
   </div>
   <div class="col-md-12">
       <label for="eleve_ide" class="form-label">Eleve</label>
-      <select id="eleve_ide" class="form-select" required >
-          <option value="nil">Selectionner un Eleve ...</option>
+      <select name="eleve" id="eleve_ide" class="form-select"  >
+          <option value="nil" disabled>Selectionner un Eleve ...</option>
       </select>
-    <div id="iee" style="visibility:hidden">
-      
-    </div>
+      @error('eleve')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
   </div>
   <div class="col-md-6">
     <label for="ln_elevee" class="form-label" >Prénom Eleve</label>
-    <input type="text" class="form-control" pattern="[a-zA-Z ]+" id="ln_elevee">
-    <div id="ilne" style="visibility:hidden">
-    </div>
+    <input type="text" name="prenomu" class="form-control" pattern="[a-zA-Z ]+" id="ln_elevee">
+    @error('prenomu')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
   </div>
   <div class="col-md-6">
     <label for="n_elevee" class="form-label" >Nom Eleve</label>
-    <input type="text" class="form-control" pattern="[a-zA-Z ]+" id="n_elevee">
-    <div id="ine" style="visibility:hidden">
-  </div>
+    <input type="text" name="nomu" class="form-control" pattern="[a-zA-Z ]+" id="n_elevee">
+    @error('nomu')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
   </div>
   <div class="col-md-6">
     <label for="c_elevee" class="form-label">Classe Eleve</label>
-    <input type="text" class="form-control" id="c_elevee">
-    <div id="ice" style="visibility:hidden">
-    </div>
+    <input type="text" name="classeu" class="form-control" id="c_elevee">
+    @error('classeu')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
   </div>
   <div class="col-md-6">
     <label for="t_elevee" class="form-label" >Tel Eleve</label>
-    <input type="number" class="form-control" id="t_elevee">
-    <div id="ite" style="visibility:hidden">
-    </div>
+    <input type="number" name="telu" class="form-control" id="t_elevee">
+    @error('telu')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
   </div>
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservChecksse" required>
+      <input class="form-check-input" name="chk" type="checkbox" id="reservChecksse" >
       <label class="form-check-label" for="reservChecksse">
         Cochez moi
       </label>
+      @error('chku')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
     </div>
   </div>
   <div class="col-12">

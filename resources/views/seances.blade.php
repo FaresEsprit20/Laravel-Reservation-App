@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Internship Project</title>
+        <title>Reservations Project</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
@@ -38,46 +38,50 @@
     
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
-        <form class="row g-3" id="editseance">
-       
+  
+<form action="{{ route('create.seance') }}" method="POST" class="row g-3" id="editseance">
+       @csrf
   <div class="col-md-8">
   <label for="group_ides" class="form-label">Groupe</label>
-    <select id="group_ides" class="form-select">
-      <option selected  value="nil">Sélectionner un groupe...</option>
+    <select name="groupe" id="group_ides" class="form-select">
+      <option selected  disabled value="nil">Sélectionner un groupe...</option>
     </select>
-    <div id="ige" style="visibility:hidden">
-      
-    </div>
+    @error('groupe')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-8">
   <label for="loc_id" class="form-label">Locataire</label>
-    <select id="loc_id" class="form-select">
-      <option selected  value="nil">Sélectionner un locataire...</option>
+    <select name="locataire" id="loc_id" class="form-select">
+      <option selected disabled value="nil">Sélectionner un locataire...</option>
     </select>
-    <div id="il" style="visibility:hidden">
-      
-    </div>
+    @error('locataire')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-8">
   <label for="hour_id" class="form-label">Heure</label>
-    <input type="time" id="hour_id" class="form-control" required>
-    <div id="ih" style="visibility:hidden">
-      
-    </div>
+    <input name="time" type="time" id="hour_id" class="form-control">
+    @error('time')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-8">
   <label for="date_id" class="form-label">Date</label>
-    <input type="date" id="date_id" class="form-control" required>
-    <div id="id" style="visibility:hidden">
-      
-    </div>
+    <input name="date" type="date" id="date_id" class="form-control">
+    @error('date')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservCheck" required>
+      <input name="chk" class="form-check-input" type="checkbox" id="reservCheck">
       <label class="form-check-label" for="reservCheck">
         Cochez moi
       </label>
+      @error('chk')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
     </div>
   </div>
   <div class="col-12">

@@ -32,16 +32,24 @@ Route::get('/home', [HomeController::class,'index'])->name('home.index');
 Route::get('/reservations', [ReservationsController::class,'index'])->name('reservations.index');
 
 Route::get('/eleves', [ElevesController::class,'index'])->name('eleves.index');
+Route::post('/eleves/create', [ElevesController::class,'CreateEleve'])->name('create.eleve');
+Route::post('/eleves/findGroups', [ElevesController::class,'findEleveGroups'])->name('find.eleve.groups');
+Route::put('/eleves/update', [ElevesController::class,'UpdateEleve'])->name('update.eleve');
 
 Route::get('/factures', [FacturesController::class,'index'])->name('factures.index');
 
 Route::get('/groupes', [GroupesController::class,'index'])->name('groupes.index');
+Route::post('/groupes/create', [GroupesController::class,'CreateGroup'])->name('create.group');
+Route::put('/groupes/update', [GroupesController::class,'UpdateGroup'])->name('update.group');
 
 Route::get('/locations', [LocationsController::class,'index'])->name('locations.index');
+Route::post('/locations/create', [LocationsController::class,'CreateLocation'])->name('create.location');
+Route::put('/locations/update', [LocationsController::class,'UpdateLocation'])->name('update.location');
 
 Route::get('/professeurs', [ProfesseursController::class,'index'])->name('professeurs.index');
 
 Route::get('/seances', [SeancesController::class,'index'])->name('seances.index');
+Route::post('/seances/create', [SeancesController::class,'CreateSeance'])->name('create.seance');
 
 Route::get('/suitesvides', [SuitesVidesController::class,'index'])->name('suitesvides.index');
 

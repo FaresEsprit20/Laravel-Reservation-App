@@ -37,19 +37,23 @@
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
   
-        <form class="row g-3" id="creategroup">
-       
+        <form class="row g-3" action="{{ route('create.group') }}" method="POST" id="creategroup" name="creategroup">
+       @csrf
   <div class="col-md-8">
     <label for="nom_groupe" class="form-label">Nom Groupe</label>
-    <input type="text" class="form-control" id="nom_groupe">
-    <div id="is" style="visibility:hidden">
-  </div>
+    <input type="text" name="groupe" class="form-control" id="nom_groupe">
+    @error('groupe')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservCheck" required>
-      <label class="form-check-label" for="reservCheck">
+      <input class="form-check-input" type="checkbox" id="reservCheck">
+      <label name="chk" class="form-check-label" for="reservCheck">
         Cochez moi
       </label>
+      @error('chk')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
     </div>
   </div>
   <div class="col-12">
@@ -79,28 +83,33 @@
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
   
-        <form class="row g-3" id="editgroup">
-       
+        <form action="{{ route('update.group') }}" method="POST" class="row g-3" id="editgroup">
+       @method('PUT')
+       @csrf
   <div class="col-md-8">
   <label for="group_id" class="form-label">Groupe</label>
-    <select id="group_id" class="form-select" required>
-      <option selected  value="nil">Sélectionner un groupe...</option>
+    <select name="groupeu" id="group_id" class="form-select">
+      <option selected  disabled value="nil">Sélectionner un groupe...</option>
     </select>
-    <div id="ig" style="visibility:hidden">
-      
-    </div>
+    @error('groupeu')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-8">
     <label for="group_name" class="form-label">Nom Groupe</label>
-    <input type="text" class="form-control" id="group_name">
-    <div id="iss" style="visibility:hidden">
-  </div>
+    <input type="text" name="nomgroupe" class="form-control" id="group_name">
+    @error('nomgroupe')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservChecks" required>
+      <input  name="chku" class="form-check-input" type="checkbox" id="reservChecks" >
       <label class="form-check-label" for="reservChecks">
         Cochez moi
       </label>
+      @error('chku')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
     </div>
   </div>
   <div class="col-12">
@@ -174,7 +183,7 @@
 <section class="geView" id="geView">
   <div class="container-fluid">
     <div class="special-heading">Elèves</div>
-      <p>Trouver les élèves d'un groupe</p>
+      <p>Trouver les groupes d'un élève</p>
   <div class="row">
   <div class="col col-sm col-lg-2">
   </div>
@@ -183,16 +192,17 @@
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
   
-        <form class="row g-3" id="editeleve">
-       
+        <form action="{{ route('find.eleve.groups') }}" method="POST" class="row g-3" id="editeleve">
+       @csrf
   <div class="col-md-8">
   <label for="eleve_id" class="form-label">Elèves</label>
-    <select id="eleve_id" class="form-select" required>
-      <option selected  value="nil">Sélectionner un éleve...</option>
+    <select name="elevef" id="eleve_id" class="form-select" >
+      <option selected  value="nil" disabled>Sélectionner un éleve...</option>
     </select>
-    <div id="ie" style="visibility:hidden">
-      
-    </div>
+    @error('elevef')
+    <span class="text-danger">{{  $message }}</span>
+    @enderror
+   
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-dark">Trouver les Groupes</button>

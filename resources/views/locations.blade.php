@@ -36,20 +36,25 @@
       
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
-        <form class="row g-3" id="createloc">
-       
+
+  <form action="{{ route('create.location') }}" method="POST" class="row g-3" id="createloc">
+      @csrf
   <div class="col-md-8">
     <label for="nom_location" class="form-label">Nom Location</label>
-    <input type="text" class="form-control" id="nom_location" >
-    <div id="is" style="visibility:hidden">
-    </div>
+    <input name="nomlocation" type="text" class="form-control" id="nom_location" >
+    @error('nomlocation')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservCheck" required>
+      <input name="chk" class="form-check-input" type="checkbox" id="reservCheck">
       <label class="form-check-label" for="reservCheck">
         Cochez moi
       </label>
+    @error('chk')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
     </div>
   </div>
   <div class="col-12">
@@ -99,28 +104,33 @@
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
   
-        <form class="row g-3" id="editgroup">
-       
+  <form action="{{ route('update.location') }}" method="POST" class="row g-3" id="editgroup">
+       @method('PUT')
+       @csrf
   <div class="col-md-8">
   <label for="group_id" class="form-label">Location</label>
-    <select id="group_id" class="form-select" required>
-      <option selected  value="nil">Sélectionner une location...</option>
+    <select name="location" id="group_id" class="form-select">
+      <option selected  disabled value="nil">Sélectionner une location...</option>
     </select>
-    <div id="ig" style="visibility:hidden">
-      
-    </div>
+    @error('location')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-8">
     <label for="group_name" class="form-label">Nom Location</label>
-    <input type="text" class="form-control" id="group_name">
-    <div id="iss" style="visibility:hidden">
-  </div>
+    <input name="nomlocationu" type="text" class="form-control" id="group_name">
+    @error('nomlocationu')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservChecks" required>
+      <input name="chku" class="form-check-input" type="checkbox" id="reservChecks">
       <label class="form-check-label" for="reservChecks">
         Cochez moi
       </label>
+      @error('chku')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
     </div>
   </div>
   <div class="col-12">
