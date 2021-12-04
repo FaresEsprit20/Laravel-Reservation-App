@@ -29,17 +29,24 @@
                      <div class="col-3" style="visibility: hidden">
                      </div>
                      <div class="col-6" style="padding-top: 50px;padding-bottom:50px;">
+                        <h2 class="display-6 text-muted text-primary pb-3">Login</h2>
                         <form action="{{ route('login.submit') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Email address</label>
                               <input type="text" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
                               <div id="emailHelp" class="form-text">type your email.</div>
+                              @error('email')
+                                  <span class="text-danger">{{ $message }}</span>
+                              @enderror
                             </div>
                             <div class="mb-3">
                               <label for="exampleInputPassword1" class="form-label">Password</label>
                               <input type="password" name="password" class="form-control" id="exampleInputPassword1" aria-describedby="passHelp">
-                              <div id="passHelp" class="form-text">type your password.</div>
+                              <div id="pass11Help" class="form-text">type your password.</div>
+                              @error('password')
+                                  <span class="text-danger">{{ $message }}</span>
+                              @enderror
                             </div>
                         
                             <button type="submit" class="btn btn-primary">Login</button>
