@@ -38,77 +38,75 @@
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
   
-        <form class="row g-3" id="createens">
-       
+        <form action="{{ route('create.professeur') }}" method="POST" class="row g-3" id="createens">
+       @csrf
   <div class="col-md-4">
     <label for="nom_ens" class="form-label">Nom Enseignant</label>
-    <input type="text" class="form-control" id="nom_ens" pattern="[a-zA-Z ]+">
-    <div id="enom" style="visibility:hidden">
-      
-      </div>
+    <input name="nom" type="text" class="form-control" id="nom_ens">
+    @error('nom')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-4">
     <label for="prenom_ens" class="form-label">Prénom Enseignant</label>
-    <input type="text" class="form-control" id="prenom_ens" pattern="[a-zA-Z ]+">
-    <div id="eprenom" style="visibility:hidden">
-      
-      </div>
+    <input name="prenom" type="text" class="form-control" id="prenom_ens">
+    @error('prenom')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-4">
     <label for="cin_ens" class="form-label">CIN Enseignant</label>
-    <input type="number" class="form-control" max="99999999" id="cin_ens">
-    <div id="ecin" style="visibility:hidden">
-      
-      </div>
+    <input name="cin" type="number" class="form-control" id="cin_ens">
+    @error('cin')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-4">
     <label for="ville_ens" class="form-label">Ville</label>
-    <input type="text" class="form-control" id="ville_ens" pattern="[a-zA-Z ]+">
-    <div id="eville" style="visibility:hidden">
-      
-      </div>
+    <input name="ville" type="text" class="form-control" id="ville_ens">
+    @error('ville')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-4">
     <label for="rue_ens" class="form-label">Rue</label>
-    <input type="text" class="form-control" id="rue_ens" >
-    <div id="erue" style="visibility:hidden">
-      
-      </div>
+    <input name="rue" type="text" class="form-control" id="rue_ens" >
+    @error('rue')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
   <div class="col-md-4">
     <label for="postal_ens" class="form-label">Code Postal</label>
-    <input type="number" max="9999" class="form-control" id="postal_ens" minlength="4" maxlength="4">
-    <div id="epostal" style="visibility:hidden">
-      
-      </div>
+    <input name="postal" type="number" max="9999" class="form-control" id="postal_ens">
+    @error('postal')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
   </div>
   <div class="col-md-4">
     <label for="email_ens" class="form-label">Email Enseignant</label>
-    <input type="email" class="form-control" id="email_ens" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}">
-    <div id="eemail" style="visibility:hidden">
-      
-      </div>
+    <input name="email" type="email" class="form-control" id="email_ens">
+    @error('email')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
+
   </div>
   <div class="col-md-4">
     <label for="tel_ens" class="form-label">Tel Enseignant</label>
-    <input type="number" class="form-control" id="tel_ens" >
-    <div id="etel" style="visibility:hidden">
-      
-      </div>
+    <input name="tel" type="number" class="form-control" id="tel_ens" >
+    @error('tel')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
-  <div class="col-md-4">
-    <label for="portable_ens" class="form-label">Portable Enseignant</label>
-    <input type="number" class="form-control" id="portable_ens">
-    <div id="eprotable" style="visibility:hidden">
-      
-      </div>
-  </div>
+
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservCheck" required>
+      <input name="chk" class="form-check-input" type="checkbox" id="reservCheck" required>
       <label class="form-check-label" for="reservCheck">
         Cochez moi
       </label>
+      @error('chk')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
     </div>
   </div>
   <div class="col-12">
@@ -148,7 +146,6 @@
               <th scope="col">Code Postal</th>
               <th scope="col">Email</th>
               <th scope="col">Tel</th>
-              <th scope="col">Portable</th>
               <th scope="col">Action</th>
               
             </thead>
@@ -184,7 +181,7 @@
         </div>
       </div>
 </footer>
-   <x-bootsrapdt />
+   <x-bootstrapdt />
     <script src="assets/js/Locataires/datatableLocataires.js" ></script> 
     
     

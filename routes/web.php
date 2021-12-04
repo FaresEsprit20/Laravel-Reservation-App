@@ -3,6 +3,7 @@
 use App\Http\Controllers\ElevesController;
 use App\Http\Controllers\GroupesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocatairesController;
 use App\Http\Controllers\LocationsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfesseursController;
@@ -46,7 +47,8 @@ Route::get('/locations', [LocationsController::class,'index'])->name('locations.
 Route::post('/locations/create', [LocationsController::class,'CreateLocation'])->name('create.location');
 Route::put('/locations/update', [LocationsController::class,'UpdateLocation'])->name('update.location');
 
-Route::get('/professeurs', [ProfesseursController::class,'index'])->name('professeurs.index');
+Route::get('/professeurs', [LocatairesController::class,'professeursView'])->name('professeurs.index');
+Route::post('/professeurs/create', [LocatairesController::class,'CreateProfesseur'])->name('create.professeur');
 
 Route::get('/seances', [SeancesController::class,'index'])->name('seances.index');
 Route::post('/seances/create', [SeancesController::class,'CreateSeance'])->name('create.seance');

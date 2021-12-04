@@ -18,8 +18,13 @@ class SeancesController extends Controller
         'date'=>'required|date_format:Y-m-d',
         'chk'=>'required',
         ]);
-        $location = $request->input('nomlocation');
+        $groupe = $request->input('groupe');
+        $locataire = $request->input('locataire');
+        $time = $request->input('time');
+        $date = $request->input('date');
+        
         return $request->all();
       }
+
 
 }
