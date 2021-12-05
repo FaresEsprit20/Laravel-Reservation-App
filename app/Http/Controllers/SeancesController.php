@@ -12,8 +12,8 @@ class SeancesController extends Controller
 
     public function CreateSeance(Request $request){
         $validateData = $request->validate([
-        'groupe'=>'required',
-        'locataire'=>'required',
+        'groupe'=>'required|integer|gt:0',
+        'locataire'=>'required|integer|gt:0',
         'time'=>'required|date_format:H:i',
         'date'=>'required|date_format:Y-m-d',
         'chk'=>'required',

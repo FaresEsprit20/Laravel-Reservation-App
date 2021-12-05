@@ -48,7 +48,7 @@ class LocationsController extends Controller
 
       public function UpdateLocation(Request $request){
         $validateData = $request->validate([
-        'location'=>'required|integer|min:1',
+        'location'=>'required|integer|gt:0',
         'nomlocationu'=>'required||max:20',
         'chku'=>'required'
         ]);

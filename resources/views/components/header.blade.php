@@ -34,7 +34,7 @@
                       <i class="navbar-fa fa fa-users fa-2x d-inline-block"></i>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link d-inline-block" href="{{ route('home.index') }}">Payement</a>
+                      <a class="nav-link d-inline-block" href="{{ route('paiement.index') }}">Payement</a>
                       <i class="navbar-fa fa fa-users fa-2x d-inline-block"></i>
                     </li>
                     <li class="nav-item">

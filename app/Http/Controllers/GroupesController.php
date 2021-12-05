@@ -22,7 +22,7 @@ class GroupesController extends Controller
     
       public function UpdateGroup(Request $request){
         $validateData = $request->validate([
-        'groupeu'=>'required|integer|min:1',
+        'groupeu'=>'required|integer|gt:0',
         'nomgroupe'=>'required|min:3|max:50',
         'chku'=>'required'
         ]);

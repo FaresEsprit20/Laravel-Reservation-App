@@ -36,6 +36,11 @@ Route::post('/eleves/findGroups', [ElevesController::class,'findEleveGroups'])->
 Route::put('/eleves/update', [ElevesController::class,'UpdateEleve'])->name('update.eleve');
 
 Route::get('/factures', [FacturesController::class,'index'])->name('factures.index');
+Route::get('/factures/paiement', [FacturesController::class,'PayementView'])->name('paiement.index');
+Route::post('/factures/paiement/eleves/payer', [FacturesController::class,'PayerEleve'])->name('paiement.eleve.payer');
+Route::post('/factures/paiement/enseignants/payer', [FacturesController::class,'PayerEnseignant'])->name('paiement.ens.payer');
+Route::post('/factures/paiement/groupes', [FacturesController::class,'FacturerGroupe'])->name('paiement.groupes');
+Route::post('/factures/paiement/enseignants', [FacturesController::class,'FacturerEnseignants'])->name('paiement.ens');
 
 Route::get('/groupes', [GroupesController::class,'index'])->name('groupes.index');
 Route::post('/groupes/create', [GroupesController::class,'CreateGroup'])->name('create.group');
@@ -52,9 +57,6 @@ Route::post('/professeurs/create', [LocatairesController::class,'CreateProfesseu
 
 Route::get('/seances', [SeancesController::class,'index'])->name('seances.index');
 Route::post('/seances/create', [SeancesController::class,'CreateSeance'])->name('create.seance');
-
-
-
 
 
 

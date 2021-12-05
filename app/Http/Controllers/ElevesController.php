@@ -32,8 +32,8 @@ class ElevesController extends Controller
 
       public function UpdateEleve(Request $request){
         $validateData = $request->validate([
-        'groupesu'=>'required|integer|min:1',
-        'eleve'=>'required|integer',
+        'groupesu'=>'required|integer|gt:0',
+        'eleve'=>'required|integer|gt:0',
         'prenomu'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'nomu'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'classeu'=>'required|min:3',
@@ -51,7 +51,7 @@ class ElevesController extends Controller
 
       public function findEleveGroups(Request $request){
         $validateData = $request->validate([
-        'elevef'=>'required',
+        'elevef'=>'required|integer|gt:0',
         'chk'=>'required'
         ]);
     
