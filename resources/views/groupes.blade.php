@@ -166,7 +166,11 @@
               <th scope="col">Action</th>
             </thead>
             <tbody id="tbodyGroupes">
-              
+              <tr>
+                <td class="id_groupe">1</td>
+                <td>aa</td>
+                <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>
+              </tr>
             </tbody>
           </table>
       
@@ -237,7 +241,10 @@
               <th scope="col">#Nom_Groupe</th>
             </thead>
             <tbody id="tbodyEG">
-              
+              <tr>
+                <td class="id_group">1</td>
+                <td>aaa</td>
+              </tr>
             </tbody>
           </table>
       

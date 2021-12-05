@@ -123,7 +123,16 @@
               <th scope="col">Action</th>
             </thead>
             <tbody id="tbodySeances">
-              
+              <tr>
+                <td>#Id_Seance</td>
+                <td>#Id_Enseignant</td>
+                <td>#Id_Groupe</td>
+                <td>#Nom & Prénom Ens</td>
+                <td>#Nom_Groupe</td>
+                <td>#Date</td>
+                <td>#Heure</td>
+                <td><div><button id="btnDelete" style="display:block;width:45px;margin-bottom:5px;" type="button" class="btn btn-info"><i class="fa fa-eye"></button></div></td>
+              </tr>
             </tbody>
           </table>
       
@@ -186,7 +195,19 @@
               <th scope="col">Action</th>
             </thead>
             <tbody id="tbodyGroupes">
-              
+              <td>#Id_Séance</td>
+              <td>#Id_Groupe</td>
+              <td>#Id_Eleve</td>
+              <td>#Nom_Groupe</td>
+              <td>#Prenom_Eleve</td>
+              <td>#NomEleve</td>
+              <td>#Classe</td>
+              <td>#Tel</td>
+              <td>#Date_Séance</td>
+              <td>#Heure_Séance</td>
+              <td>#Payement</td>
+              <td>#Absent 1 Présent 0</td>
+              <td><div><button id="btnAbsent" style="display:block;width:70px;margin-bottom:5px;" type="button" class="btn btn-info">Absent</button><button id="btnPresent" style="display:block;width:70px;margin-bottom:5px;" type="button" class="btn btn-secondary">Présent</button></div></td>
             </tbody>
           </table>
       

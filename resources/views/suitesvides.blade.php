@@ -267,7 +267,10 @@
               <th scope="col">#Nom_salle</th>   
             </thead>
             <tbody id="tbodyL">
-              
+              <tr>
+                <td>#id_loc</td>
+                <td>#Nom_salle</td>   
+              </tr>
             </tbody>
           </table>
       

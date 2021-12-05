@@ -349,7 +349,14 @@
                   <th scope="col">#Montant a Payer </th>
                 </thead>
                 <tbody id="tbodyGroupes">
-                  
+                  <tr>
+                    <td>#Id_Elève</td>
+                    <td>#Nom_Prénom_Elève</td>
+                    <td>#Nbre Séances</td>
+                    <td>#Prix des séances</td>
+                    <td>#Montant Payé</td>
+                    <td>#Montant a Payer </td>
+                  </tr>
                 </tbody>
               </table>
           
@@ -447,7 +454,14 @@
                   <th scope="col">#Montant a Payer </th>
                 </thead>
                 <tbody id="tbodyGroupesEns">
-                  
+                  <tr>
+                  <td>#Id_Enseignant</td>
+                  <td>#Nom_Prénom_Enseignant</td>
+                  <td>#Nbre Séances</td>
+                  <td>#Prix des séances</td>
+                  <td>#Montant Payé</td>
+                  <td>#Montant a Payer </td>
+                  </tr>
                 </tbody>
               </table>
           

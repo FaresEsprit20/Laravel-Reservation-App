@@ -228,7 +228,14 @@
               <th scope="col">Action</th>
             </thead>
             <tbody id="tbodyGroupes">
-              
+              <tr>
+                <td>#Id_Eleve</td>
+                <td>#Prenom_Eleve</td>
+                <td>#NomEleve</td>
+                <td>#Classe</td>
+                <td>#Tel</td>
+                <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button></div></td>
+              </tr>
             </tbody>
           </table>
       

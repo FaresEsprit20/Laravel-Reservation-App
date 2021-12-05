@@ -150,7 +150,18 @@
               
             </thead>
             <tbody id="tbodyEns">
-              
+              <tr>
+                <td>#id_ens</td>
+                <td>#Nom</td>
+                <td>#Prénom</td>
+                <td>CIN</td>
+                <td>Ville</td>
+                <td>Rue</td>
+                <td>Code Postal</td>
+                <td>Email</td>
+                <td>Tel</td>
+                <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>  
+              </tr>
             </tbody>
           </table>
       
