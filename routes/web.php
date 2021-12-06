@@ -9,6 +9,8 @@ use App\Http\Controllers\LocationsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\SeancesController;
+use App\Http\Controllers\SessionController;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/session/get', [SessionController::class,'getSessionData'])->name('session.index');
 Route::get('/', [LoginController::class,'index'])->name('login.index');
 
 Route::post('/login', [LoginController::class,'loginSubmit'])->name('login.submit');
