@@ -49,6 +49,7 @@ Route::post('/groupes/create', [GroupesController::class,'CreateGroup'])->name('
 Route::put('/groupes/update', [GroupesController::class,'UpdateGroup'])->name('update.group');
 
 Route::get('/locations', [LocationsController::class,'index'])->name('locations.index');
+Route::get('/locations/get', [LocationsController::class,'getLocations'])->name('locations.get');
 Route::post('/locations/create', [LocationsController::class,'CreateLocation'])->name('create.location');
 Route::put('/locations/update', [LocationsController::class,'UpdateLocation'])->name('update.location');
 Route::get('/locations/suitesvides', [LocationsController::class,'suitesvidesView'])->name('suitesvides.list');

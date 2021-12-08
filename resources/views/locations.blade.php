@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Reservations Project</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,900,900i" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}" >
-        <!-- Bootstrap CSS -->
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    </head>
-    
-    <body>
-        <a id="button-scroll-top"></a>
-        <header>
-     <x-header />
-</header>
+@include('head')
        
 <main>
 <a id="button-scroll-top"></a>
@@ -111,6 +89,10 @@
   <label for="group_id" class="form-label">Location</label>
     <select name="location" id="group_id" class="form-select">
       <option selected  disabled value="nil">Sélectionner une location...</option>
+      @foreach ($locations as $key => $item)
+      <option value="{{ $item->id }}">{{ $item->nomlocation }}</option>
+      @endforeach
+      
     </select>
     @error('location')
     <span class="text-danger">{{ $message }}</span>
@@ -165,10 +147,13 @@
               <th scope="col">#Nom_salle</th>   
             </thead>
             <tbody id="tbodyL">
+              @foreach ($locations as $key => $item)
               <tr>
-                <td>a</td>
-                <td>e</td>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->nomlocation }}</td>
               </tr>
+              @endforeach
+              
             </tbody>
           </table>
       
@@ -182,25 +167,5 @@
 </section>
 <!-- End Products -->
 </main>
-<footer>
-    <div class="bg-light">
-        <div class="container">
-          <div class="row pt-4 pb-3">
-            <div class="col">
-              <ul class="list-inline text-center">
-                <li class="list-inline-item"><a href="#">À propos</a></li>
-                <li class="list-inline-item">&middot;</li>
-                <li class="list-inline-item"><a href="#">Vie privée</a></li>
-                <li class="list-inline-item">&middot;</li>
-                <li class="list-inline-item"><a href="#">Conditions d'utilisations</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-</footer>
-   <x-bootstrapdt />
-    <script src="assets/js/Locations/datatableLocation.js" ></script> 
-   
-  </body>
-</html>
+
+@include('footer')

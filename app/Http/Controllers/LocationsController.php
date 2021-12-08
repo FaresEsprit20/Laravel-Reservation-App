@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LocationsController extends Controller
 {
     public function index(){
-        return view('locations');
+      $locations = Location::all();
+        return view('locations',compact('locations'));
     }
 
     public function suitesvidesView(){
       return view('suitesvides');
+    }
+
+    public function getLocations(){
+       $locations = Location::all();
+       return $locations;
     }
 
     public function getSuitesVides(Request $request){
@@ -42,6 +50,9 @@ class LocationsController extends Controller
         'nomlocation'=>'required',
         'chk'=>'required'
         ]);
+        DB::table('locations')->insert([
+        'nomlocation'=> $request->nomlocation
+        ]);
         $location = $request->input('nomlocation');
         return $request->all();
       }
@@ -52,10 +63,26 @@ class LocationsController extends Controller
         'nomlocationu'=>'required||max:20',
         'chku'=>'required'
         ]);
+        //$location = DB::table('locations')->where('id',$request->location)->first();
+        DB::table('locations')->where('id',$request->location)->update([
+          'nomlocation'=> $request->nomlocationu
+          ]);
+        $location = $request->input('location');
+        $nomlocation = $request->input('nomlocationu');
+        return back()->with('post-update','post has been done');
+      }
+
+    /*public function DeleteLocation(Request $request){
+        $validateData = $request->validate([
+        'location'=>'required|integer|gt:0',
+        'nomlocationu'=>'required||max:20',
+        'chku'=>'required'
+        ]);
+        DB::table('locations')->where('id',$request->$request)->delete();
         $location = $request->input('location');
         $nomlocation = $request->input('nomlocationu');
         return $request->all();
       }
-
+      */
 
 }
