@@ -1,4 +1,9 @@
-@include('head')
+@extends('layout/master')
+
+@section('title','Reservations App')
+
+
+@section('content')
 
 <main>
     <a id="button-scroll-top"></a>
@@ -455,4 +460,4 @@
     <!-- End Products -->
     </main>
 
-    @include('footer')
+    @endsection
