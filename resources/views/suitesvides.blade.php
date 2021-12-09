@@ -186,6 +186,26 @@
     </div>
   <!-- Fin Partie Fin de Réservation -->
     
+  <div class="col-md-8">
+    <div style="visibility: hidden">
+    <label  class="form-label">Date Début</label>
+      <input type="text"  >
+    </div>
+      @error('datedeb')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
+    </div>
+
+  <div class="col-md-8">
+    <div style="visibility: hidden">
+    <label class="form-label">Datefin</label>
+      <input type="text"  >
+    </div>
+      @error('datefin')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
+    </div>
+
     <div class="col-12">
       <div class="form-check">
         <input name="chks" class="form-check-input" type="checkbox" id="reservCheck" >

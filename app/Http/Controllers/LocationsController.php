@@ -22,53 +22,77 @@ class LocationsController extends Controller
        return $locations;
     }
 
-    public function getSuitesVides(Request $request){
+public function getSuitesVides(Request $request){
+
+     $datedeb = $request->input('andeb').'-'.$request->input('moisdeb').'-'.$request->input('jourdeb');
+     $datefin = $request->input('anfin').'-'.$request->input('moisfin').'-'.$request->input('jourfin');
+
+  $request->merge([
+    'datedeb' => $datedeb,
+    'datefin' => $datefin
+  ]);
+
       $validateData = $request->validate([
-      'jourdeb'=>'required|digits:2|integer',
-      'moisdeb'=>'required|digits:2|integer',
+      'jourdeb'=>'required|digits:2',
+      'moisdeb'=>'required|digits:2',
       'andeb'=>'required|digits:4|integer|min:2021|max:2040',
       'heuredeb'=>'required|date_format:H:i',
-      'jourfin'=>'required|digits:2|integer',
-      'moisfin'=>'required|digits:2|integer',
-      'anfin'=>'required|digits:4|integer|min:2021|max:2040',
+      'jourfin'=>'required|digits:2',
+      'moisfin'=>'required|digits:2',
+      'anfin'=>'required|digits:4|integer|min:2021|max:2040|gte:andeb',
       'heurefin'=>'required|date_format:H:i',
+      'datedeb'=>'bail|required|date|date_format:Y-m-d',
+      'datefin'=>'bail|required|date|date_format:Y-m-d|after_or_equal:datedeb',
       'chks'=>'required'
       ]);
-      $jourdeb = $request->input('jourdeb');
-      $moisdeb = $request->input('moisdeb');
-      $andeb = $request->input('andeb');
-      $heuredeb = $request->input('heuredeb');
-      $jourfin = $request->input('jourfin');
-      $moisfin = $request->input('moisfin');
-      $anfin = $request->input('anfin');
-      $heurefin = $request->input('heurefin');
+    
+      $jourdeb = $validateData['jourdeb'];
+      $moisdeb = $validateData['moisdeb'];
+      $andeb = $validateData['andeb'];
+      $heuredeb = $validateData['heuredeb'];
+      $jourfin = $validateData['jourfin'];
+      $moisfin = $validateData['moisfin'];
+      $anfin = $validateData['anfin'];
+      $heurefin = $validateData['heurefin'];
+      $dtb = $validateData['datedeb'];
+      $dtf = $validateData['datefin'];
+    
+      $suites = DB::table('locations')->whereNotIn('id', function($query) use ($dtb, $dtf){
+        $query->select('id_loc')
+        ->from('reservations')
+        ->whereBetween ('datedeb', [ $dtb, $dtf ])
+        ->orwhereBetween('datefin', [ $dtb, $dtf ]);
+    })->get();
+
       return $request->all();
     }
 
     public function CreateLocation(Request $request){
         $validateData = $request->validate([
-        'nomlocation'=>'required',
+        'nomlocation'=>'required|unique:locations,name',
         'chk'=>'required'
         ]);
         DB::table('locations')->insert([
-        'nomlocation'=> $request->nomlocation
+        'name'=> $request->nomlocation
         ]);
-        $location = $request->input('nomlocation');
+    
+        $location = $validateData['nomlocation'];
         return $request->all();
       }
 
       public function UpdateLocation(Request $request){
         $validateData = $request->validate([
         'location'=>'required|integer|gt:0',
-        'nomlocationu'=>'required||max:20',
+        'nomlocationu'=>'required||max:20|unique:locations,name',
         'chku'=>'required'
         ]);
         //$location = DB::table('locations')->where('id',$request->location)->first();
         DB::table('locations')->where('id',$request->location)->update([
           'nomlocation'=> $request->nomlocationu
           ]);
-        $location = $request->input('location');
-        $nomlocation = $request->input('nomlocationu');
+       
+        $location = $validateData['location'];
+        $nomlocation = $validateData['nomlocationu'];
         return back()->with('post-update','post has been done');
       }
 
@@ -79,7 +103,7 @@ class LocationsController extends Controller
         'chku'=>'required'
         ]);
         DB::table('locations')->where('id',$request->$request)->delete();
-        $location = $request->input('location');
+        $location = $validated[('location');
         $nomlocation = $request->input('nomlocationu');
         return $request->all();
       }
