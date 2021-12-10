@@ -61,7 +61,8 @@ public function getSuitesVides(Request $request){
         $query->select('id_loc')
         ->from('reservations')
         ->whereBetween ('datedeb', [ $dtb, $dtf ])
-        ->orwhereBetween('datefin', [ $dtb, $dtf ]);
+        ->orwhereBetween('datefin', [ $dtb, $dtf ])
+        ->distinct();
     })->get();
 
       return $request->all();
