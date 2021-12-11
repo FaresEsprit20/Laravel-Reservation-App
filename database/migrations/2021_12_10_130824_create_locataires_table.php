@@ -24,7 +24,7 @@ class CreateLocatairesTable extends Migration
             $table->string('codepostal');
             $table->string('ville');
             $table->string('tel')->unique();
-            $table->string('archive_state');
+            $table->integer('archive_state')->unsigned()->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });

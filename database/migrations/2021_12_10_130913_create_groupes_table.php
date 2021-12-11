@@ -16,7 +16,7 @@ class CreateGroupesTable extends Migration
         Schema::create('groupes', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('archive_state');
+            $table->integer('archive_state')->unsigned()->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });

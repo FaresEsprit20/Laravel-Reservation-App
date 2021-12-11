@@ -15,14 +15,14 @@ class CreateFacturesTable extends Migration
     {
         Schema::create('factures', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_eleve');
-            $table->bigInteger('id_groupe');
+            $table->bigInteger('id_eleve')->unsigned();
+            $table->bigInteger('id_groupe')->unsigned();
             $table->string('nbrseances');
             $table->string('prixtotalseances');
             $table->string('paid');
             $table->string('topay');
             $table->string('dateheure');
-            $table->string('archive_state');
+            $table->integer('archive_state')->unsigned()->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });

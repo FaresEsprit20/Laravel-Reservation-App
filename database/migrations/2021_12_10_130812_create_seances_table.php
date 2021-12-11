@@ -17,8 +17,9 @@ class CreateSeancesTable extends Migration
             $table->id();
             $table->string('date');
             $table->string('heure');
-            $table->bigInteger('id_locataire');
-            $table->bigInteger('id_groupe');
+            $table->bigInteger('id_locataire')->unsigned();
+            $table->bigInteger('id_groupe')->unsigned();
+            $table->integer('archive_state')->unsigned()->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });

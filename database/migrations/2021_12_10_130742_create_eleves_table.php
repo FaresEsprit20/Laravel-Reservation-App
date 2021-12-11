@@ -19,6 +19,7 @@ class CreateElevesTable extends Migration
             $table->string('prenom');
             $table->string('classe');
             $table->string('tel')->unique();
+            $table->integer('archive_state')->unsigned()->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });
