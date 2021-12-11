@@ -15,7 +15,12 @@ class CreateElevesTable extends Migration
     {
         Schema::create('eleves', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('classe');
+            $table->string('tel')->unique();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

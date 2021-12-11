@@ -15,7 +15,12 @@ class CreateSeancesTable extends Migration
     {
         Schema::create('seances', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('date');
+            $table->string('heure');
+            $table->bigInteger('id_locataire');
+            $table->bigInteger('id_groupe');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

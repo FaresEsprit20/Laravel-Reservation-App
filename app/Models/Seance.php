@@ -12,3 +12,4 @@ class Seance extends Model
     protected $table = 'seances';
 
 }
+

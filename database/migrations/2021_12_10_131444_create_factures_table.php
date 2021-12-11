@@ -15,7 +15,16 @@ class CreateFacturesTable extends Migration
     {
         Schema::create('factures', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->bigInteger('id_eleve');
+            $table->bigInteger('id_groupe');
+            $table->string('nbrseances');
+            $table->string('prixtotalseances');
+            $table->string('paid');
+            $table->string('topay');
+            $table->string('dateheure');
+            $table->string('archive_state');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 
@@ -28,4 +37,6 @@ class CreateFacturesTable extends Migration
     {
         Schema::dropIfExists('factures');
     }
+
+
 }
