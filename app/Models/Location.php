@@ -11,6 +11,9 @@ class Location extends Model
     
     protected $table = 'locations';
 
-
+  public function reservations(){
+    return $this->hasMany(Reservation::class);
+  }
     
+
 }

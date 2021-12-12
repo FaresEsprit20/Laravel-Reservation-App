@@ -11,5 +11,12 @@ class Locataire extends Model
 
     protected $table = 'locataires';
 
+    public function reservations(){
+        return $this->hasMany(Reservation::class);
+      }
+
+    public function seances(){
+        return $this->hasMany(Seance::class);
+      }
 
 }

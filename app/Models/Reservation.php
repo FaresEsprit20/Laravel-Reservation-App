@@ -11,5 +11,12 @@ class Reservation extends Model
 
     protected $table = 'reservations';
 
+    public function locataire(){
+        return $this->belongsTo(locataire::class);
+    }
+
+    public function location(){
+        return $this->belongsTo(location::class);
+    }
 
 }

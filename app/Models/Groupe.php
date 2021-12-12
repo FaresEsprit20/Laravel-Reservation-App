@@ -11,4 +11,12 @@ class Groupe extends Model
 
     protected $table = 'groupes';
 
+    public function seances(){
+        return $this->hasMany(Seance::class);
+      }
+
+      public function factures(){
+        return $this->hasMany(Facture::class);
+      }
+
 }

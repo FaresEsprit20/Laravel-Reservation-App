@@ -11,4 +11,12 @@ class Facture extends Model
 
     protected $table = 'factures';
 
+    public function eleve(){
+        return $this->belongsTo(Eleve::class);
+    }
+
+    public function groupe(){
+        return $this->belongsTo(Groupe::class);
+    }
+
 }

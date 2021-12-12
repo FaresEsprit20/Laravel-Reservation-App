@@ -11,5 +11,13 @@ class Seance extends Model
 
     protected $table = 'seances';
 
+    public function locataire(){
+        return $this->belongsTo(locataire::class);
+    }
+
+    public function groupe(){
+        return $this->belongsTo(Groupe::class);
+    }
+
 }
 
