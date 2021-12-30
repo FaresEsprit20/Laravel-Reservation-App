@@ -16,8 +16,8 @@ class LoginController extends Controller
       'email'=>'required|email:rfc',
       'password'=>'required|min:8|max:24'
       ]);
-      $email = $request->input('email');
-      $password = $request->input('password');
+      $email = $validateData['email'];
+      $password = $validateData['password'];
       return $request->all();
     }
 

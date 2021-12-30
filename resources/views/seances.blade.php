@@ -27,6 +27,10 @@
   <label for="group_ides" class="form-label">Groupe</label>
     <select name="groupe" id="group_ides" class="form-select">
       <option selected  disabled value="nil">Sélectionner un groupe...</option>
+      @foreach ($groupes as $key => $item)
+
+      <option  value="{{ $item->id_groupe }}">{{ $item->nom_groupe }}</option>              
+      @endforeach
     </select>
     @error('groupe')
     <span class="text-danger">{{ $message }}</span>
@@ -36,6 +40,10 @@
   <label for="loc_id" class="form-label">Locataire</label>
     <select name="locataire" id="loc_id" class="form-select">
       <option selected disabled value="nil">Sélectionner un locataire...</option>
+      @foreach ($locataires as $key => $item)
+
+      <option  value="{{ $item->id_locataire }}">{{ $item->nom $item->prenom }}</option>              
+      @endforeach
     </select>
     @error('locataire')
     <span class="text-danger">{{ $message }}</span>

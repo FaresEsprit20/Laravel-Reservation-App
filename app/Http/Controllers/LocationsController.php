@@ -73,12 +73,14 @@ public function getSuitesVides(Request $request){
         'nomlocation'=>'required|unique:locations,name',
         'chk'=>'required'
         ]);
-        DB::table('locations')->insert([
-        'name'=> $request->nomlocation
-        ]);
-    
         $location = $validateData['nomlocation'];
-        return $request->all();
+        DB::table('locations')->insert([
+        'name'=> $location
+        ]);
+           
+        Location::create($request->all());
+        return redirect()->route('locations.index')
+                        ->with('success','Location created successfully.');
       }
 
       public function UpdateLocation(Request $request){
@@ -87,13 +89,14 @@ public function getSuitesVides(Request $request){
         'nomlocationu'=>'required||max:20|unique:locations,name',
         'chku'=>'required'
         ]);
-        //$location = DB::table('locations')->where('id',$request->location)->first();
-        DB::table('locations')->where('id',$request->location)->update([
-          'nomlocation'=> $request->nomlocationu
-          ]);
-       
         $location = $validateData['location'];
         $nomlocation = $validateData['nomlocationu'];
+        //$location = DB::table('locations')->where('id',$request->location)->first();
+        DB::table('locations')->where('id',$location)->update([
+          'nomlocation'=> $nomlocation
+          ]);
+       
+      
         return back()->with('post-update','post has been done');
       }
 

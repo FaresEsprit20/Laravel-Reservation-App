@@ -10,6 +10,7 @@ class Facture extends Model
     use HasFactory;
 
     protected $table = 'factures';
+    protected $guarded = [];
 
     public function eleve(){
         return $this->belongsTo(Eleve::class);

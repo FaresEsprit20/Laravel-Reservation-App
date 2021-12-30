@@ -10,6 +10,7 @@ class Seance extends Model
     use HasFactory;
 
     protected $table = 'seances';
+    protected $guarded = [];
 
     public function locataire(){
         return $this->belongsTo(locataire::class);

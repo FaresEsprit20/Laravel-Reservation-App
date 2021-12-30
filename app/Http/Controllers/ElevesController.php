@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Eleve;
 use App\Rules\FullnameRule;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -12,6 +13,10 @@ class ElevesController extends Controller
         return view('eleves');
     }
 
+    public function getEleves(){
+      $eleves = Eleve::all();
+      return $eleves;
+   }
     public function CreateEleve(Request $request){
         $validateData = $request->validate([
         'groupes'=>'required|integer|min:1',
@@ -21,12 +26,9 @@ class ElevesController extends Controller
         'tel'=>'required|integer|digits:8',
         'chk'=>'required'
         ]);
-        $groupes = $request->input('groupes');
-        $prenom = $request->input('prenom');
-        $nom = $request->input('nom');
-        $classe = $request->input('classe');
-        $tel = $request->input('tel');
-        return $request->all();
+        Eleve::create($request->all());
+        return redirect()->route('eleves.index')
+                        ->with('success','Eleve created successfully.');
       }
   
 
@@ -40,23 +42,21 @@ class ElevesController extends Controller
         'telu'=>'required|integer|digits:8',
         'chku'=>'required'
         ]);
-        $groupes = $request->input('groupesu');
-        $eleve = $request->input('eleve');
-        $prenom = $request->input('prenomu');
-        $nom = $request->input('nomu');
-        $classe = $request->input('classeu');
-        $tel = $request->input('telu');
+        $groupes = $validateData['groupesu'];
+        $eleve = $validateData['eleve'];
+        $prenom = $validateData['prenomu'];
+        $nom = $validateData['nomu'];
+        $classe = $validateData['classeu'];
+        $tel = $validateData['telu'];
         return $request->all();
       }
 
-      public function findEleveGroups(Request $request){
+     public function findEleveGroups(Request $request){
         $validateData = $request->validate([
         'elevef'=>'required|integer|gt:0',
         'chk'=>'required'
         ]);
-    
-        $eleve = $request->input('elevef');
-      
+        $eleve = $validateData['elevef'];      
         return $request->all();
       }
 

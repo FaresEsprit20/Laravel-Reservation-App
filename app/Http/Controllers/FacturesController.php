@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Facture;
 use Illuminate\Http\Request;
 
 class FacturesController extends Controller
@@ -14,6 +15,11 @@ class FacturesController extends Controller
         return view('paiement');
     }
 
+    public function getFactures(){
+        $factures = Facture::all();
+        return $factures;
+     }
+
     public function PayerEleve(Request $request){
         $validateData = $request->validate([
             'seance'=>'required|integer|gt:0',
@@ -22,9 +28,9 @@ class FacturesController extends Controller
             'chk'=>'required',
             ]);
 
-            $seance = $request->input('seance');
-            $eleve = $request->input('eleve');
-            $montant = $request->input('montant');
+            $seance = $validateData['seance'];
+            $eleve = $validateData['eleve'];
+            $montant = $validateData['montant'];
           
             return $request->all();      
     }
@@ -38,10 +44,10 @@ class FacturesController extends Controller
             'chke'=>'required',
             ]);
 
-            $seance = $request->input('seancee');
-            $groupe = $request->input('groupee');
-            $locataire = $request->input('locataire');
-            $montant = $request->input('montante');
+            $seance = $validateData['seancee'];
+            $groupe = $validateData['groupee'];
+            $locataire = $validateData['locataire'];
+            $montant = $validateData['montante'];
           
             return $request->all();      
     }
@@ -54,8 +60,8 @@ class FacturesController extends Controller
             'chkg'=>'required',
             ]);
 
-            $groupe = $request->input('groupeg');
-            $prixunitaire = $request->input('prixunitaire');
+            $groupe = $validateData['groupeg'];
+            $prixunitaire = $validateData['prixunitaire'];
           
             return $request->all();      
     }
@@ -69,9 +75,9 @@ class FacturesController extends Controller
             'chkens'=>'required',
             ]);
 
-            $groupe = $request->input('groupeens');
-            $locataire = $request->input('loc');
-            $prixunitaire = $request->input('prixUens');
+            $groupe = $validateData['groupeens'];
+            $locataire = $validateData['loc'];
+            $prixunitaire = $validateData['prixUens'];
           
             return $request->all();      
     }

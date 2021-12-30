@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
@@ -10,4 +11,10 @@ class ReservationsController extends Controller
        $title = 'reservation app';
        return view('reservations',compact('title'));
    }
+
+   public function getReservations(){
+    $reservations = Reservation::all();
+    return $reservations;
+}
+
 }

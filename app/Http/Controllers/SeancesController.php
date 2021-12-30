@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Groupe;
+use App\Models\Locataire;
+use App\Models\Seance;
 use Illuminate\Http\Request;
 
 class SeancesController extends Controller
 {
     public function index(){
-        return view('seances');
+        $groupes = Groupe::all();
+        $locataires = Locataire::all();
+        return view('seances',compact('groupes'),compact('locataires'));
+    }
+
+    public function getSeances(){
+        $seances = Seance::all();
+        return $seances;
     }
 
     public function CreateSeance(Request $request){
@@ -18,13 +28,17 @@ class SeancesController extends Controller
         'date'=>'required|date_format:Y-m-d',
         'chk'=>'required',
         ]);
-        $groupe = $request->input('groupe');
-        $locataire = $request->input('locataire');
-        $time = $request->input('time');
-        $date = $request->input('date');
+        $groupe = $validateData['groupe'];
+        $locataire = $validateData['locataire'];
+        $time = $validateData['time'];
+        $date = $validateData['date'];
         
-        return $request->all();
+        Seance::create($request->all());
+        return redirect()->route('seances.index')
+                        ->with('success','Seance created successfully.');
+
       }
+
 
 
 }

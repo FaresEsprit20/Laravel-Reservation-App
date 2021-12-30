@@ -10,6 +10,7 @@ class Locataire extends Model
     use HasFactory;
 
     protected $table = 'locataires';
+    protected $guarded = [];
 
     public function reservations(){
         return $this->hasMany(Reservation::class);

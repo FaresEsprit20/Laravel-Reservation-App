@@ -14,15 +14,16 @@ class CreateFacturesTable extends Migration
     public function up()
     {
         Schema::create('factures', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('id_eleve')->unsigned();
-            $table->bigInteger('id_groupe')->unsigned();
+            $table->engine = 'InnoDB';
+            $table->id()->unsigned();
+            $table->unsignedBigInteger('id_eleve');
+            $table->unsignedBigInteger('id_groupe');
             $table->string('nbrseances');
             $table->string('prixtotalseances');
             $table->string('paid');
             $table->string('topay');
             $table->string('dateheure');
-            $table->integer('archive_state')->unsigned()->default(0);
+            $table->unsignedInteger('archive_state')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
             $table->foreign('id_eleve')->references('id')->on('eleves')->onDelete('cascade')->onUpdate('cascade');

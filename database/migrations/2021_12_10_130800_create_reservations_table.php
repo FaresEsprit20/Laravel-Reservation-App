@@ -14,9 +14,10 @@ class CreateReservationsTable extends Migration
     public function up()
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('id_location')->unsigned();
-            $table->bigInteger('id_locataire')->unsigned();
+            $table->engine = 'InnoDB';
+            $table->id()->unsigned();
+            $table->unsignedBigInteger('id_location');
+            $table->unsignedBigInteger('id_locataire');
             $table->string('nom_groupe');
             $table->string('datedeb');
             $table->string('datefin');
@@ -28,7 +29,7 @@ class CreateReservationsTable extends Migration
             $table->string('moisfin');
             $table->string('andeb');
             $table->string('anfin');
-            $table->integer('archive_state')->unsigned()->default(0);
+            $table->unsignedInteger('archive_state')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
             $table->foreign('id_location')->references('id')->on('locations')->onDelete('cascade')->onUpdate('cascade');

@@ -14,12 +14,13 @@ class CreateElevesTable extends Migration
     public function up()
     {
         Schema::create('eleves', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+            $table->id()->unsigned();
             $table->string('nom');
             $table->string('prenom');
             $table->string('classe');
             $table->string('tel')->unique();
-            $table->integer('archive_state')->unsigned()->default(0);
+            $table->unsignedInteger('archive_state')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });

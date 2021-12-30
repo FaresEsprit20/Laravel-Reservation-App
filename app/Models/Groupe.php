@@ -10,6 +10,7 @@ class Groupe extends Model
     use HasFactory;
 
     protected $table = 'groupes';
+    protected $guarded = [];
 
     public function seances(){
         return $this->hasMany(Seance::class);
