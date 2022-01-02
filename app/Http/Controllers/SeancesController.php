@@ -43,6 +43,7 @@ class SeancesController extends Controller
         ->leftJoin('groupes', 'seances.groupe_id', '=', 'groupes.id')
         ->leftJoin('locations', 'seances.location_id', '=', 'locations.id')
         ->where('seances.archive_state', '=', 0)
+        ->where('seances.id', '=', $id)
         ->get();
 
         

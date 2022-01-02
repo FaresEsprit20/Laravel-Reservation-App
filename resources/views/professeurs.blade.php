@@ -132,18 +132,24 @@
               
             </thead>
             <tbody id="tbodyEns">
+             
+              @foreach ($locataires as $key => $item)
+                
               <tr>
-                <td>#id_ens</td>
-                <td>#Nom</td>
-                <td>#Prénom</td>
-                <td>CIN</td>
-                <td>Ville</td>
-                <td>Rue</td>
-                <td>Code Postal</td>
-                <td>Email</td>
-                <td>Tel</td>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->nom_locataire }}</td>
+                <td>{{ $item->prenom_locataire }}</td>
+                <td>{{ $item->cin }}</td>
+                <td>{{ $item->ville }}</td>
+                <td>{{ $item->rue }}</td>
+                <td>{{ $item->codepostal }}</td>
+                <td>{{ $item->email }}</td>
+                <td>{{ $item->tel }}</td>
                 <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>  
               </tr>
+              
+              @endforeach
+
             </tbody>
           </table>
       

@@ -95,7 +95,7 @@
     <select name="location" id="group_id" class="form-select">
       <option selected  disabled value="nil">Sélectionner une location...</option>
       @foreach ($locations as $key => $item)
-      <option value="{{ $item->id }}">{{ $item->name }}</option>
+      <option value="{{ $item->id }}">{{ $item->location_name }}</option>
       @endforeach
       
     </select>
@@ -155,7 +155,7 @@
               @foreach ($locations as $key => $item)
               <tr>
                 <td>{{ $item->id }}</td>
-                <td>{{ $item->name }}</td>
+                <td>{{ $item->location_name }}</td>
               </tr>
               @endforeach
               

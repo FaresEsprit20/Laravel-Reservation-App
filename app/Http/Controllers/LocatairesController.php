@@ -6,10 +6,14 @@ use App\Models\Locataire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class LocatairesController extends Controller
 {
     public function index(){
-        return view('locataires');
+        $locataires =  Locataire::select('*')
+        ->where('archive_state', '=', 0)->get();
+
+        return view('professeurs',compact('locataires'));
     }
 
     public function getLocataires(){
@@ -19,20 +23,23 @@ class LocatairesController extends Controller
     }
 
     public function professeursView(){
-        return view('professeurs');
+        $locataires =  Locataire::select('*')
+        ->where('archive_state', '=', 0)->get();
+
+        return view('professeurs',compact('locataires'));
     }
 
     public function CreateProfesseur(Request $request){
         $validateData = $request->validate([
-        'nom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
-        'prenom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
-        'cin'=>'required|integer|digits:8',
-        'ville'=>'required|min:3|max:50|regex:/^[a-zA-ZÑñ\s]',
-        'rue'=>'required|min:3|max:50',
-        'postal'=>'required|integer/digits:4',
-        'email'=>'required|email:rfc',
-        'tel'=>'required|integer|digits:8',
-        'chk'=>'required',
+        'nom'=> ['required','regex:/^[a-zA-Z\s]+$/','max:30'],
+        'prenom'=> ['required','regex:/^[a-zA-Z\s]+$/','max:30'],
+        'cin'=> ['required','regex:/^[0-9\s]+$/','unique:locataires,cin','min:8','max:8'],
+        'ville'=> ['required','min:3','max:50','regex:/^[a-zA-Z\s]+$/'],
+        'rue'=> ['required','min:3','max:50'],
+        'postal'=> ['required','integer','digits:4'],
+        'email'=> ['required','email:rfc'],
+        'tel'=> ['required','integer','digits:8','unique:locataires,tel'],
+        'chk'=> ['required']
         ]);
         $nom = $validateData['nom'];
         $prenom = $validateData['prenom'];
@@ -44,17 +51,17 @@ class LocatairesController extends Controller
         $tel = $validateData['tel'];
 
         $locataire = new Locataire();
-        $locataire->nom = $nom;
-        $locataire->prenom = $prenom;
+        $locataire->nom_locataire = $nom;
+        $locataire->prenom_locataire = $prenom;
         $locataire->cin = $cin;
         $locataire->ville = $ville;
         $locataire->rue = $rue;
-        $locataire->postal = $postal;
+        $locataire->codepostal = $postal;
         $locataire->email = $email;
         $locataire->tel = $tel;
         $locataire->save();
 
-        return redirect()->route('locataires.index')
+        return redirect()->route('professeurs.index')
                         ->with('success','Locataire created successfully.');
       }
 

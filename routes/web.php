@@ -31,6 +31,7 @@ Route::post('/login', [LoginController::class,'loginSubmit'])->name('login.submi
 Route::get('/home', [HomeController::class,'index'])->name('home.index');
 
 Route::get('/reservations', [ReservationsController::class,'index'])->name('reservations.index');
+Route::post('/reservations/create', [ReservationsController::class,'CreateReservation'])->name('create.reservation');
 Route::get('/reservations/view/{id}', [SeancesController::class,'getReservationById'])->name('get.reservation');
 
 Route::get('/eleves', [ElevesController::class,'index'])->name('eleves.index');

@@ -75,7 +75,7 @@
       <option selected  disabled value="nil">Sélectionner un groupe...</option>
       @foreach ($groupes as $key => $item)
           
-      <option value="{{ $item->id }}">{{ $item->nom }}</option>
+      <option value="{{ $item->id }}">{{ $item->group_name }}</option>
 
       @endforeach
     </select>
@@ -114,26 +114,7 @@
  
 </section>
 <!-- End Groupes -->
-<!-- Modal -->
-<div class="modal fade" id="reservmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Succés</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       Votre Groupe a été crée avec Succés!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">OK!</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<!-- End Modal -->
+
 <!-- Start Products -->
 <section class="GroupesTable" id="GroupeTable">
   <div class="container-fluid">
@@ -158,7 +139,7 @@
           
               <tr>
                 <td class="id_groupe">{{$item->id }}</td>
-                <td>{{$item->nom }}</td>
+                <td>{{$item->group_name }}</td>
                 <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>
               </tr>  
         
@@ -244,7 +225,7 @@
           
               <tr>
                 <td class="id_group">{{$item->id }}</td>
-                <td>{{$item->nom }}</td>
+                <td>{{$item->group_name }}</td>
                 
               </tr>  
         

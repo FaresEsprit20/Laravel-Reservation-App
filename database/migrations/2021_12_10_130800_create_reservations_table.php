@@ -21,6 +21,8 @@ class CreateReservationsTable extends Migration
             $table->string('nom_groupe');
             $table->string('datedeb');
             $table->string('datefin');
+            $table->string('datetimedeb');
+            $table->string('datetimefin');
             $table->string('heuredeb');
             $table->string('heurefin');
             $table->string('jourdeb');
