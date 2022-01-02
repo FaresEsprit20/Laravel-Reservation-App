@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
 class LocationsController extends Controller
 {
     public function index(){
-      $locations = Location::all();
+      $locations = Location::select('*')
+      ->where('archive_state', '=', 0)->get();
         return view('locations',compact('locations'));
     }
 
@@ -18,7 +19,8 @@ class LocationsController extends Controller
     }
 
     public function getLocations(){
-       $locations = Location::all();
+       $locations = Location::select('*')
+       ->where('archive_state', '=', 0)->get();
        return $locations;
     }
 
@@ -70,15 +72,14 @@ public function getSuitesVides(Request $request){
 
     public function CreateLocation(Request $request){
         $validateData = $request->validate([
-        'nomlocation'=>'required|unique:locations,name',
+        'nomlocation'=>'required|unique:locations,location_name',
         'chk'=>'required'
         ]);
-        $location = $validateData['nomlocation'];
-        DB::table('locations')->insert([
-        'name'=> $location
-        ]);
+        $locationName = $validateData['nomlocation'];
+        $location = new Location();
+        $location->location_name = $locationName;
+        $location->save();
            
-        Location::create($request->all());
         return redirect()->route('locations.index')
                         ->with('success','Location created successfully.');
       }
@@ -86,7 +87,7 @@ public function getSuitesVides(Request $request){
       public function UpdateLocation(Request $request){
         $validateData = $request->validate([
         'location'=>'required|integer|gt:0',
-        'nomlocationu'=>'required||max:20|unique:locations,name',
+        'nomlocationu'=>'required||max:20|unique:locations,location_name',
         'chku'=>'required'
         ]);
         $location = $validateData['location'];

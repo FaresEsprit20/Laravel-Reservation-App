@@ -31,6 +31,7 @@ Route::post('/login', [LoginController::class,'loginSubmit'])->name('login.submi
 Route::get('/home', [HomeController::class,'index'])->name('home.index');
 
 Route::get('/reservations', [ReservationsController::class,'index'])->name('reservations.index');
+Route::get('/reservations/view/{id}', [SeancesController::class,'getReservationById'])->name('get.reservation');
 
 Route::get('/eleves', [ElevesController::class,'index'])->name('eleves.index');
 Route::post('/eleves/create', [ElevesController::class,'CreateEleve'])->name('create.eleve');
@@ -47,6 +48,7 @@ Route::post('/factures/paiement/enseignants', [FacturesController::class,'Factur
 Route::get('/groupes', [GroupesController::class,'index'])->name('groupes.index');
 Route::post('/groupes/create', [GroupesController::class,'CreateGroup'])->name('create.group');
 Route::put('/groupes/update', [GroupesController::class,'UpdateGroup'])->name('update.group');
+Route::get('/groupes/view/{id}', [SeancesController::class,'getGroupeById'])->name('get.group');
 
 Route::get('/locations', [LocationsController::class,'index'])->name('locations.index');
 Route::get('/locations/get', [LocationsController::class,'getLocations'])->name('locations.get');
@@ -60,6 +62,7 @@ Route::post('/professeurs/create', [LocatairesController::class,'CreateProfesseu
 
 Route::get('/seances', [SeancesController::class,'index'])->name('seances.index');
 Route::post('/seances/create', [SeancesController::class,'CreateSeance'])->name('create.seance');
+Route::get('/seances/view/{id}', [SeancesController::class,'getSeanceById'])->name('seance.details');
 
 
 

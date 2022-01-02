@@ -30,8 +30,8 @@
     @enderror
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservCheck">
-      <label name="chk" class="form-check-label" for="reservCheck">
+      <input name="chk" class="form-check-input" type="checkbox" id="reservCheck">
+      <label  class="form-check-label" for="chk">
         Cochez moi
       </label>
       @error('chk')
@@ -73,6 +73,11 @@
   <label for="group_id" class="form-label">Groupe</label>
     <select name="groupeu" id="group_id" class="form-select">
       <option selected  disabled value="nil">Sélectionner un groupe...</option>
+      @foreach ($groupes as $key => $item)
+          
+      <option value="{{ $item->id }}">{{ $item->nom }}</option>
+
+      @endforeach
     </select>
     @error('groupeu')
     <span class="text-danger">{{ $message }}</span>
@@ -149,11 +154,16 @@
               <th scope="col">Action</th>
             </thead>
             <tbody id="tbodyGroupes">
+              @foreach ($groupes as $key => $item)
+          
               <tr>
-                <td class="id_groupe">1</td>
-                <td>aa</td>
+                <td class="id_groupe">{{$item->id }}</td>
+                <td>{{$item->nom }}</td>
                 <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>
-              </tr>
+              </tr>  
+        
+              @endforeach
+              
             </tbody>
           </table>
       
@@ -184,7 +194,13 @@
   <div class="col-md-8">
   <label for="eleve_id" class="form-label">Elèves</label>
     <select name="elevef" id="eleve_id" class="form-select" >
-      <option selected  value="nil" disabled>Sélectionner un éleve...</option>
+      <option selected disabled value="nil" disabled>Sélectionner un éleve...</option>
+      @foreach ($eleves as $key => $item)
+          
+      <option value="{{ $item->id }}" disabled>{{ $item->nom }}<br>{{ $item->prenom }}</option>
+    
+      @endforeach
+     
     </select>
     @error('elevef')
     <span class="text-danger">{{  $message }}</span>
@@ -224,10 +240,16 @@
               <th scope="col">#Nom_Groupe</th>
             </thead>
             <tbody id="tbodyEG">
+              @foreach ($groupes as $key => $item)
+          
               <tr>
-                <td class="id_group">1</td>
-                <td>aaa</td>
-              </tr>
+                <td class="id_group">{{$item->id }}</td>
+                <td>{{$item->nom }}</td>
+                
+              </tr>  
+        
+              @endforeach
+             
             </tbody>
           </table>
       

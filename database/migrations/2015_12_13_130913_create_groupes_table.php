@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocatairesTable extends Migration
+class CreateGroupesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,10 @@ class CreateLocatairesTable extends Migration
      */
     public function up()
     {
-        
-        Schema::create('locataires', function (Blueprint $table) {
+        Schema::create('groupes', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id()->unsigned();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('cin')->unique();
-            $table->string('email')->unique();
-            $table->string('rue');
-            $table->string('codepostal');
-            $table->string('ville');
-            $table->string('tel')->unique();
+            $table->string('group_name');
             $table->unsignedInteger('archive_state')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
@@ -38,6 +30,6 @@ class CreateLocatairesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locataires');
+        Schema::dropIfExists('groupes');
     }
 }

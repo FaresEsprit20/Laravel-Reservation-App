@@ -16,8 +16,8 @@ class CreateElevesTable extends Migration
         Schema::create('eleves', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id()->unsigned();
-            $table->string('nom');
-            $table->string('prenom');
+            $table->string('nom_eleve');
+            $table->string('prenom_eleve');
             $table->string('classe');
             $table->string('tel')->unique();
             $table->unsignedInteger('archive_state')->default(0);

@@ -15,6 +15,10 @@ class Location extends Model
   public function reservations(){
     return $this->hasMany(Reservation::class);
   }
+
+  public function seances(){
+    return $this->hasMany(Seance::class);
+  }
     
 
 }

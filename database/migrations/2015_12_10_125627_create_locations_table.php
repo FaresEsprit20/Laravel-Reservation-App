@@ -16,7 +16,7 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id()->unsigned();
-            $table->string('name')->unique();
+            $table->string('location_name')->unique();
             $table->unsignedInteger('archive_state')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();

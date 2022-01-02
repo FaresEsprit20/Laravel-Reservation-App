@@ -7,14 +7,17 @@ use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
 {
+    
    public function index(){
        $title = 'reservation app';
        return view('reservations',compact('title'));
    }
 
    public function getReservations(){
-    $reservations = Reservation::all();
-    return $reservations;
-}
+       $reservations = Reservation::select('*')
+       ->where('archive_state', '=', 0)->get();
+       return $reservations;
+  }
+
 
 }

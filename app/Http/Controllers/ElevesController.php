@@ -14,7 +14,8 @@ class ElevesController extends Controller
     }
 
     public function getEleves(){
-      $eleves = Eleve::all();
+      $eleves = Eleve::select('*')
+      ->where('archive_state', '=', 0)->get();
       return $eleves;
    }
     public function CreateEleve(Request $request){
@@ -26,7 +27,12 @@ class ElevesController extends Controller
         'tel'=>'required|integer|digits:8',
         'chk'=>'required'
         ]);
-        Eleve::create($request->all());
+        $eleve = new Eleve();
+        $eleve->prenom = $validateData['prenom'];
+        $eleve->nom = $validateData['nom'];
+        $eleve->classe = $validateData['classe'];
+        $eleve->tel = $validateData['tel'];
+
         return redirect()->route('eleves.index')
                         ->with('success','Eleve created successfully.');
       }

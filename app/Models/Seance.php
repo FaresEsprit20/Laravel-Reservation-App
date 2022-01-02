@@ -16,6 +16,10 @@ class Seance extends Model
         return $this->belongsTo(locataire::class);
     }
 
+    public function location(){
+        return $this->belongsTo(location::class);
+    }
+
     public function groupe(){
         return $this->belongsTo(Groupe::class);
     }

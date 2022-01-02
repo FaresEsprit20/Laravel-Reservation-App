@@ -13,7 +13,8 @@ class LocatairesController extends Controller
     }
 
     public function getLocataires(){
-        $locataires = Locataire::all();
+        $locataires = Locataire::select('*')
+        ->where('archive_state', '=', 0)->get();
         return $locataires;
     }
 
@@ -42,7 +43,17 @@ class LocatairesController extends Controller
         $email = $validateData['email'];
         $tel = $validateData['tel'];
 
-        Locataire::create($request->all());
+        $locataire = new Locataire();
+        $locataire->nom = $nom;
+        $locataire->prenom = $prenom;
+        $locataire->cin = $cin;
+        $locataire->ville = $ville;
+        $locataire->rue = $rue;
+        $locataire->postal = $postal;
+        $locataire->email = $email;
+        $locataire->tel = $tel;
+        $locataire->save();
+
         return redirect()->route('locataires.index')
                         ->with('success','Locataire created successfully.');
       }

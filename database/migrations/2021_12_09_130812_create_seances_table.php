@@ -18,13 +18,15 @@ class CreateSeancesTable extends Migration
             $table->id()->unsigned();
             $table->string('date');
             $table->string('heure');
-            $table->unsignedBigInteger('id_locataire');
-            $table->unsignedBigInteger('id_groupe');
+            $table->unsignedBigInteger('locataire_id');
+            $table->unsignedBigInteger('groupe_id');
+            $table->unsignedBigInteger('location_id');
             $table->unsignedInteger('archive_state')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
-            $table->foreign('id_locataire')->references('id')->on('locataires')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('id_groupe')->references('id')->on('groupes')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('locataire_id')->references('id')->on('locataires')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('groupe_id')->references('id')->on('groupes')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('location_id')->references('id')->on('groupes')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }
 

@@ -16,7 +16,8 @@ class FacturesController extends Controller
     }
 
     public function getFactures(){
-        $factures = Facture::all();
+        $factures = Facture::select('*')
+        ->where('archive_state', '=', 0)->get();
         return $factures;
      }
 
