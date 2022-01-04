@@ -25,12 +25,13 @@
       <select id="group_id" name="groupes[]" class="form-select"  multiple="multiple">
         
         @foreach ($groupes as $key => $item)
-        <option selected value="{{ $item->id }}">{{ $item->group_name }}</option>         
+        <option value="{{ $item->id }}">{{ $item->group_name }}</option>         
         @endforeach
       </select>
-      @error('groupes[]')
+      @error('groupes')
       <span class="text-danger">{{ $message }}</span>
       @enderror
+    
   </div>
   <div class="col-md-6">
     <label for="ln_eleve" class="form-label" >Prénom Eleve</label>

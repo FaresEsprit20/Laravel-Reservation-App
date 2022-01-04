@@ -8,6 +8,7 @@ use App\Rules\FullnameRule;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
+
 class ElevesController extends Controller
 {
 
@@ -24,8 +25,10 @@ class ElevesController extends Controller
    }
 
    public function CreateEleve(Request $request){
+
+
         $validateData = $request->validate([
-        'groupes[]'=>'array',
+        'groupes'=>'required|array',
         'prenom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'nom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'classe'=>'required|min:3',
@@ -33,16 +36,18 @@ class ElevesController extends Controller
         'chk'=>'required'
         ]);
         $eleve = new Eleve();
-        $eleve->prenom = $validateData['prenom'];
-        $eleve->nom = $validateData['nom'];
+        $eleve->prenom_eleve = $validateData['prenom'];
+        $eleve->nom_eleve = $validateData['nom'];
         $eleve->classe = $validateData['classe'];
         $eleve->tel = $validateData['tel'];
-
-        $groupes = $request->input('groupes[]');
-        //return $request->all();
+        $grp = $validateData['groupes'];
+        $eleve->save();
+        $eleve->groupes()->sync($grp);
         
-          return redirect()->route('eleves.index')
-                ->with('success','Eleve created successfully.');
+        return $request->all();
+        
+         // return redirect()->route('eleves.index')
+               // ->with('success','Eleve created successfully.');
       }
   
 

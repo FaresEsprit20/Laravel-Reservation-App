@@ -16,6 +16,13 @@ class Groupe extends Model
         return $this->hasMany(Seance::class);
       }
 
+      public function eleves(){
+        return $this->belongsToMany(Eleve::class,
+        'groupes_eleves',
+        'groupe_id',
+        'eleve_id');
+      }
+
       public function factures(){
         return $this->hasMany(Facture::class);
       }

@@ -16,6 +16,14 @@ class Eleve extends Model
         return $this->hasMany(Facture::class);
       }
 
+      public function groupes(){
+        return $this->belongsToMany(Groupe::class,
+        'groupes_eleves',
+        'eleve_id',
+        'groupe_id'
+       );
+      }
+
       
 
 }
