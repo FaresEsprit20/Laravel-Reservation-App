@@ -16,8 +16,13 @@ class Locataire extends Model
         return $this->hasMany(Reservation::class);
       }
 
-    public function seances(){
-        return $this->hasMany(Seance::class);
+      public function seances(){
+        return $this->belongsToMany(Locataire::class,
+        'seances_locataires',
+        'locataire_id',
+        'seance_id'
+        
+       );
       }
 
 }

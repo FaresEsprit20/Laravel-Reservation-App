@@ -25,14 +25,12 @@ class ElevesController extends Controller
    }
 
    public function CreateEleve(Request $request){
-
-
         $validateData = $request->validate([
         'groupes'=>'required|array',
         'prenom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'nom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'classe'=>'required|min:3',
-        'tel'=>'required|integer|digits:8',
+        'tel'=>'required|integer|digits:8|unique:eleves,tel',
         'chk'=>'required'
         ]);
         $eleve = new Eleve();

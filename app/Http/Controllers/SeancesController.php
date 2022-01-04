@@ -82,6 +82,18 @@ class SeancesController extends Controller
 
         if($available->isEmpty()){
             $seance->save();
+            $groupeeleves = DB::table('groupes_eleves')->where('groupe_id', '=', $validateData['groupe'])
+            ->pluck('eleve_id');
+             $seance->eleves()->attach($groupeeleves);
+             DB::table('seances_locataires')->insert(
+                array(
+                       'seance_id'     =>   $seance->id, 
+                       'locataire_id'   =>  $validateData['locataire']
+                )
+           );
+           // $seance->locataires()->attach($locataire);
+          
+
             return redirect()->route('seances.index')
             ->with('success','Seance created successfully.');
 

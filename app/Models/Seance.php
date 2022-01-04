@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Seance extends Model
 {
     use HasFactory;
@@ -23,6 +24,23 @@ class Seance extends Model
     public function groupe(){
         return $this->belongsTo(Groupe::class);
     }
+    
+    public function eleves(){
+        return $this->belongsToMany(Eleve::class,
+        'seances_eleves',
+        'seance_id',
+        'eleve_id'
+       );
+      }
+
+      public function locataires(){
+        return $this->belongsToMany(Locataire::class,
+        'seances_eleves',
+        'seance_id',
+        'locataire_id');
+      }
+
+      
 
 }
 

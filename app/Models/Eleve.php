@@ -24,6 +24,14 @@ class Eleve extends Model
        );
       }
 
+      public function seances(){
+        return $this->belongsToMany(Seance::class,
+        'seances_eleves',
+        'eleve_id',       
+        'seance_id'
+       );
+      }
+
       
 
 }
