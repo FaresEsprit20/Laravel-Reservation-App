@@ -32,9 +32,10 @@ Route::get('/home', [HomeController::class,'index'])->name('home.index');
 
 Route::get('/reservations', [ReservationsController::class,'index'])->name('reservations.index');
 Route::post('/reservations/create', [ReservationsController::class,'CreateReservation'])->name('create.reservation');
-Route::get('/reservations/view/{id}', [SeancesController::class,'getReservationById'])->name('get.reservation');
+Route::get('/reservations/view/{id}', [ReservationsController::class,'getReservationById'])->name('get.reservation');
 
 Route::get('/eleves', [ElevesController::class,'index'])->name('eleves.index');
+Route::get('/eleves/view/{id}', [ElevesController::class,'getEleveById'])->name('get.eleve');
 Route::post('/eleves/create', [ElevesController::class,'CreateEleve'])->name('create.eleve');
 Route::post('/eleves/findGroups', [ElevesController::class,'findEleveGroups'])->name('find.eleve.groups');
 Route::put('/eleves/update', [ElevesController::class,'UpdateEleve'])->name('update.eleve');
@@ -49,7 +50,7 @@ Route::post('/factures/paiement/enseignants', [FacturesController::class,'Factur
 Route::get('/groupes', [GroupesController::class,'index'])->name('groupes.index');
 Route::post('/groupes/create', [GroupesController::class,'CreateGroup'])->name('create.group');
 Route::put('/groupes/update', [GroupesController::class,'UpdateGroup'])->name('update.group');
-Route::get('/groupes/view/{id}', [SeancesController::class,'getGroupeById'])->name('get.group');
+Route::get('/groupes/view/{id}', [GroupesController::class,'getGroupeById'])->name('get.group');
 
 Route::get('/locations', [LocationsController::class,'index'])->name('locations.index');
 Route::get('/locations/get', [LocationsController::class,'getLocations'])->name('locations.get');
@@ -59,6 +60,7 @@ Route::get('/locations/suitesvides', [LocationsController::class,'suitesvidesVie
 Route::post('/locations/suitesvides/list', [LocationsController::class,'getSuitesVides'])->name('suitesvides.list.get');
 
 Route::get('/professeurs', [LocatairesController::class,'professeursView'])->name('professeurs.index');
+Route::get('/professeurs/view/{id}', [LocatairesController::class,'getProfesseurById'])->name('get.professeur');
 Route::post('/professeurs/create', [LocatairesController::class,'CreateProfesseur'])->name('create.professeur');
 
 Route::get('/seances', [SeancesController::class,'index'])->name('seances.index');
