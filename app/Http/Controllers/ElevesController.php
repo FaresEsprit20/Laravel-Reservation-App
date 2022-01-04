@@ -3,24 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Eleve;
+use App\Models\Groupe;
 use App\Rules\FullnameRule;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class ElevesController extends Controller
 {
-    public function index(){
-        return view('eleves');
+
+   public function index(){
+      $groupes = Groupe::select('*')
+      ->where('archive_state', '=', 0)->get();
+        return view('eleves',compact('groupes'));
     }
 
-    public function getEleves(){
+   public function getEleves(){
       $eleves = Eleve::select('*')
       ->where('archive_state', '=', 0)->get();
       return $eleves;
    }
-    public function CreateEleve(Request $request){
+
+   public function CreateEleve(Request $request){
         $validateData = $request->validate([
-        'groupes'=>'required|integer|min:1',
+        'groupes[]'=>'array',
         'prenom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'nom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'classe'=>'required|min:3',
@@ -33,12 +38,15 @@ class ElevesController extends Controller
         $eleve->classe = $validateData['classe'];
         $eleve->tel = $validateData['tel'];
 
-        return redirect()->route('eleves.index')
-                        ->with('success','Eleve created successfully.');
+        $groupes = $request->input('groupes[]');
+        //return $request->all();
+        
+          return redirect()->route('eleves.index')
+                ->with('success','Eleve created successfully.');
       }
   
 
-      public function UpdateEleve(Request $request){
+    public function UpdateEleve(Request $request){
         $validateData = $request->validate([
         'groupesu'=>'required|integer|gt:0',
         'eleve'=>'required|integer|gt:0',
@@ -57,6 +65,7 @@ class ElevesController extends Controller
         return $request->all();
       }
 
+
      public function findEleveGroups(Request $request){
         $validateData = $request->validate([
         'elevef'=>'required|integer|gt:0',
@@ -65,5 +74,6 @@ class ElevesController extends Controller
         $eleve = $validateData['elevef'];      
         return $request->all();
       }
+
 
 }

@@ -16,8 +16,8 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id()->unsigned();
-            $table->unsignedBigInteger('id_location');
-            $table->unsignedBigInteger('id_locataire');
+            $table->unsignedBigInteger('location_id');
+            $table->unsignedBigInteger('locataire_id');
             $table->string('nom_groupe');
             $table->string('datedeb');
             $table->string('datefin');
@@ -34,8 +34,8 @@ class CreateReservationsTable extends Migration
             $table->unsignedInteger('archive_state')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
-            $table->foreign('id_location')->references('id')->on('locations')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('id_locataire')->references('id')->on('locataires')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('locataire_id')->references('id')->on('locataires')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

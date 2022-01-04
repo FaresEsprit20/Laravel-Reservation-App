@@ -25,7 +25,7 @@
       <div class="col-md-8">
         <label for="loca_id" class="form-label">Salle</label>
           <select name="location" id="loca_id" class="form-select">
-            <option selected disabled value="nil">Sélectionner une salle...</option>
+            <option  disabled value="nil">Sélectionner une salle...</option>
             @foreach ( $locations as $key => $item)
       
             <option  value="{{ $item->id }}">{{ $item->location_name }}</option>              
@@ -107,10 +107,13 @@
       <label for="inputAndeb" style="visibility:hidden" class="form-label">Début de réservation</label>
         <select name="andeb" id="inputAndeb" class="form-select">
           <option selected disabled value="nil">An début...</option>
-          <option value="2021">2021</option>
           <option value="2022">2022</option>
           <option value="2023">2023</option>
           <option value="2024">2024</option>  
+          <option value="2024">2025</option>  
+          <option value="2024">2026</option>  
+          <option value="2024">2027</option>  
+          <option value="2024">2028</option>  
         </select>
         @error('andeb')
         <span class="text-danger">{{ $message }}</span>
@@ -189,10 +192,13 @@
       <label for="inputAnFin" style="visibility:hidden" class="form-label">Fin de réservation</label>
         <select name="anfin" id="inputAnFin" class="form-select">
           <option selected disabled value="nil">An fin...</option>
-          <option value="2021">2021</option>
           <option value="2022">2022</option>
           <option value="2023">2023</option>
           <option value="2024">2024</option>  
+          <option value="2024">2025</option>  
+          <option value="2024">2026</option>  
+          <option value="2024">2027</option>  
+          <option value="2024">2028</option>  
         </select>
         @error('anfin')
         <span class="text-danger">{{ $message }}</span>
@@ -227,6 +233,16 @@
       <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
+    <div class="col-12">
+
+        @error('dha')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+        @error('dhf')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
   <div class="col-12">
     <div class="form-check">
       <input name="chks" class="form-check-input" type="checkbox" id="reservChecks">
@@ -279,29 +295,30 @@
               <th scope="col">Portable</th>
               <th scope="col">Date début Location</th>
               <th scope="col">Date fin Location</th>
-              <th scope="col">Heure début</th>
-              <th scope="col">Heure fin</th>
               <th scope="col">Action</th>
               
             </thead>
             <tbody id="tbodyReservations">
+              
+              @foreach ($reservations as $key => $item)
+                 
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->location_id }}</td>
+                <td>{{ $item->locataire_id }}</td>
+                <td>{{ $item->location_name }}</td>
+                <td>{{ $item->nom_groupe }}</td>
+                <td>{{ $item->cin }}</td>
+                <td>{{ $item->ville }}</td>
+                <td>{{ $item->email }}</td>
+                <td>{{ $item->tel }}</td>
+                <td>{{ $item->datetimedeb }}</td>
+                <td>{{ $item->datetimefin }}</td>
                 <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>
               </tr>
+
+              @endforeach
+             
             </tbody>
           </table>
       
