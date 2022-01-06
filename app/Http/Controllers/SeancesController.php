@@ -20,14 +20,10 @@ class SeancesController extends Controller
         ->where('archive_state', '=', 0)->get();
         $locations = Location::select('*')
         ->where('archive_state', '=', 0)->get();
-        $seances = DB::table('seances')
-        ->leftJoin('locataires', 'seances.locataire_id', '=', 'locataires.id')
-        ->leftJoin('groupes', 'seances.groupe_id', '=', 'groupes.id')
-        ->where('seances.archive_state', '=', 0)
-        ->get();
+        $seances = Seance::where('archive_state',0)->get();
 
-       //return $seances;
-        return view('seances',compact('groupes','locataires','locations','seances'));
+       
+       return view('seances',compact('groupes','locataires','locations','seances'));
 
     }
 

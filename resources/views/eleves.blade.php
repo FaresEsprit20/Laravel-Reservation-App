@@ -197,14 +197,19 @@
               <th scope="col">Action</th>
             </thead>
             <tbody id="tbodyGroupes">
+              @foreach ($eleves as $key => $item)
+                  
               <tr>
-                <td>#Id_Eleve</td>
-                <td>#Prenom_Eleve</td>
-                <td>#NomEleve</td>
-                <td>#Classe</td>
-                <td>#Tel</td>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->prenom_eleve }}</td>
+                <td>{{ $item->nom_eleve }}</td>
+                <td>{{ $item->classe }}</td>
+                <td>{{ $item->tel }}</td>
                 <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button></div></td>
               </tr>
+
+              @endforeach
+              
             </tbody>
           </table>
       

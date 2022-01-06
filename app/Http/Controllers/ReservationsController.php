@@ -21,14 +21,22 @@ class ReservationsController extends Controller
        $locataires =  Locataire::select('*')
         ->where('archive_state', '=', 0)->get();
 
-       $reservations = DB::table('reservations')
+      /* $reservations = DB::table('reservations')
        ->leftJoin('locataires', 'reservations.locataire_id', '=', 'locataires.id')
        ->leftJoin('locations', 'reservations.location_id', '=', 'locations.id')
        ->where('reservations.archive_state', '=', 0)
-       ->get();
-
+       ->get();*/
+       $reservations = Reservation::where('archive_state', '=', 0)->get();
        return view('reservations',compact('title','locations','groupes','locataires','reservations'));
    }
+
+
+     public function getReservationById($id){
+
+      $reservation = Reservation::find($id);
+
+      return View('reservationdetails',compact('reservation'));
+     }
 
    public function CreateReservation(Request $request){
         

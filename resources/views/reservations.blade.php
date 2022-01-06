@@ -286,13 +286,6 @@
               <th scope="col">#id_reserv</th>
               <th scope="col">#id_loc</th>
               <th scope="col">#id_locataire</th>
-              <th scope="col">#Nom_salle</th>
-              <th scope="col">#Nom groupe</th>
-              <th scope="col">CIN Locataire</th>
-              <th scope="col">Nom & Prenom</th>
-              <th scope="col">Ville</th>
-              <th scope="col">Email</th>
-              <th scope="col">Portable</th>
               <th scope="col">Date début Location</th>
               <th scope="col">Date fin Location</th>
               <th scope="col">Action</th>
@@ -306,12 +299,6 @@
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->location_id }}</td>
                 <td>{{ $item->locataire_id }}</td>
-                <td>{{ $item->location_name }}</td>
-                <td>{{ $item->nom_groupe }}</td>
-                <td>{{ $item->cin }}</td>
-                <td>{{ $item->ville }}</td>
-                <td>{{ $item->email }}</td>
-                <td>{{ $item->tel }}</td>
                 <td>{{ $item->datetimedeb }}</td>
                 <td>{{ $item->datetimefin }}</td>
                 <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>

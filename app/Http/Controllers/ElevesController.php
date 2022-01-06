@@ -15,12 +15,13 @@ class ElevesController extends Controller
    public function index(){
       $groupes = Groupe::select('*')
       ->where('archive_state', '=', 0)->get();
-        return view('eleves',compact('groupes'));
+      $eleves = Eleve::where('archive_state', 0)->get();
+        return view('eleves',compact('groupes','eleves'));
     }
 
    public function getEleves(){
-      $eleves = Eleve::select('*')
-      ->where('archive_state', '=', 0)->get();
+      $eleves = Eleve::where('archive_state', 0)->get();
+     
       return $eleves;
    }
 

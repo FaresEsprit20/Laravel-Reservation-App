@@ -95,7 +95,7 @@
       <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
     <label for="hour_id" class="form-label">Heure</label>
       <input name="heuredeb" type="time" id="hour_id" class="form-control" >
       @error('heuredeb')
@@ -177,7 +177,7 @@
       <span class="text-danger">{{ $message }}</span>
       @enderror
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
     <label for="hour_ids" class="form-label">Heure Fin</label>
       <input name="heurefin" type="time" id="hour_ids" class="form-control" >
       @error('heurefin')
@@ -231,60 +231,8 @@
    
   </section>
   <!-- End Reservation-->
-  <!-- Modal -->
-  <div class="modal fade" id="reservmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Alerte</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-         Pas de locations trouvées a cette date de début et de fin
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">OK!</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <!-- End Modal -->
-  <!-- Start Products -->
-  <section class="reservationsView" id="reservationsView" style="visibility:hidden">
-    <div class="container-fluid">
-      <div class="special-heading">Suites Vides</div>
-        <p>Voir les Locations vides</p>
-    <div class="row">
-    <div class="col col-sm col-lg-2">
-    </div>
-      <div class="col-12 col-sm-12 col-lg-8">
-        
-        <div class="locataires-table mt-5 mb-5">
-          <div class="table-responsive">
-            <table class="table display" id="locationsDatatable">
-              <caption>Liste des Locations Vides</caption>
-              <thead class="table-dark">
-                <th scope="col">#id_loc</th>
-                <th scope="col">#Nom_salle</th>   
-              </thead>
-              <tbody id="tbodyL">
-                <tr>
-                  <td>#id_loc</td>
-                  <td>#Nom_salle</td>   
-                </tr>
-              </tbody>
-            </table>
-        
-          </div>
-      </div>
-    </div>
-    <div class="col col-sm col-lg-2">
-    </div>
-    </div>
-   
-  </section>
+
+  
   </main>
   
   

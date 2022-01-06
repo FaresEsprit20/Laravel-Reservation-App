@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
+use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +24,8 @@ class LocationsController extends Controller
        ->where('archive_state', '=', 0)->get();
        return $locations;
     }
+
+   
 
 public function getSuitesVides(Request $request){
 
@@ -60,19 +63,20 @@ public function getSuitesVides(Request $request){
       $dtf = $validateData['datefin'];
     
       $suites = DB::table('locations')->whereNotIn('id', function($query) use ($dtb, $dtf){
-        $query->select('id_loc')
+        $query->select('location_id')
         ->from('reservations')
-        ->whereBetween ('datedeb', [ $dtb, $dtf ])
-        ->orwhereBetween('datefin', [ $dtb, $dtf ])
+        ->whereBetween ('datetimedeb', [ $dtb, $dtf ])
+        ->orwhereBetween('datetimefin', [ $dtb, $dtf ])
         ->distinct();
     })->get();
+       
+       return View('suiteslist',compact('suites'));
 
-      return $request->all();
     }
 
     public function CreateLocation(Request $request){
         $validateData = $request->validate([
-        'nomlocation'=>'required|unique:locations,location_name',
+        'nomlocation'=>'required|max:20|unique:locations,location_name',
         'chk'=>'required'
         ]);
         $locationName = $validateData['nomlocation'];
@@ -84,34 +88,24 @@ public function getSuitesVides(Request $request){
                         ->with('success','Location created successfully.');
       }
 
-      public function UpdateLocation(Request $request){
+      public function UpdateLocation(Request $request,Location $location){
         $validateData = $request->validate([
         'location'=>'required|integer|gt:0',
-        'nomlocationu'=>'required||max:20|unique:locations,location_name',
+        'nomlocationu'=>'required|max:20|unique:locations,location_name',
         'chku'=>'required'
         ]);
-        $location = $validateData['location'];
+        $location_id = $validateData['location'];
         $nomlocation = $validateData['nomlocationu'];
-        //$location = DB::table('locations')->where('id',$request->location)->first();
-        DB::table('locations')->where('id',$location)->update([
-          'nomlocation'=> $nomlocation
-          ]);
-       
+
+        $location->update([
+          'id' => $location_id,
+          'location_name' => $nomlocation
+        ]);
       
-        return back()->with('post-update','post has been done');
+        return $request->all();
+        //return back()->with('post-update','post has been done');
       }
 
-    /*public function DeleteLocation(Request $request){
-        $validateData = $request->validate([
-        'location'=>'required|integer|gt:0',
-        'nomlocationu'=>'required||max:20',
-        'chku'=>'required'
-        ]);
-        DB::table('locations')->where('id',$request->$request)->delete();
-        $location = $validated[('location');
-        $nomlocation = $request->input('nomlocationu');
-        return $request->all();
-      }
-      */
+
 
 }

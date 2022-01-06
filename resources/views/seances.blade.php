@@ -117,8 +117,6 @@
               <th scope="col">#Id_Seance</th>
               <th scope="col">#Id_Enseignant</th>
               <th scope="col">#Id_Groupe</th>
-              <th scope="col">#Nom & Prénom Ens</th>
-              <th scope="col">#Nom_Groupe</th>
               <th scope="col">#Date</th>
               <th scope="col">#Heure</th>
               <th scope="col">Action</th>
@@ -129,8 +127,6 @@
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->locataire_id }}</td>
                 <td>{{ $item->groupe_id }}</td>
-                <td>{{ $item->prenom_locataire }}<br>{{ $item->nom_locataire }}</td>
-                <td>{{ $item->group_name }}</td>
                 <td>{{ $item->date }}</td>
                 <td>{{ $item->heure }}</td>
                 <td><div><a id="btnDelete" style="display:block;width:45px;margin-bottom:5px;" href="/seances/view/{{  $item->id  }}" type="button" class="btn btn-info"><i class="fa fa-eye"></a></div></td>

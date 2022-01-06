@@ -13,9 +13,8 @@
     <div class="special-heading">Locations</div>
       <p>Créer une location</p>
   <div class="row">
-  <div class="col col-sm col-lg-2">
-  </div>
-    <div class="col-12 col-sm-12 col-lg-8">
+
+    <div class="col-12 col-sm-12 col-lg-8 offset-3">
       
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
@@ -45,44 +44,23 @@
   </div>
 </form>
       
-        </div>
     </div>
+   </div>
   </div>
-  <div class="col col-sm col-lg-2">
-  </div>
+
   </div>
  
 </section>
 <!-- End Locations -->
-<!-- Modal -->
-<div class="modal fade" id="reservmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Succés</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       Votre Location a été crée avec Succés!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">OK!</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<!-- End Modal -->
+
 <!-- Start Groupes -->
 <section class="geView" id="geView">
   <div class="container-fluid">
     <div class="special-heading">Locations</div>
       <p>Modifier une location</p>
   <div class="row">
-  <div class="col col-sm col-lg-2">
-  </div>
-    <div class="col-12 col-sm-12 col-lg-8">
+
+    <div class="col-12 col-sm-12 col-lg-8 offset-3">
       
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
@@ -128,8 +106,7 @@
         </div>
     </div>
   </div>
-  <div class="col col-sm col-lg-2">
-  </div>
+
   </div>
  
 </section>
