@@ -13,9 +13,8 @@
     <div class="special-heading">Groupes</div>
       <p>Créer un groupe</p>
   <div class="row">
-  <div class="col col-sm col-lg-2">
-  </div>
-    <div class="col-12 col-sm-12 col-lg-8">
+
+    <div class="col-12 col-sm-12 col-lg-8 offset-3">
       
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
@@ -47,8 +46,7 @@
         </div>
     </div>
   </div>
-  <div class="col col-sm col-lg-2">
-  </div>
+
   </div>
  
 </section>
@@ -59,9 +57,8 @@
     <div class="special-heading">Groupes</div>
       <p>Modifier un groupe</p>
   <div class="row">
-  <div class="col col-sm col-lg-2">
-  </div>
-    <div class="col-12 col-sm-12 col-lg-8">
+
+    <div class="col-12 col-sm-12 col-lg-8 offset-3">
       
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
@@ -108,8 +105,7 @@
         </div>
     </div>
   </div>
-  <div class="col col-sm col-lg-2">
-  </div>
+
   </div>
  
 </section>
@@ -121,9 +117,8 @@
     <div class="special-heading">Groupes</div>
       <p>Voir la liste des groupes</p>
   <div class="row">
-  <div class="col col-sm col-lg-2">
-  </div>
-    <div class="col-12 col-sm-12 col-lg-8">
+
+    <div class="col-12 col-sm-12 col-lg-8 offset-2">
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
@@ -151,8 +146,7 @@
         </div>
     </div>
   </div>
-  <div class="col col-sm col-lg-2">
-  </div>
+
   </div>
  
 </section>
@@ -163,9 +157,8 @@
     <div class="special-heading">Elèves</div>
       <p>Trouver les groupes d'un élève</p>
   <div class="row">
-  <div class="col col-sm col-lg-2">
-  </div>
-    <div class="col-12 col-sm-12 col-lg-8">
+
+    <div class="col-12 col-sm-12 col-lg-8 offset-3">
       
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
@@ -196,8 +189,7 @@
         </div>
     </div>
   </div>
-  <div class="col col-sm col-lg-2">
-  </div>
+
   </div>
  
 </section>
@@ -208,9 +200,8 @@
     <div class="special-heading">Eleve Groupes</div>
       <p>Voir la liste des groupes de l'éleve</p>
   <div class="row">
-  <div class="col col-sm col-lg-2">
-  </div>
-    <div class="col-12 col-sm-12 col-lg-8">
+
+    <div class="col-12 col-sm-12 col-lg-8 offset-2">
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
@@ -237,8 +228,7 @@
         </div>
     </div>
   </div>
-  <div class="col col-sm col-lg-2">
-  </div>
+ 
   </div>
  
 </section>

@@ -88,7 +88,7 @@ public function getSuitesVides(Request $request){
                         ->with('success','Location created successfully.');
       }
 
-      public function UpdateLocation(Request $request,Location $location){
+      public function UpdateLocation(Request $request){
         $validateData = $request->validate([
         'location'=>'required|integer|gt:0',
         'nomlocationu'=>'required|max:20|unique:locations,location_name',
@@ -96,14 +96,13 @@ public function getSuitesVides(Request $request){
         ]);
         $location_id = $validateData['location'];
         $nomlocation = $validateData['nomlocationu'];
-
-        $location->update([
-          'id' => $location_id,
-          'location_name' => $nomlocation
-        ]);
+        
+        $location = Location::findOrfail($location_id);
+        $location->id = $location_id;
+        $location->location_name = $nomlocation;
+        $location->save();
       
-        return $request->all();
-        //return back()->with('post-update','post has been done');
+        return back()->with('post-update','post has been done');
       }
 
 

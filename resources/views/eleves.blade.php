@@ -2,7 +2,6 @@
 
 @section('title','Reservations App')
 
-
 @section('content')
        
 <main>
@@ -20,7 +19,8 @@
         <div class="table-reservations">
         <form class="row g-3" id="creategroup" action="{{ route('create.eleve') }}" method="POST" name="createEleve">
      @csrf
-    <div class="col-md-12">
+    
+     <div class="col-md-12">
       <label for="group_id" class="form-label">Groupes</label>
       <select id="group_id" name="groupes[]" class="form-select"  multiple="multiple">
         
@@ -31,8 +31,8 @@
       @error('groupes')
       <span class="text-danger">{{ $message }}</span>
       @enderror
-    
   </div>
+
   <div class="col-md-6">
     <label for="ln_eleve" class="form-label" >Prénom Eleve</label>
     <input type="text" name="prenom" class="form-control"  id="ln_eleve">
@@ -103,18 +103,26 @@
         <form action="{{ route('update.eleve') }}" method="POST" class="row g-3" id="editgroup" name="updateEleve">
           @method('PUT')
           @csrf
-        <div class="col-md-12">
-      <label for="group_ide" class="form-label">Groupes</label>
-      <select name="groupesu" id="group_ide" class="form-select" multiple>
-      </select>
-      @error('groupesu')
-      <span class="text-danger">{{ $message }}</span>
-      @enderror
-  </div>
+          <div class="col-md-12">
+            <label for="group_ide" class="form-label">Groupes</label>
+            <select id="group_ide" name="groupesu[]" class="form-select"  multiple="multiple">
+              
+              @foreach ($groupes as $key => $item)
+              <option value="{{ $item->id }}">{{ $item->group_name }}</option>         
+              @endforeach
+            </select>
+            @error('groupesu')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+
   <div class="col-md-12">
       <label for="eleve_ide" class="form-label">Eleve</label>
       <select name="eleve" id="eleve_ide" class="form-select"  >
-          <option value="nil" disabled>Selectionner un Eleve ...</option>
+          <option selected value="nil" disabled>Selectionner un Eleve ...</option>
+          @foreach ($eleves as $item)
+          <option value="{{ $item->id }}" >{{ $item->prenom_eleve }}&nbsp;{{ $item->nom_eleve }}  </option>
+          @endforeach
       </select>
       @error('eleve')
       <span class="text-danger">{{ $message }}</span>
@@ -150,7 +158,7 @@
   </div>
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" name="chk" type="checkbox" id="reservChecksse" >
+      <input class="form-check-input" name="chku" type="checkbox" id="reservChecksse" >
       <label class="form-check-label" for="reservChecksse">
         Cochez moi
       </label>
@@ -205,7 +213,7 @@
                 <td>{{ $item->nom_eleve }}</td>
                 <td>{{ $item->classe }}</td>
                 <td>{{ $item->tel }}</td>
-                <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button></div></td>
+                <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>
               </tr>
 
               @endforeach

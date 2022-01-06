@@ -39,14 +39,18 @@ class GroupesController extends Controller
         'nomgroupe'=>'required|min:3|max:50|unique:groupes,group_name',
         'chku'=>'required'
         ]);
+      
         $groupe = $validateData['groupeu'];
         $nomgroupe = $validateData['nomgroupe'];
-        //$location = DB::table('locations')->where('id',$request->location)->first();
-        DB::table('groupes')->where('id',$groupe)->update([
-          'nomlocation'=> $nomgroupe
-          ]);
-        return $request->all();
-      }
+      
+        $groupe = Groupe::findOrfail($groupe);
+        $groupe->group_name = $nomgroupe;
+        $groupe->save();
+
+        return redirect()->route('groupes.index')
+        ->with('success','Groupe updated successfully.');
+        
+        }
 
 
       public function ArchivateGroup(Request $request){
@@ -59,7 +63,10 @@ class GroupesController extends Controller
         DB::table('groupes')->where('id',$groupe)->update([
           'archive_state'=> 1
           ]);
-        return $request->all();
+       
+          return redirect()->route('groupes.index')
+        ->with('success','Groupe archivated successfully.');
+        
       }
 
       

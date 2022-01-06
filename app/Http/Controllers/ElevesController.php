@@ -43,16 +43,16 @@ class ElevesController extends Controller
         $eleve->save();
         $eleve->groupes()->sync($grp);
         
-        return $request->all();
+       // return $request->all();
         
-         // return redirect()->route('eleves.index')
-               // ->with('success','Eleve created successfully.');
+          return redirect()->route('eleves.index')
+                ->with('success','Eleve created successfully.');
       }
   
 
     public function UpdateEleve(Request $request){
         $validateData = $request->validate([
-        'groupesu'=>'required|integer|gt:0',
+        'groupesu'=>'required|array',
         'eleve'=>'required|integer|gt:0',
         'prenomu'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'nomu'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
@@ -61,12 +61,24 @@ class ElevesController extends Controller
         'chku'=>'required'
         ]);
         $groupes = $validateData['groupesu'];
-        $eleve = $validateData['eleve'];
+        $eleve_id = $validateData['eleve'];
         $prenom = $validateData['prenomu'];
         $nom = $validateData['nomu'];
         $classe = $validateData['classeu'];
         $tel = $validateData['telu'];
-        return $request->all();
+
+        $eleve = Eleve::findOrfail($eleve_id);
+        $eleve->prenom_eleve = $validateData['prenomu'];
+        $eleve->nom_eleve = $validateData['nomu'];
+        $eleve->classe = $validateData['classeu'];
+        $eleve->tel = $validateData['telu'];
+        $grp = $validateData['groupesu'];
+        $eleve->groupes()->sync($grp);
+        $eleve->save();
+        
+        //return $request->all();
+        return redirect()->route('eleves.index')
+        ->with('success','Eleve updated successfully.');
       }
 
 
