@@ -87,100 +87,7 @@
  
 </section>
 <!-- End Groupes -->
-<!-- Start Groupes -->
-<section class="geView" id="geView">
-  <div class="container-fluid">
-    <div class="special-heading">Eleves</div>
-      <p>Modifier un eleve</p>
-  <div class="row">
-  <div class="col col-sm col-lg-2">
-  </div>
-    <div class="col-12 col-sm-12 col-lg-8">
-      
-      <div class="products-table mt-5 mb-5">
-        <div class="table-reservations">
-  
-        <form action="{{ route('update.eleve') }}" method="POST" class="row g-3" id="editgroup" name="updateEleve">
-          @method('PUT')
-          @csrf
-          <div class="col-md-12">
-            <label for="group_ide" class="form-label">Groupes</label>
-            <select id="group_ide" name="groupesu[]" class="form-select"  multiple="multiple">
-              
-              @foreach ($groupes as $key => $item)
-              <option value="{{ $item->id }}">{{ $item->group_name }}</option>         
-              @endforeach
-            </select>
-            @error('groupesu')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-        </div>
 
-  <div class="col-md-12">
-      <label for="eleve_ide" class="form-label">Eleve</label>
-      <select name="eleve" id="eleve_ide" class="form-select"  >
-          <option selected value="nil" disabled>Selectionner un Eleve ...</option>
-          @foreach ($eleves as $item)
-          <option value="{{ $item->id }}" >{{ $item->prenom_eleve }}&nbsp;{{ $item->nom_eleve }}  </option>
-          @endforeach
-      </select>
-      @error('eleve')
-      <span class="text-danger">{{ $message }}</span>
-      @enderror
-  </div>
-  <div class="col-md-6">
-    <label for="ln_elevee" class="form-label" >Prénom Eleve</label>
-    <input type="text" name="prenomu" class="form-control" pattern="[a-zA-Z ]+" id="ln_elevee">
-    @error('prenomu')
-      <span class="text-danger">{{ $message }}</span>
-      @enderror
-  </div>
-  <div class="col-md-6">
-    <label for="n_elevee" class="form-label" >Nom Eleve</label>
-    <input type="text" name="nomu" class="form-control" pattern="[a-zA-Z ]+" id="n_elevee">
-    @error('nomu')
-      <span class="text-danger">{{ $message }}</span>
-      @enderror
-  </div>
-  <div class="col-md-6">
-    <label for="c_elevee" class="form-label">Classe Eleve</label>
-    <input type="text" name="classeu" class="form-control" id="c_elevee">
-    @error('classeu')
-      <span class="text-danger">{{ $message }}</span>
-      @enderror
-  </div>
-  <div class="col-md-6">
-    <label for="t_elevee" class="form-label" >Tel Eleve</label>
-    <input type="number" name="telu" class="form-control" id="t_elevee">
-    @error('telu')
-      <span class="text-danger">{{ $message }}</span>
-      @enderror
-  </div>
-  <div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" name="chku" type="checkbox" id="reservChecksse" >
-      <label class="form-check-label" for="reservChecksse">
-        Cochez moi
-      </label>
-      @error('chku')
-      <span class="text-danger">{{ $message }}</span>
-      @enderror
-    </div>
-  </div>
-  <div class="col-12">
-    <button type="submit" class="btn btn-dark">Modifier Elève</button>
-  </div>
-    </form>
-      
-        </div>
-    </div>
-  </div>
-  <div class="col col-sm col-lg-2">
-  </div>
-  </div>
- 
-</section>
-<!-- End Groupes -->
 
 <!-- Start Products -->
 <section class="GroupesTable" id="GroupeTable">
@@ -208,7 +115,7 @@
               @foreach ($eleves as $key => $item)
                   
               <tr>
-                <td>{{ $item->id }}</td>
+                <td><a href="/eleves/view/{{  $item->id  }}" class="stretched-link">{{ $item->id }}</a></td>
                 <td>{{ $item->prenom_eleve }}</td>
                 <td>{{ $item->nom_eleve }}</td>
                 <td>{{ $item->classe }}</td>

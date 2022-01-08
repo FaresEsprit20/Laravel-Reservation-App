@@ -32,6 +32,13 @@ class GroupesController extends Controller
         return redirect()->route('groupes.index')
                         ->with('success','Groupe created successfully.');
       }
+
+      public function getGroupeById($id){
+
+        $groupe = Groupe::findOrfail($id);
+        return view('groupedetails',compact('groupe'));
+      
+      }
     
       public function UpdateGroup(Request $request){
         $validateData = $request->validate([

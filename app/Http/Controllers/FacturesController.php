@@ -68,6 +68,12 @@ class FacturesController extends Controller
     }
 
 
+    public function getFactureById($id){
+        $facture = Facture::findOrfail($id);
+        return view('facturedetails',compact('facture'));
+     }
+  
+
     public function FacturerEnseignants(Request $request){
         $validateData = $request->validate([
             'groupeens'=>'required|integer|gt:0',

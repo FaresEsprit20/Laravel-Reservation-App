@@ -2,11 +2,10 @@
 
 @section('title','Reservations App')
 
-
 @section('content')
 
+
 <main>
-  
 
   <!-- Start Products -->
   <section class="reservationsView" id="reservationsView">
@@ -17,7 +16,6 @@
     <div class="col col-sm col-lg-2">
     </div>
       <div class="col-12 col-sm-12 col-lg-8">
-        
         <div class="locataires-table mt-5 mb-5">
           <div class="table-responsive">
             <table class="table display" id="locationsDatatable">
@@ -29,14 +27,12 @@
               <tbody id="tbodyL">
                   @foreach ($suites as $item)
                   <tr>
-                    <td>{{ $item->id }}</td>
+                    <td><a href="/locations/view/{{  $item->id  }}">{{ $item->id }}</a></td>
                     <td>{{ $item->location_name }}</td>   
                   </tr>
-                  @endforeach
-               
+                  @endforeach               
               </tbody>
-            </table>
-        
+            </table>        
           </div>
       </div>
     </div>

@@ -56,6 +56,7 @@ Route::get('/locations', [LocationsController::class,'index'])->name('locations.
 Route::get('/locations/get', [LocationsController::class,'getLocations'])->name('locations.get');
 Route::post('/locations/create', [LocationsController::class,'CreateLocation'])->name('create.location');
 Route::put('/locations/update', [LocationsController::class,'UpdateLocation'])->name('update.location');
+Route::get('/locations/view/{id}', [LocationsController::class,'getLocationById'])->name('location.details');
 Route::get('/locations/suitesvides', [LocationsController::class,'suitesvidesView'])->name('suitesvides.list');
 Route::post('/locations/suitesvides/list', [LocationsController::class,'getSuitesVides'])->name('suitesvides.list.get');
 

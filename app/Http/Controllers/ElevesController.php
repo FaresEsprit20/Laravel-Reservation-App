@@ -6,20 +6,22 @@ use App\Models\Eleve;
 use App\Models\Groupe;
 use App\Rules\FullnameRule;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route as FacadesRoute;
 use Illuminate\Validation\Rule;
-
+use Symfony\Component\Routing\Router;
 
 class ElevesController extends Controller
 {
 
    public function index(){
-      $groupes = Groupe::select('*')
-      ->where('archive_state', '=', 0)->get();
+      $groupes = Groupe::where('archive_state', 0)->get();
       $eleves = Eleve::where('archive_state', 0)->get();
         return view('eleves',compact('groupes','eleves'));
     }
 
    public function getEleves(){
+      
       $eleves = Eleve::where('archive_state', 0)->get();
      
       return $eleves;
@@ -53,21 +55,19 @@ class ElevesController extends Controller
     public function UpdateEleve(Request $request){
         $validateData = $request->validate([
         'groupesu'=>'required|array',
-        'eleve'=>'required|integer|gt:0',
         'prenomu'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'nomu'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'classeu'=>'required|min:3',
-        'telu'=>'required|integer|digits:8',
+        'telu'=>'required|integer|digits:8|unique:eleves,tel',
         'chku'=>'required'
         ]);
         $groupes = $validateData['groupesu'];
-        $eleve_id = $validateData['eleve'];
         $prenom = $validateData['prenomu'];
         $nom = $validateData['nomu'];
         $classe = $validateData['classeu'];
         $tel = $validateData['telu'];
-
-        $eleve = Eleve::findOrfail($eleve_id);
+        $id = $request->id;
+        $eleve = Eleve::findOrfail($id);
         $eleve->prenom_eleve = $validateData['prenomu'];
         $eleve->nom_eleve = $validateData['nomu'];
         $eleve->classe = $validateData['classeu'];
@@ -76,9 +76,17 @@ class ElevesController extends Controller
         $eleve->groupes()->sync($grp);
         $eleve->save();
         
-        //return $request->all();
-        return redirect()->route('eleves.index')
-        ->with('success','Eleve updated successfully.');
+        return back()->with('success','Eleve updated successfully.');
+       
+      }
+
+
+      public function getEleveById($id){
+         $eleve = Eleve::findOrfail($id);
+         $groupes = Groupe::where('archive_state', 0)->get();
+         $groupeseleve = $eleve->groupes;
+      
+         return view('elevedetails',compact('eleve','groupes','groupeseleve'));
       }
 
 
@@ -92,4 +100,5 @@ class ElevesController extends Controller
       }
 
 
+      
 }

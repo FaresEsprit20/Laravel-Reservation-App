@@ -296,9 +296,9 @@
               @foreach ($reservations as $key => $item)
                  
               <tr>
-                <td>{{ $item->id }}</td>
-                <td>{{ $item->location_id }}</td>
-                <td>{{ $item->locataire_id }}</td>
+                <td><a href="/reservations/view/{{  $item->id  }}" class="stretched-link">{{ $item->id }}</a></td>
+                <td><a href="/locations/view/{{  $item->location_id  }}" class="stretched-link">{{ $item->location_id }}</a></td>
+                <td><a href="/professeurs/view/{{  $item->locataire_id  }}" class="stretched-link">{{ $item->locataire_id }}</a></td>
                 <td>{{ $item->datetimedeb }}</td>
                 <td>{{ $item->datetimefin }}</td>
                 <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>

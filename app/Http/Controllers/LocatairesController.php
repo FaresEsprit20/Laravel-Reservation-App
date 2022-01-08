@@ -29,6 +29,11 @@ class LocatairesController extends Controller
         return view('professeurs',compact('locataires'));
     }
 
+    public function getProfesseurById($id){
+        $locataire = Locataire::findOrfail($id);
+        return view('professeurdetails',compact('locataire'));
+     }
+
     public function CreateProfesseur(Request $request){
         $validateData = $request->validate([
         'nom'=> ['required','regex:/^[a-zA-Z\s]+$/','max:30'],

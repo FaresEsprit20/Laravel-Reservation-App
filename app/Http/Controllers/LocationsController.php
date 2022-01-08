@@ -26,16 +26,21 @@ class LocationsController extends Controller
     }
 
    
+    public function getLocationById($id){
+      $location = Location::findOrfail($id);
+      return view('locationdetails',compact('location'));
+   }
 
-public function getSuitesVides(Request $request){
+
+    public function getSuitesVides(Request $request){
 
      $datedeb = $request->input('andeb').'-'.$request->input('moisdeb').'-'.$request->input('jourdeb');
      $datefin = $request->input('anfin').'-'.$request->input('moisfin').'-'.$request->input('jourfin');
 
-  $request->merge([
-    'datedeb' => $datedeb,
-    'datefin' => $datefin
-  ]);
+    $request->merge([
+     'datedeb' => $datedeb,
+     'datefin' => $datefin
+    ]);
 
       $validateData = $request->validate([
       'jourdeb'=>'required|digits:2',
@@ -88,6 +93,7 @@ public function getSuitesVides(Request $request){
                         ->with('success','Location created successfully.');
       }
 
+      
       public function UpdateLocation(Request $request){
         $validateData = $request->validate([
         'location'=>'required|integer|gt:0',

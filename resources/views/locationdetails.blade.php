@@ -2,6 +2,7 @@
 
 @section('title','Reservations App')
 
+
 @section('content')
        
 <main>
@@ -52,7 +53,63 @@
 </section>
 <!-- End Locations -->
 
+<!-- Start Groupes -->
+<section class="geView" id="geView">
+  <div class="container-fluid">
+    <div class="special-heading">Locations</div>
+      <p>Modifier une location</p>
+  <div class="row">
 
+    <div class="col-12 col-sm-12 col-lg-8 offset-3">
+      
+      <div class="products-table mt-5 mb-5">
+        <div class="table-reservations">
+  
+  <form action="{{ route('update.location') }}" method="POST" class="row g-3" id="editgroup">
+       @method('PUT')
+       @csrf
+  <div class="col-md-8">
+  <label for="group_id" class="form-label">Location</label>
+    <select name="location" id="group_id" class="form-select">
+      <option selected  disabled value="nil">Sélectionner une location...</option>
+      @foreach ($locations as $key => $item)
+      <option value="{{ $item->id }}">{{ $item->location_name }}</option>
+      @endforeach
+      
+    </select>
+    @error('location')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
+  </div>
+  <div class="col-md-8">
+    <label for="group_name" class="form-label">Nom Location</label>
+    <input name="nomlocationu" type="text" class="form-control" id="group_name">
+    @error('nomlocationu')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
+  <div class="col-12">
+    <div class="form-check">
+      <input name="chku" class="form-check-input" type="checkbox" id="reservChecks">
+      <label class="form-check-label" for="reservChecks">
+        Cochez moi
+      </label>
+      @error('chku')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
+    </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-dark">Modifier Location</button>
+  </div>
+</form>
+      
+        </div>
+    </div>
+  </div>
+
+  </div>
+ 
+</section>
 <!-- Start Products -->
 <section class="reservationsView" id="reservationsView">
   <div class="container-fluid">
@@ -74,7 +131,7 @@
             <tbody id="tbodyL">
               @foreach ($locations as $key => $item)          
               <tr>
-                <td><a href="/locations/view/{{  $item->id  }}">{{ $item->id }}</a></td>
+                <td>{{ $item->id }}</td>
                 <td>{{ $item->location_name }}</td>
               </tr>
               @endforeach

@@ -136,7 +136,7 @@
               @foreach ($locataires as $key => $item)
                 
               <tr>
-                <td><a href="/professeurs/view/{{  $item->id  }}">{{ $item->id }}</a></td>
+                <td>{{ $item->id }}</td>
                 <td>{{ $item->nom_locataire }}</td>
                 <td>{{ $item->prenom_locataire }}</td>
                 <td>{{ $item->cin }}</td>

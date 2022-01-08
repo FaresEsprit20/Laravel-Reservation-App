@@ -124,9 +124,9 @@
             <tbody id="tbodySeances">
               @foreach ($seances as $key => $item)
               <tr>
-                <td>{{ $item->id }}</td>
-                <td>{{ $item->locataire_id }}</td>
-                <td>{{ $item->groupe_id }}</td>
+                <td><a href="/seances/view/{{  $item->id  }}">{{ $item->id }}</a></td>
+                <td><a href="/professeurs/view/{{  $item->locataire_id  }}">{{ $item->locataire_id }}</a></td>
+                <td><a href="/groupes/view/{{  $item->groupe_id  }}">{{ $item->groupe_id }}</a></td>
                 <td>{{ $item->date }}</td>
                 <td>{{ $item->heure }}</td>
                 <td><div><a id="btnDelete" style="display:block;width:45px;margin-bottom:5px;" href="/seances/view/{{  $item->id  }}" type="button" class="btn btn-info"><i class="fa fa-eye"></a></div></td>
