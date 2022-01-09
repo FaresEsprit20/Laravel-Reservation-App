@@ -36,9 +36,11 @@ Route::get('/reservations/view/{id}', [ReservationsController::class,'getReserva
 
 Route::get('/eleves', [ElevesController::class,'index'])->name('eleves.index');
 Route::get('/eleves/view/{id}', [ElevesController::class,'getEleveById'])->name('get.eleve');
+Route::get('/eleves/view/{id}/payerseance/{seanceId}', [ElevesController::class,'editSeanceEleve'])->name('payer.eleve');
 Route::post('/eleves/create', [ElevesController::class,'CreateEleve'])->name('create.eleve');
 Route::post('/eleves/findGroups', [ElevesController::class,'findEleveGroups'])->name('find.eleve.groups');
 Route::put('/eleves/update', [ElevesController::class,'UpdateEleve'])->name('update.eleve');
+Route::put('/eleves/seances/paiment/update', [ElevesController::class,'updateSeanceEleve'])->name('payer.eleve.update');
 
 Route::get('/factures', [FacturesController::class,'index'])->name('factures.index');
 Route::get('/factures/paiement', [FacturesController::class,'PayementView'])->name('paiement.index');

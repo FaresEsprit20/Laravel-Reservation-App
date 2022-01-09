@@ -118,7 +118,6 @@
               </tr>  
               
               @endforeach
-             
             </tbody>
           </table>
       
@@ -130,6 +129,119 @@
  
 </section>
 <!-- End Products -->
+
+
+
+<!-- Start Products -->
+<section class="SeancesTable" id="SeancesTable">
+  <div class="container-fluid">
+    <div class="special-heading">Séances</div>
+      <p>Voir la liste des séances</p>
+  <div class="row">
+  <div class="col col-sm col-lg-2">
+  </div>
+    <div class="col-12 col-sm-12 col-lg-8">
+      
+      <div class="locataires-table mt-5 mb-5">
+        <div class="table-responsive">
+          <table class="table display" id="seancesDatatable">
+            <caption>Liste des Séances de l'éleve</caption>
+            <thead class="table-dark">
+              <th scope="col">#Id_Seance</th>
+              <th scope="col">#Date</th>
+              <th scope="col">#Heure</th>
+              <th scope="col">#prix unitaire</th>
+              <th scope="col">#montant payé</th>
+              <th scope="col">#Présence</th>
+              <th scope="col">Action</th>
+            </thead>
+            <tbody id="tbodySeances">
+              @foreach ($seanceseleve as $key => $item)
+              <tr>
+                <td><a href="/seances/view/{{  $item->id  }}">{{ $item->id }}</a></td>
+                <td>{{ $item->date }}</td>
+                <td>{{ $item->heure }}</td>
+                <td>{{ $item->prixUnitaire }}</td>
+                <td>{{ $item->pivot->payement }}</td>
+                <td>@if ( $item->pivot->absent == 0)
+                    Présent
+                @else
+                    Absent
+                @endif
+               </td>
+                <td><div><a id="btnDelete" style="display:block;width:45px;margin-bottom:5px;" href="/eleves/view/{{ $eleve->id }}/payerseance/{{ $item->id }}" type="button" class="btn btn-info"><i class="fa fa-eye"></a></div></td>
+              </tr>
+              @endforeach
+             
+            </tbody>
+          </table>
+      
+        </div>
+    </div>
+  </div>
+  <div class="col col-sm col-lg-2">
+  </div>
+  </div>
+ 
+</section>
+<!-- End Products -->
+
+
+
+<!-- Start Products -->
+<section class="GroupesTable" id="GroupeTable">
+  <div class="container-fluid">
+    <div class="special-heading">Factures</div>
+      <p>Voir la liste des factures éleves</p>
+  <div class="row">
+  <div class="col col-sm col-lg-2">
+  </div>
+    <div class="col-12 col-sm-12 col-lg-8">
+      
+      <div class="locataires-table mt-5 mb-5">
+        <div class="table-responsive">
+          <table class="table display" id="reservationsDatatable">
+            <caption>Liste des Groupes</caption>
+            <thead class="table-dark">
+              <th scope="col">#Id_Facture</th>
+              <th scope="col">#Id_Elève</th>
+              <th scope="col">#Id_Groupe</th>
+              <th scope="col">#Nom_Prénom_Elève</th>
+              <th scope="col">#Nom_Groupe</th>
+              <th scope="col">#Nbre Séances</th>
+              <th scope="col">#Prix des séances</th>
+              <th scope="col">#Montant Payé</th>    
+              <th scope="col">#Montant a Payer </th>
+              <th scope="col">#Date & heure </th>
+              <th scope="col">#Action</th>
+            </thead>
+            <tbody id="tbodyGroupes">
+              <tr>
+                <td>#Id_Facture</td>
+                <td>#Id_Elève</td>
+                <td>#Id_Groupe</td>
+                <td>#Nom_Prénom_Elève</td>
+                <td>#Nom_Groupe</td>
+                <td>#Nbre Séances</td>
+                <td>#Prix des séances</td>
+                <td>#Montant Payé</td>
+                <td>#Montant a Payer </td>
+                <td>#Date & heure </td>
+                <td><div><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>  
+              </tr>
+            </tbody>
+          </table>
+      
+        </div>
+    </div>
+  </div>
+  <div class="col col-sm col-lg-2">
+  </div>
+  </div>
+ 
+</section>
+<!-- End Products -->
+
 
 </main>
 

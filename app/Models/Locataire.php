@@ -22,7 +22,7 @@ class Locataire extends Model
         'locataire_id',
         'seance_id'
         
-       );
+       )->withPivot('absent', 'payement');
       }
 
 }

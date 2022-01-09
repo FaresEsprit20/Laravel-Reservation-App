@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Eleve;
 use App\Models\Groupe;
+use App\Models\Seance;
 use App\Rules\FullnameRule;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route as FacadesRoute;
 use Illuminate\Validation\Rule;
 use Symfony\Component\Routing\Router;
+
+
 
 class ElevesController extends Controller
 {
@@ -81,12 +85,48 @@ class ElevesController extends Controller
       }
 
 
+      public function updateSeanceEleve(Request $request){
+       
+         $validateData = $request->validate([
+            'eleve'=>'required|integer|gt:0',
+            'seance'=>'required|integer|gt:0',
+            'prix'=>'required|integer|gt:0',
+            'montant'=>'required|integer|gt:0',
+            'chk'=>'required'
+            ]);
+
+            $affected = DB::table('seances_eleves')
+              ->where('eleve_id', $validateData['eleve'])
+              ->where('seance_id', $validateData['seance'])
+              ->update(['payement' => $validateData['montant']]);
+
+            if($validateData['montant'] == $validateData['prix']){
+               $affected = DB::table('seances_eleves')
+               ->where('eleve_id', $validateData['eleve'])
+               ->where('seance_id', $validateData['seance'])
+               ->update(['archive_state' => 1 ]);
+            }
+
+              return back()->with('success','Eleve Seance paid successfully.');
+      }
+
+      public function editSeanceEleve($ideleve,$idseance){
+       
+         $eleve = $ideleve;
+         $seance = $idseance;
+         $sc = Seance::findOrfail($idseance);
+         $prix = $sc->prixUnitaire;
+
+         return view('payerseanceeleve',compact('eleve','seance','prix'));
+      }
+
       public function getEleveById($id){
          $eleve = Eleve::findOrfail($id);
          $groupes = Groupe::where('archive_state', 0)->get();
          $groupeseleve = $eleve->groupes;
-      
-         return view('elevedetails',compact('eleve','groupes','groupeseleve'));
+         $seanceseleve = $eleve->seances;
+
+         return view('elevedetails',compact('eleve','groupes','groupeseleve','seanceseleve'));
       }
 
 

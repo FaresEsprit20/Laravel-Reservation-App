@@ -20,6 +20,7 @@ class Seanceseleves extends Migration
         $table->string('eleve_id');
         $table->unsignedSmallInteger('absent')->default(0);
         $table->unsignedBigInteger('payement')->default(0);
+        $table->unsignedInteger('archive_state')->default(0);
         $table->timestamps();
         
         $table->foreign('eleve_id')

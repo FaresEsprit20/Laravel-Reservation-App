@@ -18,6 +18,7 @@ class CreateSeancesTable extends Migration
             $table->id()->unsigned();
             $table->string('date');
             $table->string('heure');
+            $table->unsignedInteger('prixUnitaire');
             $table->unsignedBigInteger('locataire_id');
             $table->unsignedBigInteger('groupe_id');
             $table->unsignedBigInteger('location_id');

@@ -52,8 +52,7 @@
     <label for="loca_id" class="form-label">Salle</label>
       <select name="location" id="loca_id" class="form-select">
         <option selected disabled value="nil">Sélectionner une salle...</option>
-        @foreach ( $locations as $key => $item)
-  
+        @foreach ( $locations as $key => $item)  
         <option  value="{{ $item->id }}">{{ $item->location_name }}</option>              
         @endforeach
       </select>
@@ -75,6 +74,13 @@
     <span class="text-danger">{{ $message }}</span>
     @enderror
   </div>
+  <div class="col-md-8">
+    <label for="prix_id" class="form-label">Prix Unitaire Séance</label>
+      <input name="prix" type="number" id="prix_id" class="form-control">
+      @error('prix')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
+    </div>
   <div class="col-12">
     <div class="form-check">
       <input name="chk" class="form-check-input" type="checkbox" id="reservCheck">
@@ -119,6 +125,7 @@
               <th scope="col">#Id_Groupe</th>
               <th scope="col">#Date</th>
               <th scope="col">#Heure</th>
+              <th scope="col">#prix unitaire</th>
               <th scope="col">Action</th>
             </thead>
             <tbody id="tbodySeances">
@@ -129,6 +136,7 @@
                 <td><a href="/groupes/view/{{  $item->groupe_id  }}">{{ $item->groupe_id }}</a></td>
                 <td>{{ $item->date }}</td>
                 <td>{{ $item->heure }}</td>
+                <td>{{ $item->prixUnitaire }}</td>
                 <td><div><a id="btnDelete" style="display:block;width:45px;margin-bottom:5px;" href="/seances/view/{{  $item->id  }}" type="button" class="btn btn-info"><i class="fa fa-eye"></a></div></td>
               </tr>
               @endforeach

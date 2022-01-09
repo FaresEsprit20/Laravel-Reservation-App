@@ -75,7 +75,7 @@
               @foreach ($groupes as $key => $item)
              
               <tr>
-                <td class="id_groupe"> <a href="/groupes/view/{{  $item->id  }}" class="stretched-link">{{$item->id }}</a></td>
+                <td class="id_groupe"> <a href="/groupes/view/{{  $item->id  }}">{{$item->id }}</a></td>
                 <td>{{$item->group_name }}</td>
                 <td><div><button id="btnDelete" style="display:block;width:65px;margin-bottom:5px;" type="button" class="btn btn-info">Del</button><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>
               </tr>  

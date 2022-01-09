@@ -29,7 +29,7 @@ class Eleve extends Model
         'seances_eleves',
         'eleve_id',       
         'seance_id'
-       );
+       )->withPivot('absent', 'payement');
       }
 
       

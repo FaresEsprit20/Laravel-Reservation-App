@@ -51,6 +51,7 @@ class SeancesController extends Controller
         
         $validateData = $request->validate([
         'groupe'=>'required|integer|gt:0',
+        'prix'=>'required|integer|gt:0',
         'locataire'=>'required|integer|gt:0',
         'location'=>'required|integer|gt:0',
         'heure'=>'required|date_format:H:i',
@@ -62,12 +63,14 @@ class SeancesController extends Controller
         $location =  Location::find($validateData['location']);
         $time = $validateData['heure'];
         $date = $validateData['date'];
+        $prix = $validateData['prix'];
         $seance = new Seance();
         $seance->groupe()->associate($groupe);
         $seance->locataire()->associate($locataire);
         $seance->location()->associate($location);
         $seance->heure = $time;
         $seance->date = $date;
+        $seance->prixUnitaire = $prix;
 
         $available = Seance::select('*')
         ->where('archive_state', '=', 0)

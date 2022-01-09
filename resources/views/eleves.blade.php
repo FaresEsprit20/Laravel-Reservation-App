@@ -115,7 +115,7 @@
               @foreach ($eleves as $key => $item)
                   
               <tr>
-                <td><a href="/eleves/view/{{  $item->id  }}" class="stretched-link">{{ $item->id }}</a></td>
+                <td><a href="/eleves/view/{{  $item->id  }}" >{{ $item->id }}</a></td>
                 <td>{{ $item->prenom_eleve }}</td>
                 <td>{{ $item->nom_eleve }}</td>
                 <td>{{ $item->classe }}</td>
