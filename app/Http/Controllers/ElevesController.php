@@ -120,6 +120,22 @@ class ElevesController extends Controller
          return view('payerseanceeleve',compact('eleve','seance','prix'));
       }
 
+      public function setElevePresent($ideleve,$idseance){
+         $affected = DB::table('seances_eleves')
+         ->where('eleve_id', $ideleve)
+         ->where('seance_id', $idseance)
+         ->update(['absent' => 0]);
+         return back();
+      }
+
+      public function setEleveAbsent($ideleve,$idseance){
+         $affected = DB::table('seances_eleves')
+         ->where('eleve_id', $ideleve)
+         ->where('seance_id', $idseance)
+         ->update(['absent' => 1]);
+         return back();
+      }
+
       public function getEleveById($id){
          $eleve = Eleve::findOrfail($id);
          $groupes = Groupe::where('archive_state', 0)->get();

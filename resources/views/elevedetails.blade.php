@@ -169,7 +169,14 @@
                     Absent
                 @endif
                </td>
-                <td><div><a id="btnDelete" style="display:block;width:45px;margin-bottom:5px;" href="/eleves/view/{{ $eleve->id }}/payerseance/{{ $item->id }}" type="button" class="btn btn-info"><i class="fa fa-eye"></a></div></td>
+                <td><div><a id="btnDelete"  href="/eleves/view/{{ $eleve->id }}/payerseance/{{ $item->id }}" type="button" class="btn btn-primary">Voir</a>
+                  @if ( $item->pivot->absent == 1)
+                  <a id="btnDelete"  href="/eleves/view/{{ $eleve->id }}/present/{{ $item->id }}" type="button" class="btn btn-dark">Présent</a>
+                  @endif
+                  @if ( $item->pivot->absent == 0)
+                    <a id="btnDelete"  href="/eleves/view/{{ $eleve->id }}/absent/{{ $item->id }}" type="button" class="btn btn-warning">Absent</a>
+                    @endif
+                  </div></td>
               </tr>
               @endforeach
              
@@ -185,6 +192,54 @@
  
 </section>
 <!-- End Products -->
+
+
+<!-- Start Groupes -->
+
+<section class="gView" id="gView">
+  <div class="container-fluid">
+    <div class="special-heading">Facture</div>
+      <p>Facturer un éleve</p>
+  <div class="row">
+  <div class="col col-sm col-lg-2">
+  </div>
+    <div class="col-12 col-sm-12 col-lg-8">
+      
+      <div class="products-table mt-5 mb-5">
+        <div class="table-reservations">
+
+        <form class="row g-3" id="facturer">
+       
+
+
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="reservCheckee" required>
+      <label class="form-check-label" for="reservCheckee">
+        Cochez moi
+      </label>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-dark">Facturer Eleve</button>
+  </div>
+
+</form>
+
+
+      
+        </div>
+
+    </div>
+  </div>
+  <div class="col col-sm col-lg-2">
+  </div>
+  </div>
+ 
+</section>
+
+<!-- End Groupes -->
 
 
 
