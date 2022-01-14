@@ -136,6 +136,52 @@ class ElevesController extends Controller
          return back();
       }
 
+      public function FacturerEleve(Request $request) {
+         $validateData = $request->validate([
+            'ide'=>'required|integer|gt:0',
+            'groupeseleves'=>'required|integer|gte:0',
+            'datedeb'=>'bail|required|date|date_format:Y-m-d',
+            'datefin'=>'bail|required|date|date_format:Y-m-d|after_or_equal:datedeb',
+            'absence'=>'required',
+            'chkf'=>'required'
+            ]);
+
+            /*$seances = DB::table('seances_eleves')
+            ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
+            ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+             ->where('seances_eleves.archive_state', '=', 0)
+             ->get();*/
+             
+             $payementTotal =  DB::table('seances_eleves')
+             ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
+             ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+              ->where('seances_eleves.archive_state', '=', 0)
+              ->sum('payement');
+              $Total =  DB::table('seances')
+              ->leftJoin('seances_eleves', 'seances_eleves.seance_id','=', 'seances.id')
+              ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+               ->where('seances_eleves.archive_state', '=', 0)
+               ->sum('prixUnitaire');
+            /* $Total = Seance::select('sum(seances.prixUnitaire) AS prixUnitaireTotal')
+             ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
+             ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+             ->where('seances_eleves.archive_state', '=', 0)
+             ->groupBy('seances.id')
+             ->groupBy('seances_eleves.eleve_id')
+             ->groupBy('seances_eleves.id')
+             ->get();*/
+
+
+             $seances = Seance::select('*')
+             ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
+             ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+             ->where('seances_eleves.archive_state', '=', 0)
+             ->get();
+            return $seances.' Paid: '.$payementTotal.'  Total a payer   '.$Total;
+
+
+      }
+
       public function getEleveById($id){
          $eleve = Eleve::findOrfail($id);
          $groupes = Groupe::where('archive_state', 0)->get();

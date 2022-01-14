@@ -17,8 +17,6 @@ class CreateFacturesTable extends Migration
             $table->engine = 'InnoDB';
             $table->id()->unsigned();
             $table->unsignedBigInteger('id_eleve');
-            $table->unsignedBigInteger('id_groupe');
-            $table->string('nbrseances');
             $table->string('prixtotalseances');
             $table->string('paid');
             $table->string('topay');
@@ -26,8 +24,6 @@ class CreateFacturesTable extends Migration
             $table->unsignedInteger('archive_state')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
-            $table->foreign('id_eleve')->references('id')->on('eleves')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('id_groupe')->references('id')->on('groupes')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

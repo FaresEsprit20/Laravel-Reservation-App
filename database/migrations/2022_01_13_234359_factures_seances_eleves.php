@@ -4,31 +4,35 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGroupesElevesTable extends Migration
-{
-    /**
+class FacturesSeancesEleves extends Migration
+{    
+      /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('groupes_eleves', function (Blueprint $table) {
+    Schema::create('factures_seances_eleves', function (Blueprint $table) {
         $table->engine = 'InnoDB';
         $table->bigIncrements('id');        
+        $table->unsignedBigInteger('facture_id');
+        $table->unsignedBigInteger('seance_id');
         $table->unsignedBigInteger('eleve_id');
-        $table->unsignedBigInteger('groupe_id');
         $table->timestamps();
         
+        $table->foreign('facture_id')
+        ->references('id')
+        ->on('factures')->onDelete('cascade');
+        
+        $table->foreign('seance_id')
+        ->references('id')
+        ->on('seances')->onDelete('cascade');
+
         $table->foreign('eleve_id')
         ->references('id')
         ->on('eleves')->onDelete('cascade');
-        
-        $table->foreign('groupe_id')
-              ->references('id')
-              ->on('groupes')->onDelete('cascade');
-        
-        
+
     });
     }
 
@@ -39,8 +43,7 @@ class CreateGroupesElevesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('groupes_eleves');
+        Schema::dropIfExists('factures_seances_eleves');
     }
 
-    
 }

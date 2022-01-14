@@ -208,17 +208,59 @@
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
 
-        <form class="row g-3" id="facturer">
-       
-
-
+        <form class="row g-3" action="{{ route('eleve.facturer') }}" method="POST" id="facturer">
+         @csrf
+         <input type="hidden" name="ide" value="{{  $eleve->id  }}">
+          <div class="col-md-12">
+            <label for="group_ide" class="form-label">Groupes</label>
+            <select id="group_ide" name="groupeseleves" class="form-select">
+              <option value="0">All</option>
+              @foreach ($groupeseleve as $key => $item)
+              <option value="{{ $item->id }}">{{ $item->group_name }}</option>         
+              @endforeach
+            </select>
+            @error('groupeseleves')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+          </div>
+          <div class="col-md-12">
+            <div>
+            <label  class="form-label">Date Début</label>
+              <input name="datedeb" type="date" class="form-control" >
+            </div>
+              @error('datedeb')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+              <div class="col-md-12">
+           
+           <label  class="form-label">Date Fin</label>
+           <input name="datefin" type="date"  class="form-control">
+      @error('datefin')
+      <span class="text-danger">{{ $message }}</span>
+      @enderror
+    </div>
+    <div class="col-md-12">
+           
+      <label for="group_ide" class="form-label">Compter les absences ?</label>
+      <div class="form-check form-switch">
+        <input name="absence" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+        <label class="form-check-label" for="flexSwitchCheckChecked">Oui</label>
+      </div>
+            @error('absence')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+</div>
   <div class="col-12">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="reservCheckee" required>
+      <input name="chkf" class="form-check-input" type="checkbox" id="reservCheckee">
       <label class="form-check-label" for="reservCheckee">
         Cochez moi
       </label>
     </div>
+    @error('chkf')
+    <span class="text-danger">{{ $message }}</span>
+    @enderror
   </div>
 
   <div class="col-12">

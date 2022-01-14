@@ -42,6 +42,7 @@ Route::get('/eleves/view/{id}/absent/{seanceId}', [ElevesController::class,'setE
 Route::post('/eleves/create', [ElevesController::class,'CreateEleve'])->name('create.eleve');
 Route::post('/eleves/findGroups', [ElevesController::class,'findEleveGroups'])->name('find.eleve.groups');
 Route::put('/eleves/update', [ElevesController::class,'UpdateEleve'])->name('update.eleve');
+Route::post('/eleves/facturer', [ElevesController::class,'FacturerEleve'])->name('eleve.facturer');
 Route::put('/eleves/seances/paiment/update', [ElevesController::class,'updateSeanceEleve'])->name('payer.eleve.update');
 
 Route::get('/factures', [FacturesController::class,'index'])->name('factures.index');

@@ -15,9 +15,10 @@ class Seanceseleves extends Migration
     public function up()
     {
     Schema::create('seances_eleves', function (Blueprint $table) {
+        $table->engine = 'InnoDB';
         $table->bigIncrements('id');        
-        $table->string('seance_id');
-        $table->string('eleve_id');
+        $table->unsignedBigInteger('seance_id');
+        $table->unsignedBigInteger('eleve_id');
         $table->unsignedSmallInteger('absent')->default(0);
         $table->unsignedBigInteger('payement')->default(0);
         $table->unsignedInteger('archive_state')->default(0);
