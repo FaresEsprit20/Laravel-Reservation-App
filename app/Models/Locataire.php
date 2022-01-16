@@ -17,7 +17,7 @@ class Locataire extends Model
       }
 
       public function factures(){
-        return $this->belongsToMany(Facture::class,
+        return $this->belongsToMany(FactureLocataire::class,
         'factures_seances_locataires',
         'locataire_id',
         'facture_id');

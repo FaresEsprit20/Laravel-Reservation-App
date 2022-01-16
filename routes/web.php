@@ -46,6 +46,7 @@ Route::post('/eleves/facturer', [ElevesController::class,'FacturerEleve'])->name
 Route::put('/eleves/seances/paiment/update', [ElevesController::class,'updateSeanceEleve'])->name('payer.eleve.update');
 
 Route::get('/factures', [FacturesController::class,'index'])->name('factures.index');
+Route::get('/factures/view/{id}', [FacturesController::class,'getFactureById'])->name('get.facture');
 Route::get('/factures/paiement', [FacturesController::class,'PayementView'])->name('paiement.index');
 Route::post('/factures/paiement/eleves/payer', [FacturesController::class,'PayerEleve'])->name('paiement.eleve.payer');
 Route::post('/factures/paiement/enseignants/payer', [FacturesController::class,'PayerEnseignant'])->name('paiement.ens.payer');

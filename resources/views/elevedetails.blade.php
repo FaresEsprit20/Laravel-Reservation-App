@@ -312,7 +312,7 @@
              
               @foreach ($factures as $item)
               <tr>
-                <td>{{ $item->id }}</td>
+                <td><a href="/factures/view/{{  $item->id  }}" >{{ $item->id }}</a></td>
                 <td>{{ $item->prixtotalseances }}</td>
                 <td>{{ $item->paid }}</td>
                 <td>{{ $item->topay }}</td>

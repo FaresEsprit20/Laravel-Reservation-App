@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Eleve;
 use App\Models\Facture;
+use App\Models\Seance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FacturesController extends Controller
 {
@@ -70,7 +73,16 @@ class FacturesController extends Controller
 
     public function getFactureById($id){
         $facture = Facture::findOrfail($id);
-        return view('facturedetails',compact('facture'));
+        $eleve_id = $facture->eleve_id;
+        $eleve = Eleve::find($eleve_id);
+        $seanceseleve = DB::table('factures_seances_eleves')
+        ->leftJoin('seances','seances.id', '=','factures_seances_eleves.seance_id' )
+        ->leftJoin('seances_eleves','seances_eleves.seance_id', '=','seances.id' )
+        ->where('factures_seances_eleves.facture_id', '=',$id )
+        ->where('seances_eleves.eleve_id', '=',$eleve_id )
+        ->get();
+       
+        return view('facturedetails',compact('facture','seanceseleve'));
      }
   
 

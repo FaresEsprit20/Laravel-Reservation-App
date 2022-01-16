@@ -24,11 +24,6 @@ class Facture extends Model
        );
       }
 
-      public function locataires(){
-        return $this->belongsToMany(Locataire::class,
-        'factures_seances_locataires',
-        'facture_id',
-        'locataire_id');
-      }
+     
 
 }
