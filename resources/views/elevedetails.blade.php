@@ -169,7 +169,7 @@
                     Absent
                 @endif
                </td>
-                <td><div><a id="btnDelete"  href="/eleves/view/{{ $eleve->id }}/payerseance/{{ $item->id }}" type="button" class="btn btn-primary">Voir</a>
+                <td><div><a id="btnDelete"  href="/eleves/view/{{ $eleve->id }}/payerseance/{{ $item->id }}" type="button" class="btn btn-primary">Payer</a>
                   @if ( $item->pivot->absent == 1)
                   <a id="btnDelete"  href="/eleves/view/{{ $eleve->id }}/present/{{ $item->id }}" type="button" class="btn btn-dark">Présent</a>
                   @endif

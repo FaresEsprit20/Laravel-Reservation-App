@@ -68,7 +68,12 @@ Route::post('/locations/suitesvides/list', [LocationsController::class,'getSuite
 
 Route::get('/professeurs', [LocatairesController::class,'professeursView'])->name('professeurs.index');
 Route::get('/professeurs/view/{id}', [LocatairesController::class,'getProfesseurById'])->name('get.professeur');
+Route::get('/professeurs/view/{id}/payerseance/{seanceId}', [LocatairesController::class,'editSeanceLocataire'])->name('payer.locataire');
+Route::get('/professeurs/view/{id}/present/{seanceId}', [LocatairesController::class,'setLocatairePresent'])->name('present.locataire');
+Route::get('/professeurs/view/{id}/absent/{seanceId}', [LocatairesController::class,'setLocataireAbsent'])->name('absent.locataire');
 Route::post('/professeurs/create', [LocatairesController::class,'CreateProfesseur'])->name('create.professeur');
+Route::put('/professeurs/update', [LocatairesController::class,'UpdateProfesseur'])->name('update.professeur');
+Route::put('/professeurs/seances/paiment/update', [LocatairesController::class,'updateSeanceLocataire'])->name('payer.locataire.update');
 
 Route::get('/seances', [SeancesController::class,'index'])->name('seances.index');
 Route::post('/seances/create', [SeancesController::class,'CreateSeance'])->name('create.seance');

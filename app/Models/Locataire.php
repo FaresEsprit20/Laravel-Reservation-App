@@ -12,7 +12,7 @@ class Locataire extends Model
     protected $table = 'locataires';
     protected $guarded = [];
 
-    public function reservations(){
+      public function reservations(){
         return $this->hasMany(Reservation::class);
       }
 
