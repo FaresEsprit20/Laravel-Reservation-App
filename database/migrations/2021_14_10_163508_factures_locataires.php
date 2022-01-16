@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFacturesTable extends Migration
+class FacturesLocataires extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateFacturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('factures', function (Blueprint $table) {
+        Schema::create('factures_locataires', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id()->unsigned();
-            $table->unsignedBigInteger('eleve_id');
+            $table->unsignedBigInteger('locataire_id');
             $table->string('prixtotalseances');
             $table->string('paid');
             $table->string('topay');
@@ -25,11 +25,10 @@ class CreateFacturesTable extends Migration
             $table->unsignedInteger('archive_state')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
-            $table->foreign('eleve_id')
+            $table->foreign('locataire_id')
             ->references('id')
-            ->on('eleves')->onDelete('cascade');
+            ->on('locataires')->onDelete('cascade');
         });
-
     }
 
     /**
@@ -39,8 +38,6 @@ class CreateFacturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('factures');
+        Schema::dropIfExists('factures_locataires');
     }
-
-
 }

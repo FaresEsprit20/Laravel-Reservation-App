@@ -12,7 +12,7 @@ class Eleve extends Model
 
     protected $table = 'eleves';
 
-    public function factures(){
+      public function factures(){
         return $this->hasMany(Facture::class);
       }
 

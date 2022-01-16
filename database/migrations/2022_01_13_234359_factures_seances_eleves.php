@@ -18,7 +18,6 @@ class FacturesSeancesEleves extends Migration
         $table->bigIncrements('id');        
         $table->unsignedBigInteger('facture_id');
         $table->unsignedBigInteger('seance_id');
-        $table->unsignedBigInteger('eleve_id');
         $table->timestamps();
         
         $table->foreign('facture_id')
@@ -28,12 +27,8 @@ class FacturesSeancesEleves extends Migration
         $table->foreign('seance_id')
         ->references('id')
         ->on('seances')->onDelete('cascade');
-
-        $table->foreign('eleve_id')
-        ->references('id')
-        ->on('eleves')->onDelete('cascade');
-
     });
+    
     }
 
     /**

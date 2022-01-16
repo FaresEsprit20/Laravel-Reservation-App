@@ -14,10 +14,21 @@ class Facture extends Model
 
     public function eleve(){
         return $this->belongsTo(Eleve::class);
-    }
+      }
 
-    public function groupe(){
-        return $this->belongsTo(Groupe::class);
-    }
+      public function seances(){
+        return $this->belongsToMany(Eleve::class,
+        'factures_seances_eleves',
+        'facture_id',
+        'seance_id'
+       );
+      }
+
+      public function locataires(){
+        return $this->belongsToMany(Locataire::class,
+        'factures_seances_locataires',
+        'facture_id',
+        'locataire_id');
+      }
 
 }

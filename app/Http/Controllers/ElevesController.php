@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Eleve;
+use App\Models\Facture;
 use App\Models\Groupe;
 use App\Models\Seance;
 use App\Rules\FullnameRule;
@@ -146,39 +147,212 @@ class ElevesController extends Controller
             'chkf'=>'required'
             ]);
 
-            /*$seances = DB::table('seances_eleves')
-            ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
-            ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
-             ->where('seances_eleves.archive_state', '=', 0)
-             ->get();*/
+             $facture = new Facture();
+
+             if($validateData['absence']=="on"){
+
+               if($validateData['groupeseleves']=="0"){
+                  $payementTotal =  DB::table('seances_eleves')
+                  ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                   ->sum('payement');
+     
+                  $Total =  DB::table('seances')
+                   ->leftJoin('seances_eleves', 'seances_eleves.seance_id','=', 'seances.id')
+                   ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                   ->sum('prixUnitaire');
+     
+                  $seances = Seance::select('*')
+                  ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                  ->where('seances_eleves.archive_state', '=', 0)
+                  ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                  ->get();
+     
+                  $InedexedEleve = Eleve::findOrfail($validateData['ide']);
+                  $Indexedseances = Seance::select('*')
+                  ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                  ->where('seances_eleves.archive_state', '=', 0)
+                  ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                  ->pluck('seance_id');
+   
+                  $facture->prixTotalseances = $Total;
+                  $facture->paid = $payementTotal;
+                  $facture->toPay = $Total-$payementTotal;
+                  $facture->datedeb = $validateData['datedeb'];
+                  $facture->datefin = $validateData['datefin'];
+                  $facture->eleve()->associate($InedexedEleve);
+                  $facture->save();
+                 
+                 $facture->seances()->attach($Indexedseances);  
              
-             $payementTotal =  DB::table('seances_eleves')
-             ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
-             ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
-              ->where('seances_eleves.archive_state', '=', 0)
-              ->sum('payement');
-              $Total =  DB::table('seances')
-              ->leftJoin('seances_eleves', 'seances_eleves.seance_id','=', 'seances.id')
-              ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
-               ->where('seances_eleves.archive_state', '=', 0)
-               ->sum('prixUnitaire');
-            /* $Total = Seance::select('sum(seances.prixUnitaire) AS prixUnitaireTotal')
-             ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
-             ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
-             ->where('seances_eleves.archive_state', '=', 0)
-             ->groupBy('seances.id')
-             ->groupBy('seances_eleves.eleve_id')
-             ->groupBy('seances_eleves.id')
-             ->get();*/
+               
+               }else {
+                  $payementTotal =  DB::table('seances_eleves')
+                  ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->where('seances.groupe_id', '=', $validateData{'groupeseleves'})
+                   ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                   ->sum('payement');
+     
+                  $Total =  DB::table('seances')
+                   ->leftJoin('seances_eleves', 'seances_eleves.seance_id','=', 'seances.id')
+                   ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->where('seances.groupe_id', '=', $validateData{'groupeseleves'})
+                   ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                   ->sum('prixUnitaire');
+     
+                  $seances = Seance::select('*')
+                  ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                  ->where('seances_eleves.archive_state', '=', 0)
+                  ->where('seances.groupe_id', '=', $validateData{'groupeseleves'})
+                  ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                  ->get();
+     
+                  $InedexedEleve = Eleve::findOrfail($validateData['ide']);
+                  $Indexedseances = Seance::select('*')
+                  ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                  ->where('seances_eleves.archive_state', '=', 0)
+                  ->where('seances.groupe_id', '=', $validateData{'groupeseleves'})
+                  ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                  ->pluck('seance_id');
+   
+                  $facture->prixTotalseances = $Total;
+                  $facture->paid = $payementTotal;
+                  $facture->toPay = $Total-$payementTotal;
+                  $facture->datedeb = $validateData['datedeb'];
+                  $facture->datefin = $validateData['datefin'];
+                  $facture->eleve()->associate($InedexedEleve);
+                  $facture->save();
+                 
+                 $facture->seances()->attach($Indexedseances);  
+             
+             
+               }
+             
+
+             }else{
+
+               if($validateData['groupeseleves']=="0"){
+            
+                  $payementTotal =  DB::table('seances_eleves')
+                  ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->where('seances_eleves.absent', '=', 0)
+                   ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                   ->sum('payement');
+     
+                  $Total =  DB::table('seances')
+                   ->leftJoin('seances_eleves', 'seances_eleves.seance_id','=', 'seances.id')
+                   ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->where('seances_eleves.absent', '=', 0)
+                   ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                   ->sum('prixUnitaire');
+     
+                  $seances = Seance::select('*')
+                  ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                  ->where('seances_eleves.archive_state', '=', 0)
+                  ->where('seances_eleves.absent', '=', 0)
+                  ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                  ->get();
+     
+                  $InedexedEleve = Eleve::findOrfail($validateData['ide']);
+                  $Indexedseances = Seance::select('*')
+                  ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                  ->where('seances_eleves.archive_state', '=', 0)
+                  ->where('seances_eleves.absent', '=', 0)
+                  ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                  ->pluck('seance_id');
+   
+                  $facture->prixTotalseances = $Total;
+                  $facture->paid = $payementTotal;
+                  $facture->toPay = $Total-$payementTotal;
+                  $facture->datedeb = $validateData['datedeb'];
+                  $facture->datefin = $validateData['datefin'];
+                  $facture->eleve()->associate($InedexedEleve);
+                  $facture->save();
+                 
+                 $facture->seances()->attach($Indexedseances);  
+
+               }else {
+                  $payementTotal =  DB::table('seances_eleves')
+                  ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->where('seances_eleves.absent', '=', 0)
+                   ->where('seances.groupe_id', '=', $validateData{'groupeseleves'})
+                   ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                   ->sum('payement');
+     
+                  $Total =  DB::table('seances')
+                   ->leftJoin('seances_eleves', 'seances_eleves.seance_id','=', 'seances.id')
+                   ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                   ->where('seances_eleves.archive_state', '=', 0)
+                   ->where('seances_eleves.absent', '=', 0)
+                   ->where('seances.groupe_id', '=', $validateData{'groupeseleves'})
+                   ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                   ->sum('prixUnitaire');
+     
+                  $seances = Seance::select('*')
+                  ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                  ->where('seances_eleves.archive_state', '=', 0)
+                  ->where('seances_eleves.absent', '=', 0)
+                  ->where('seances.groupe_id', '=', $validateData{'groupeseleves'})
+                  ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                  ->get();
+     
+                  $InedexedEleve = Eleve::findOrfail($validateData['ide']);
+                  $Indexedseances = Seance::select('*')
+                  ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
+                  ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
+                  ->where('seances_eleves.archive_state', '=', 0)
+                  ->where('seances_eleves.absent', '=', 0)
+                  ->where('seances.groupe_id', '=', $validateData{'groupeseleves'})
+                  ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
+                  ->pluck('seance_id');
+   
+                  $facture->prixTotalseances = $Total;
+                  $facture->paid = $payementTotal;
+                  $facture->toPay = $Total-$payementTotal;
+                  $facture->datedeb = $validateData['datedeb'];
+                  $facture->datefin = $validateData['datefin'];
+                  $facture->eleve()->associate($InedexedEleve);
+                  $facture->save();
+                 
+                 $facture->seances()->attach($Indexedseances);  
+               }
+
+               return $seances;
+               //return back();
+             }
+ 
+            
+             
+           
+             
 
 
-             $seances = Seance::select('*')
-             ->leftJoin('seances_eleves', 'seances_eleves.seance_id', '=','seances.id' )
-             ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
-             ->where('seances_eleves.archive_state', '=', 0)
-             ->get();
-            return $seances.' Paid: '.$payementTotal.'  Total a payer   '.$Total;
+              //return $request->all();
 
+
+            // return back();
 
       }
 
