@@ -156,7 +156,6 @@ class ElevesController extends Controller
                   ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
                   ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
                    ->where('seances_eleves.archive_state', '=', 0)
-                   ->where('seances_eleves.archive_state', '=', 0)
                    ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
                    ->sum('payement');
      
@@ -197,7 +196,6 @@ class ElevesController extends Controller
                   $payementTotal =  DB::table('seances_eleves')
                   ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
                   ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
-                   ->where('seances_eleves.archive_state', '=', 0)
                    ->where('seances_eleves.archive_state', '=', 0)
                    ->where('seances.groupe_id', '=', $validateData{'groupeseleves'})
                    ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
@@ -294,7 +292,6 @@ class ElevesController extends Controller
                   ->leftJoin('seances', 'seances.id', '=', 'seances_eleves.seance_id')
                   ->where('seances_eleves.eleve_id', '=', $validateData['ide'])
                    ->where('seances_eleves.archive_state', '=', 0)
-                   ->where('seances_eleves.archive_state', '=', 0)
                    ->where('seances_eleves.absent', '=', 0)
                    ->where('seances.groupe_id', '=', $validateData{'groupeseleves'})
                    ->whereBetween('seances.date',[$validateData['datedeb'],$validateData['datefin']])
@@ -361,8 +358,12 @@ class ElevesController extends Controller
          $groupes = Groupe::where('archive_state', 0)->get();
          $groupeseleve = $eleve->groupes;
          $seanceseleve = $eleve->seances;
+         $factures = Facture::select('*')
+         ->where('archive_state', 0)
+         ->where('eleve_id', $id)
+         ->get();
 
-         return view('elevedetails',compact('eleve','groupes','groupeseleve','seanceseleve'));
+         return view('elevedetails',compact('eleve','groupes','groupeseleve','seanceseleve','factures'));
       }
 
 

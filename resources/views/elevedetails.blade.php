@@ -301,31 +301,27 @@
             <caption>Liste des Groupes</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Facture</th>
-              <th scope="col">#Id_Elève</th>
-              <th scope="col">#Id_Groupe</th>
-              <th scope="col">#Nom_Prénom_Elève</th>
-              <th scope="col">#Nom_Groupe</th>
-              <th scope="col">#Nbre Séances</th>
               <th scope="col">#Prix des séances</th>
               <th scope="col">#Montant Payé</th>    
               <th scope="col">#Montant a Payer </th>
-              <th scope="col">#Date & heure </th>
+              <th scope="col">#Date début </th>
+              <th scope="col">#Date fin </th>
               <th scope="col">#Action</th>
             </thead>
             <tbody id="tbodyGroupes">
+             
+              @foreach ($factures as $item)
               <tr>
-                <td>#Id_Facture</td>
-                <td>#Id_Elève</td>
-                <td>#Id_Groupe</td>
-                <td>#Nom_Prénom_Elève</td>
-                <td>#Nom_Groupe</td>
-                <td>#Nbre Séances</td>
-                <td>#Prix des séances</td>
-                <td>#Montant Payé</td>
-                <td>#Montant a Payer </td>
-                <td>#Date & heure </td>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->prixtotalseances }}</td>
+                <td>{{ $item->paid }}</td>
+                <td>{{ $item->topay }}</td>
+                <td>{{ $item->datedeb }}</td>
+                <td>{{ $item->datefin }}</td>
                 <td><div><button style="display:block;width:65px;" id="btnArchv"type="button" class="btn btn-dark">Archv</button></div></td>  
               </tr>
+              @endforeach
+          
             </tbody>
           </table>
       
