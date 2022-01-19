@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Eleve;
 use App\Models\Facture;
+use App\Models\FactureLocataire;
+use App\Models\Locataire;
 use App\Models\Seance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -83,6 +85,21 @@ class FacturesController extends Controller
         ->get();
        
         return view('facturedetails',compact('facture','seanceseleve'));
+     }
+
+
+     public function getFactureProfesseurById($id){
+        $facture = FactureLocataire::findOrfail($id);
+        $locataire_id = $facture->locataire_id;
+        $locataire = Locataire::find($locataire_id);
+        $seanceslocataires = DB::table('factures_seances_locataires')
+        ->leftJoin('seances','seances.id', '=','factures_seances_locataires.seance_id' )
+        ->leftJoin('seances_locataires','seances_locataires.seance_id', '=','seances.id' )
+        ->where('factures_seances_locataires.facture_id', '=',$id )
+        ->where('seances_locataires.locataire_id', '=',$locataire_id )
+        ->get();
+       
+        return view('facturedetailsprof',compact('facture','seanceslocataires'));
      }
   
 

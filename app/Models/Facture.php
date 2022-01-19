@@ -17,7 +17,7 @@ class Facture extends Model
       }
 
       public function seances(){
-        return $this->belongsToMany(Eleve::class,
+        return $this->belongsToMany(Seance::class,
         'factures_seances_eleves',
         'facture_id',
         'seance_id'

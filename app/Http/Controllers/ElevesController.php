@@ -38,7 +38,7 @@ class ElevesController extends Controller
         'prenom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'nom'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'classe'=>'required|min:3',
-        'tel'=>'required|integer|digits:8|unique:eleves,tel',
+        'tel'=>'required|integer|digits:8|unique:eleves,tel|unique:locataires,tel',
         'chk'=>'required'
         ]);
         $eleve = new Eleve();
@@ -63,7 +63,7 @@ class ElevesController extends Controller
         'prenomu'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'nomu'=>'required|regex:/^[a-zA-ZÑñ\s]+$/|max:30',
         'classeu'=>'required|min:3',
-        'telu'=>'required|integer|digits:8|unique:eleves,tel',
+        'telu'=>'required|integer|digits:8|unique:eleves,tel|unique:locataires,tel',
         'chku'=>'required'
         ]);
         $groupes = $validateData['groupesu'];

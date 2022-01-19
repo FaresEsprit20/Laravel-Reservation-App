@@ -22,7 +22,7 @@ class FacturesSeancesLocataires extends Migration
             
             $table->foreign('facture_id')
             ->references('id')
-            ->on('factures')->onDelete('cascade');
+            ->on('factures_locataires')->onDelete('cascade');
             
             $table->foreign('seance_id')
             ->references('id')

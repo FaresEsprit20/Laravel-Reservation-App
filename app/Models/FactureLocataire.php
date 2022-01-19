@@ -12,11 +12,16 @@ class FactureLocataire extends Model
     protected $guarded = [];
 
 
-    public function locataires(){
-        return $this->belongsToMany(Locataire::class,
+    public function locataire(){
+        return $this->belongsTo(Locataire::class);
+      }
+
+      public function seances(){
+        return $this->belongsToMany(Seance::class,
         'factures_seances_locataires',
         'facture_id',
-        'locataire_id');
+        'seance_id'
+       );
       }
 
 }

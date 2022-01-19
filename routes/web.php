@@ -47,6 +47,7 @@ Route::put('/eleves/seances/paiment/update', [ElevesController::class,'updateSea
 
 Route::get('/factures', [FacturesController::class,'index'])->name('factures.index');
 Route::get('/factures/view/{id}', [FacturesController::class,'getFactureById'])->name('get.facture');
+Route::get('/facturesprofesseurs/view/{id}', [FacturesController::class,'getFactureProfesseurById'])->name('get.factureprofesseur');
 Route::get('/factures/paiement', [FacturesController::class,'PayementView'])->name('paiement.index');
 Route::post('/factures/paiement/eleves/payer', [FacturesController::class,'PayerEleve'])->name('paiement.eleve.payer');
 Route::post('/factures/paiement/enseignants/payer', [FacturesController::class,'PayerEnseignant'])->name('paiement.ens.payer');
@@ -73,6 +74,7 @@ Route::get('/professeurs/view/{id}/present/{seanceId}', [LocatairesController::c
 Route::get('/professeurs/view/{id}/absent/{seanceId}', [LocatairesController::class,'setLocataireAbsent'])->name('absent.locataire');
 Route::post('/professeurs/create', [LocatairesController::class,'CreateProfesseur'])->name('create.professeur');
 Route::put('/professeurs/update', [LocatairesController::class,'UpdateProfesseur'])->name('update.professeur');
+Route::post('/professeurs/facturer', [LocatairesController::class,'FacturerProfesseur'])->name('professeur.facturer');
 Route::put('/professeurs/seances/paiment/update', [LocatairesController::class,'updateSeanceLocataire'])->name('payer.locataire.update');
 
 Route::get('/seances', [SeancesController::class,'index'])->name('seances.index');
