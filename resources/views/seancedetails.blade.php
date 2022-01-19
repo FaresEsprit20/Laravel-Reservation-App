@@ -1,4 +1,5 @@
 @extends('layout/master')
+
 @section('title','Reservations App')
 
 @section('content')
@@ -6,11 +7,64 @@
 <main>
 <a id="button-scroll-top"></a>
 
+<!-- Start Groupes -->
+<section class="geView" id="geView">
+  <div class="container-fluid">
+    <div class="special-heading">Seance</div>
+      <p>Seance details</p>
+  <div class="row">
+
+    <div class="col-12 col-sm-12 col-lg-8 offset-2">
+      
+      <div class="products-table mt-5 mb-5">
+        <div class="table-reservations">
+
+
+
+          
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                      Seance informations #
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                     
+                        <div class="card text-white bg-dark" style="width: 18rem;">
+                            <div class="card-header">
+                              Details
+                            </div>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">Id:&nbsp; <strong>{{ $seance->id }}</strong></li>
+                              <li class="list-group-item">Locataire:&nbsp;<strong>{{ $locataire->prenom_locataire }}&nbsp;{{ $locataire->nom_locataire }}</strong></li>
+                              <li class="list-group-item">Date début: &nbsp;<strong>{{ $seance->date }}</strong></li>
+                              <li class="list-group-item">Date fin: &nbsp;<strong>{{ $seance->date }}</strong></li>
+                              <li class="list-group-item">Prix Unitaire &nbsp;<strong>{{ $seance->prixUnitaire }}&nbsp;DT</strong></li>
+                              <li class="list-group-item">Groupe:&nbsp;<strong>{{ $groupe->group_name }}&nbsp;DT</strong></li>
+                            </ul>
+                          </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                      Séances eleves #
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                     
+                        
+
 <!-- Start Products -->
 <section class="GroupesTable" id="GroupeTable">
   <div class="container-fluid">
-    <div class="special-heading">Eleves</div>
-      <p>Voir la liste des éleves par séance</p>
+    <div class="special-heading">Seance Eleves</div>
+      <p>Voir la liste des éleves du seance</p>
   <div class="row">
   <div class="col col-sm col-lg-2">
   </div>
@@ -18,37 +72,31 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="reservationsDatatable">
+          <table class="table display" id="eleDatatable">
             <caption>Liste des Eleves</caption>
             <thead class="table-dark">
-              <th scope="col">#Id_Séance</th>
-              <th scope="col">#Id_Groupe</th>
               <th scope="col">#Id_Eleve</th>
-              <th scope="col">#Nom_Groupe</th>
               <th scope="col">#Prenom_Eleve</th>
               <th scope="col">#NomEleve</th>
               <th scope="col">#Classe</th>
               <th scope="col">#Tel</th>
-              <th scope="col">#Date_Séance</th>
-              <th scope="col">#Heure_Séance</th>
-              <th scope="col">#Payement</th>
-              <th scope="col">#Absent 1 Présent 0</th>
-              <th scope="col">Action</th>
+              <th scope="col">Absence</th>
             </thead>
             <tbody id="tbodyGroupes">
-              <td>#Id_Séance</td>
-              <td>#Id_Groupe</td>
-              <td>#Id_Eleve</td>
-              <td>#Nom_Groupe</td>
-              <td>#Prenom_Eleve</td>
-              <td>#NomEleve</td>
-              <td>#Classe</td>
-              <td>#Tel</td>
-              <td>#Date_Séance</td>
-              <td>#Heure_Séance</td>
-              <td>#Payement</td>
-              <td>#Absent 1 Présent 0</td>
-              <td><div><button id="btnAbsent" style="display:block;width:70px;margin-bottom:5px;" type="button" class="btn btn-info">Absent</button><button id="btnPresent" style="display:block;width:70px;margin-bottom:5px;" type="button" class="btn btn-secondary">Présent</button></div></td>
+              @foreach ($eleves as $key => $item)
+                  
+              <tr>
+                <td><a href="/eleves/view/{{  $item->id  }}" >{{ $item->id }}</a></td>
+                <td>{{ $item->prenom_eleve }}</td>
+                <td>{{ $item->nom_eleve }}</td>
+                <td>{{ $item->classe }}</td>
+                <td>{{ $item->tel }}</td>
+                <td>{{ $item->pivot->absent }}</td>
+                
+              </tr>
+
+              @endforeach
+              
             </tbody>
           </table>
       
@@ -61,6 +109,25 @@
  
 </section>
 <!-- End Products -->
+
+
+              
+       </div>
+      </div>
+    </div> 
+  </div>
+              
+
+     </div>
+  </div>
+ </div>
+</div>
+</section>
+<!-- End Groupes -->
+
+
+
+
 </main>
 
 @endsection

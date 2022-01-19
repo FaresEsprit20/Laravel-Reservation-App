@@ -34,16 +34,12 @@ class SeancesController extends Controller
     }
 
     public function getSeanceById($id){
-        $seance = DB::table('seances')
-        ->leftJoin('locataires', 'seances.locataire_id', '=', 'locataires.id')
-        ->leftJoin('groupes', 'seances.groupe_id', '=', 'groupes.id')
-        ->leftJoin('locations', 'seances.location_id', '=', 'locations.id')
-        ->where('seances.archive_state', '=', 0)
-        ->where('seances.id', '=', $id)
-        ->get();
-
+        $seance = Seance::findOrfail($id);
+        $eleves = $seance->eleves;
+        $locataire = Locataire::findOrfail($seance->locataire_id);
+        $groupe = Groupe::findOrfail($seance->groupe_id);
         
-        return view('seancedetails',compact('seance'));
+        return view('seancedetails',compact('seance','eleves','locataire','groupe'));
     }
 
 

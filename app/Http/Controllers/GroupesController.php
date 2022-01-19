@@ -36,7 +36,9 @@ class GroupesController extends Controller
       public function getGroupeById($id){
 
         $groupe = Groupe::findOrfail($id);
-        return view('groupedetails',compact('groupe'));
+        $eleves = $groupe->eleves;
+
+        return view('groupedetails',compact('groupe','eleves'));
       
       }
     

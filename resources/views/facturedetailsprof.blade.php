@@ -18,9 +18,6 @@
       
       <div class="products-table mt-5 mb-5">
         <div class="table-reservations">
-
-
-
           
             <div class="accordion" id="accordionPanelsStayOpenExample">
                 <div class="accordion-item">
