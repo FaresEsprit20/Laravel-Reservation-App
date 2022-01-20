@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Eleve;
 use App\Models\Groupe;
+use App\Models\Seance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -37,8 +38,12 @@ class GroupesController extends Controller
 
         $groupe = Groupe::findOrfail($id);
         $eleves = $groupe->eleves;
+        $seancesgroupe = Seance::select('*')
+        ->where('groupe_id',$id)
+        ->where('archive_state',0)
+        ->get();
 
-        return view('groupedetails',compact('groupe','eleves'));
+        return view('groupedetails',compact('groupe','eleves','seancesgroupe'));
       
       }
     

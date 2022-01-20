@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
+use App\Models\Seance;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,11 @@ class LocationsController extends Controller
    
     public function getLocationById($id){
       $location = Location::findOrfail($id);
-      return view('locationdetails',compact('location'));
+      $seanceslocation = Seance::select('*')
+        ->where('location_id',$id)
+        ->where('archive_state',0)
+        ->get();
+      return view('locationdetails',compact('location','seanceslocation'));
    }
 
 

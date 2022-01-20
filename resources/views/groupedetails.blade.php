@@ -107,8 +107,48 @@
  
 </section>
 <!-- End Products -->
-</main>
 
+<!-- Start Products -->
+<section class="SeancesTable" id="SeancesTable">
+  <div class="container-fluid">
+    <div class="special-heading">Séances du groupe</div>
+      <p>Voir la liste des séances du groupe</p>
+  <div class="row">
+
+    <div class="col-12 col-sm-12 col-lg-10 offset-1">
+      
+      <div class="locataires-table mt-5 mb-5">
+        <div class="table-responsive">
+          <table class="table display" id="seancesDatatable">
+            <caption>Liste des Séances du groupe</caption>
+            <thead class="table-dark">
+              <th scope="col">#Id_Seance</th>
+              <th scope="col">#Date</th>
+              <th scope="col">#Heure</th>
+              <th scope="col">#prix unitaire</th>
+            </thead>
+            <tbody id="tbodySeances">
+              @foreach ($seancesgroupe as $key => $item)
+              <tr>
+                <td><a href="/seances/view/{{  $item->id  }}">{{ $item->id }}</a></td>
+                <td>{{ $item->date }}</td>
+                <td>{{ $item->heure }}</td>
+                <td>{{ $item->prixUnitaire }}</td>
+             
+              </tr>
+              @endforeach
+             
+            </tbody>
+          </table>
+      
+        </div>
+    </div>
+  </div>
+
+  </div>
+ 
+</section>
+<!-- End Products -->
 
 
 </main>

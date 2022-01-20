@@ -39,8 +39,7 @@
                             <ul class="list-group list-group-flush">
                               <li class="list-group-item">Id:&nbsp; <strong>{{ $seance->id }}</strong></li>
                               <li class="list-group-item">Locataire:&nbsp;<strong>{{ $locataire->prenom_locataire }}&nbsp;{{ $locataire->nom_locataire }}</strong></li>
-                              <li class="list-group-item">Date début: &nbsp;<strong>{{ $seance->date }}</strong></li>
-                              <li class="list-group-item">Date fin: &nbsp;<strong>{{ $seance->date }}</strong></li>
+                              <li class="list-group-item">Date: &nbsp;<strong>{{ $seance->date }}</strong></li>
                               <li class="list-group-item">Prix Unitaire &nbsp;<strong>{{ $seance->prixUnitaire }}&nbsp;DT</strong></li>
                               <li class="list-group-item">Groupe:&nbsp;<strong>{{ $groupe->group_name }}&nbsp;DT</strong></li>
                             </ul>

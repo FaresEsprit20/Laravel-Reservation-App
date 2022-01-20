@@ -79,7 +79,7 @@
                 <th scope="col">#prix unitaire</th>
                 <th scope="col">#montant payé</th>
                 <th scope="col">#Présence</th>
-                <th scope="col">Action</th>
+                
               </thead>
               <tbody id="tbodySeances">
                 @foreach ($seanceseleve as $key => $item)
@@ -94,11 +94,8 @@
                   @else
                       Absent
                   @endif
-                 </td>
-                  <td><div><a id="btnDelete"  href="/eleves/view/{{ $item->id }}/payerseance/{{ $item->id }}" type="button" class="btn btn-warning">Archv</a>
-
-                    </div></td>
-                </tr>
+                 </td>     
+              </tr>
                 @endforeach
                
               </tbody>
