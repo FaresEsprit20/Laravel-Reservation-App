@@ -27,7 +27,7 @@ class CreateSeancesTable extends Migration
             $table->timestamp('updated_at')->nullable();
             $table->foreign('locataire_id')->references('id')->on('locataires')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('groupe_id')->references('id')->on('groupes')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('location_id')->references('id')->on('groupes')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }
 

@@ -36,6 +36,13 @@ class LocationsController extends Controller
       return view('locationdetails',compact('location','seanceslocation'));
    }
 
+   public function deleteLocationById($id){
+    $location = Location::find($id);
+    $location->delete();
+   
+    return back()->with('delete_success','Location deleted successfully');
+ }
+
 
     public function getSuitesVides(Request $request){
 

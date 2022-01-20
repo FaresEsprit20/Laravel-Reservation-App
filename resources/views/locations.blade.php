@@ -77,7 +77,7 @@
               <tr>
                 <td><a href="/locations/view/{{  $item->id  }}">{{ $item->id }}</a></td>
                 <td>{{ $item->location_name }}</td>
-                <td><div><a id="btnDelete" style="display:block;width:45px;margin-bottom:5px;" href="/locations/view/{{  $item->id  }}" type="button" class="btn btn-info"><i class="fa fa-trash-alt"></a></div></td>
+                <td><div><a id="btnDelete" style="display:block;width:45px;margin-bottom:5px;" href="/locations/view/{{  $item->id  }}/delete" type="button" class="btn btn-info"><i class="fa fa-trash-alt"></a></div></td>
               </tr>
               @endforeach
               
