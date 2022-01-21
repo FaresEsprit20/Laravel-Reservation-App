@@ -6,7 +6,7 @@
 @section('content')
 
 <main>
-<a id="button-scroll-top"></a>
+
 
 
 <!-- Start Groupes -->
@@ -72,7 +72,7 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="eleDatatable">
+          <table class="table display" id="seanceselevesDatatable">
             <caption>Liste des Eleves</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Eleve</th>
@@ -119,7 +119,7 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="seancesDatatable">
+          <table class="table display" id="seancesgroupesDatatable">
             <caption>Liste des Séances du groupe</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Seance</th>
@@ -154,3 +154,11 @@
 </main>
 
 @endsection
+
+@section('script')
+<script>
+   $("#seancesgroupesDatatable").DataTable();
+   $("#seanceselevesDatatable").DataTable();
+  
+</script>
+ @endsection

@@ -5,7 +5,7 @@
 @section('content')
        
 <main>
-<a id="button-scroll-top"></a>
+
 <!-- Start Locations -->
 <section class="locsView" id="locsView">
   <div class="container-fluid">
@@ -95,4 +95,11 @@
 <!-- End Products -->
 </main>
 
+@endsection
+
+
+@section('script')
+<script>
+  $("#locationsDatatable").DataTable();
+</script>
 @endsection

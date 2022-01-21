@@ -6,7 +6,7 @@
 @section('content')
        
 <main>
-<a id="button-scroll-top"></a>
+
 <!-- Start Groupes -->
 <!-- Start Séances -->
 <section class="geView" id="geView">
@@ -157,4 +157,10 @@
 
 </main>
 
+@endsection
+
+@section('script')
+<script>
+  $("#seancesDatatable").DataTable();
+</script>
 @endsection

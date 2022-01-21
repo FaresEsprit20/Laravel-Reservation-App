@@ -5,7 +5,7 @@
 @section('content')
        
 <main>
-<a id="button-scroll-top"></a>
+
 
 <!-- Start Groupes -->
 <section class="geView" id="geView">
@@ -71,7 +71,7 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="eleDatatable">
+          <table class="table display" id="scdetailsDatatable">
             <caption>Liste des Eleves</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Eleve</th>
@@ -129,4 +129,10 @@
 
 </main>
 
+@endsection
+
+@section('script')
+<script>
+  $("#scdetailsDatatable").DataTable();
+</script>
 @endsection

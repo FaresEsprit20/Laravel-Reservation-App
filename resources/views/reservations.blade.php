@@ -6,7 +6,7 @@
 @section('content')
        
 <main>
-<a id="button-scroll-top"></a>
+
 
 <!-- Start Reservation -->
 <section class="reservations" id="reservations">

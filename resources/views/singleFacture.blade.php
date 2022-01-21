@@ -6,7 +6,7 @@
 @section('content')
        
 <main>
-<a id="button-scroll-top"></a>
+
 <!-- Start Groupes -->
 <section class="gView" id="gView">
   <div class="container-fluid">

@@ -6,7 +6,7 @@
 @section('content')
 
 <main>
-<a id="button-scroll-top"></a>
+
 <!-- Start Groupes -->
 <section class="gView" id="gView">
   <div class="container-fluid">
@@ -64,7 +64,7 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="reservationsDatatable">
+          <table class="table display" id="groupesDatatable">
             <caption>Liste des Groupes</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Groupe</th>
@@ -83,7 +83,7 @@
               @endforeach
             </tbody>
           </table>
-      
+    
         </div>
     </div>
   </div>
@@ -97,3 +97,8 @@
 </main>
 
 @endsection
+@section('script')
+<script>
+   $("#groupesDatatable").DataTable();
+</script>
+ @endsection

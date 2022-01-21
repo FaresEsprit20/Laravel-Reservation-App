@@ -5,7 +5,7 @@
 @section('content')
        
 <main>
-<a id="button-scroll-top"></a>
+
 
 <!-- Start Groupes -->
 <section class="geView" id="geView">
@@ -144,7 +144,7 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="seancesDatatable">
+          <table class="table display" id="seanceseleDatatable">
             <caption>Liste des Séances de l'éleve</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Seance</th>
@@ -297,7 +297,7 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="reservationsDatatable">
+          <table class="table display" id="faceleDatatable">
             <caption>Liste des Groupes</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Facture</th>
@@ -338,4 +338,15 @@
 
 </main>
 
+@endsection
+
+
+
+@section('script')
+<script>
+  $("#egDatatable").DataTable();
+  $("#faceleDatatable").DataTable();
+  $("#seanceseleDatatable").DataTable();
+ 
+</script>
 @endsection

@@ -6,7 +6,7 @@
 @section('content')
        
 <main>
-<a id="button-scroll-top"></a>
+
 
 
 <!-- Start Groupes -->
@@ -69,7 +69,7 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="seancesDatatable">
+          <table class="table display" id="seanceslocDatatable">
             <caption>Liste des Séances du location</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Seance</th>
@@ -103,4 +103,10 @@
 
 </main>
 
+@endsection
+
+@section('script')
+<script>
+  $("#seanceslocDatatable").DataTable();
+</script>
 @endsection

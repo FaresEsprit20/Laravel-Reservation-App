@@ -6,7 +6,7 @@
 @section('content')
        
 <main>
-<a id="button-scroll-top"></a>
+
 <!-- Start Professeur -->
 <section class="ensView" id="ensView">
   <div class="container-fluid">
@@ -116,7 +116,7 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="reservationsDatatable">
+          <table class="table display" id="ensDatatable">
             <caption>Liste des Enseignants</caption>
             <thead class="table-dark">
               <th scope="col">#id_ens</th>
@@ -164,4 +164,11 @@
 <!-- End Products -->
 </main>
 
+@endsection
+
+
+@section('script')
+<script>
+  $("#ensDatatable").DataTable();
+</script>
 @endsection

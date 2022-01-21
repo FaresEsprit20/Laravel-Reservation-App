@@ -6,7 +6,7 @@
 @section('content')
        
 <main>
-<a id="button-scroll-top"></a>
+
 <!-- Start Professeur -->
 <section class="ensView" id="ensView">
   <div class="container-fluid">
@@ -118,7 +118,7 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="egDatatable">
+          <table class="table display" id="ensgrpDatatable">
             <caption>Liste des Groupes</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Groupe</th>
@@ -159,8 +159,8 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="seancesDatatable">
-            <caption>Liste des Séances de l'éleve</caption>
+          <table class="table display" id="ensseancesDatatable">
+            <caption>Liste des Séances de l'énseignant</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Seance</th>
               <th scope="col">#Date</th>
@@ -313,7 +313,7 @@
       
       <div class="locataires-table mt-5 mb-5">
         <div class="table-responsive">
-          <table class="table display" id="reservationsDatatable">
+          <table class="table display" id="ensfacDatatable">
             <caption>Liste des Groupes</caption>
             <thead class="table-dark">
               <th scope="col">#Id_Facture</th>
@@ -356,4 +356,13 @@
 
 </main>
 
+@endsection
+
+@section('script')
+<script>
+  $("#ensgrpDatatable").DataTable();
+  $("#ensseancesDatatable").DataTable();
+  $("#ensfacDatatable").DataTable();
+ 
+</script>
 @endsection
