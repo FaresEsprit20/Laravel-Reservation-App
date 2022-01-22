@@ -99,6 +99,13 @@
 @endsection
 @section('script')
 <script>
-   $("#groupesDatatable").DataTable();
+   $("#groupesDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+   );
 </script>
  @endsection

@@ -67,7 +67,7 @@
         
         <div class="locataires-table mt-5 mb-5">
           <div class="table-responsive">
-            <table class="table display" id="seancesDatatable">
+            <table class="table display" id="seancesfacturesDatatable">
               <caption>Liste des Séances de l'enseignant</caption>
               <thead class="table-dark">
                 <th scope="col">#Id_Seance</th>
@@ -129,3 +129,12 @@
 </main>
 
 @endsection
+
+<script>
+  $("#seancesfacturesDatatable").DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    });
+</script>

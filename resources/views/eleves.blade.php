@@ -144,6 +144,13 @@
 
 @section('script')
 <script>
-   $("#eleDatatable").DataTable();
+   $("#eleDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+   );
 </script>
  @endsection

@@ -133,6 +133,13 @@
 
 @section('script')
 <script>
-  $("#scdetailsDatatable").DataTable();
+  $("#scdetailsDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+  );
 </script>
 @endsection

@@ -132,5 +132,10 @@
 @endsection
 
 <script>
-  $("#seancesfacturesDatatable").DataTable();
+  $("#seancesfacturesDatatable").DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    });
 </script>

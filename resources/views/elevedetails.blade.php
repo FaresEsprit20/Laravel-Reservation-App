@@ -344,9 +344,30 @@
 
 @section('script')
 <script>
-  $("#egDatatable").DataTable();
-  $("#faceleDatatable").DataTable();
-  $("#seanceseleDatatable").DataTable();
+  $("#egDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+  );
+  $("#faceleDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+  );
+  $("#seanceseleDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+  );
  
 </script>
 @endsection

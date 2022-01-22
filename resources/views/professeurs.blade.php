@@ -169,6 +169,13 @@
 
 @section('script')
 <script>
-  $("#ensDatatable").DataTable();
+  $("#ensDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+  );
 </script>
 @endsection

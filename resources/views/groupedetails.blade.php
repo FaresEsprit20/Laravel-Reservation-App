@@ -157,8 +157,22 @@
 
 @section('script')
 <script>
-   $("#seancesgroupesDatatable").DataTable();
-   $("#seanceselevesDatatable").DataTable();
+   $("#seancesgroupesDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+   );
+   $("#seanceselevesDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+   );
   
 </script>
  @endsection

@@ -360,9 +360,30 @@
 
 @section('script')
 <script>
-  $("#ensgrpDatatable").DataTable();
-  $("#ensseancesDatatable").DataTable();
-  $("#ensfacDatatable").DataTable();
+  $("#ensgrpDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+  );
+  $("#ensseancesDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+  );
+  $("#ensfacDatatable").DataTable(
+    {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
+    }
+  );
  
 </script>
 @endsection
