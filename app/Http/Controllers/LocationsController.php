@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class LocationsController extends Controller
 {
+
+  public function __construct()
+	{
+	    $this->middleware('auth');
+	}
+  
     public function index(){
       $locations = Location::select('*')
       ->where('archive_state', '=', 0)->get();

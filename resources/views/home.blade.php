@@ -58,31 +58,47 @@
  
  
     <ul class="list-group">
+
+      <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold text-secondary">Seances</div>
+          Nombre de seances
+        </div>
+        <span style="width:34px;" id="loc" class="badge bg-primary rounded-pill text-center"></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
+        <div class="ms-2 me-auto ">
+          <div class="fw-bold text-secondary">Seances</div>
+          Nombre de seances archivées
+        </div>
+        <span style="width:34px;" id="locarchv" class="badge bg-primary rounded-pill text-center"></span>
+      </li>
+
 <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
   <div class="ms-2 me-auto">
-    <div class="fw-bold text-secondary">Réservations</div>
-    Nombre de réservations
-  </div>
-  <span style="width:34px;" id="reserv" class="badge bg-primary rounded-pill text-center"></span>
-</li>
-<li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
-  <div class="ms-2 me-auto">
-    <div class="fw-bold text-secondary">Réservations Archivées</div>
-    Nombre de réservations archivées
-  </div>
-  <span style="width:34px;" id="reservarchv" class="badge bg-primary rounded-pill text-center"></span>
-</li>
-<li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
-  <div class="ms-2 me-auto">
-    <div class="fw-bold text-secondary">Locataires</div>
+    <div class="fw-bold text-secondary">Professeurs</div>
     Nombre de locataires
   </div>
   <span style="width:34px;" id="loc" class="badge bg-primary rounded-pill text-center"></span>
 </li>
 <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
   <div class="ms-2 me-auto ">
-    <div class="fw-bold text-secondary">Locataires</div>
+    <div class="fw-bold text-secondary">Professeurs</div>
     Nombre de locataires archivés
+  </div>
+  <span style="width:34px;" id="locarchv" class="badge bg-primary rounded-pill text-center"></span>
+</li>
+<li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
+  <div class="ms-2 me-auto">
+    <div class="fw-bold text-secondary">Eleves</div>
+    Nombre de eleves
+  </div>
+  <span style="width:34px;" id="loc" class="badge bg-primary rounded-pill text-center"></span>
+</li>
+<li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
+  <div class="ms-2 me-auto ">
+    <div class="fw-bold text-secondary">Professeurs</div>
+    Nombre de eleves archivés
   </div>
   <span style="width:34px;" id="locarchv" class="badge bg-primary rounded-pill text-center"></span>
 </li>
@@ -100,13 +116,7 @@
   </div>
   <span style="width:34px;" id="grparchv" class="badge bg-primary rounded-pill text-center"></span>
 </li>
-<li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
-  <div class="ms-2 me-auto">
-    <div class="fw-bold text-secondary" >Paiement</div>
-    Pourcentage de personnes payés
-  </div>
-  <span style="width:34px;" class="badge bg-primary rounded-pill text-center">80%</span>
-</li>
+
 </ul>
   </div>
 </div>

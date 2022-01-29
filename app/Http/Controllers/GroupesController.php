@@ -11,6 +11,11 @@ use PHPUnit\TextUI\XmlConfiguration\Group;
 
 class GroupesController extends Controller
 {
+
+  public function __construct()
+	{
+	    $this->middleware('auth');
+	}
   
     public function index(){
       $groupes = Groupe::select('*')

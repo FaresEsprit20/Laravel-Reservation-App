@@ -63,6 +63,20 @@
                       <i class="navbar-fa fa fa-mail-forward fa-2x d-inline-block"></i>
                     </li>
                     
+                    @if (Auth::check())
+                        
+                    <li class="nav-item">
+                      <a class="nav-link d-inline-block" href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">Se déconnecter</a>
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                      <i class="navbar-fa fa fa-mail-forward fa-2x d-inline-block"></i>
+                    </li>
+                    
+                    @endif
+
                   </ul>
                 </div>
               </div>

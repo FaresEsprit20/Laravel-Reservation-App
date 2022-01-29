@@ -19,6 +19,11 @@ use Symfony\Component\Routing\Router;
 class ElevesController extends Controller
 {
 
+   public function __construct()
+	{
+	    $this->middleware('auth');
+	}
+   
    public function index(){
       $groupes = Groupe::where('archive_state', 0)->get();
       $eleves = Eleve::where('archive_state', 0)->get();

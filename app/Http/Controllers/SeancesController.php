@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
 
 class SeancesController extends Controller
 {
+
+    public function __construct()
+	{
+	    $this->middleware('auth');
+	}
+
     public function index(){
        
         $groupes = Groupe::select('*')

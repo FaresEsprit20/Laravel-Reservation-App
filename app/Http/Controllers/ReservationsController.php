@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\DB;
 class ReservationsController extends Controller
 {
     
+  public function __construct()
+	{
+	    $this->middleware('auth');
+	}
+  
    public function index(){
        $title = 'reservation app';
        $locations = Location::select('*')
