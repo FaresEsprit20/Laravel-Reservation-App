@@ -33,19 +33,17 @@ Route::group([
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-
-    
-    Route::get('/groupesjson', [GroupesController::class,'indexJson'])->middleware('jwt.verify');
-   
-    
-    
- 
-
 });
 
 
 
+Route::group([
+    'middleware' => 'api'
+], function ($router) {
+  
+    Route::get('/groupesjson', [GroupesController::class,'indexJson'])->middleware('jwt.verify');
 
+});
 
 
 

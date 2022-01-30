@@ -16,6 +16,12 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 
+        <style>
+          #botmanWidgetRoot > div{
+            margin-bottom: 68px !important;
+            margin-right: 2px !important;
+          }
+          </style>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}" >
         <!-- Bootstrap CSS -->
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -51,6 +57,21 @@
  <!-- Popper.js first, then Bootstrap JS -->
  <x-bootstrap-dt />
    @yield('script')
+   <script>
+    var botmanWidget = {
+        aboutText: 'write something here',
+        title: 'ChatBot Assistant',
+        mainColor: '#6B5B95',
+        bubbleBackground: '#88B04B',
+        desktopHeight: 500,
+        desktopWidth: 350,
+       
+        introMessage: "✋ Hi! I'm your chatbot from reserv app ! And i am here to help you"
+    };
+</script>
+<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+
+
   </body>
 </html>
 
