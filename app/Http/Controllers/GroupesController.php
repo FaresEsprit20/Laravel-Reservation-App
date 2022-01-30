@@ -14,7 +14,6 @@ class GroupesController extends Controller
 
   public function __construct()
 	{
-    $this->middleware('jwt.verify');
 	    $this->middleware('auth');
 	}
   
