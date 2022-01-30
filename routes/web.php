@@ -60,7 +60,7 @@ Route::post('/factures/paiement/enseignants/payer', [FacturesController::class,'
 Route::post('/factures/paiement/groupes', [FacturesController::class,'FacturerGroupe'])->name('paiement.groupes')->middleware('auth');
 Route::post('/factures/paiement/enseignants', [FacturesController::class,'FacturerEnseignants'])->name('paiement.ens')->middleware('auth');
 
-Route::get('/groupes', [GroupesController::class,'index'])->name('groupes.index')->middleware('auth');
+Route::get('/groupes', [GroupesController::class,'index'])->name('groupes.index');
 Route::post('/groupes/create', [GroupesController::class,'CreateGroup'])->name('create.group')->middleware('auth');
 Route::put('/groupes/update', [GroupesController::class,'UpdateGroup'])->name('update.group')->middleware('auth');
 Route::get('/groupes/view/{id}', [GroupesController::class,'getGroupeById'])->name('get.group')->middleware('auth');

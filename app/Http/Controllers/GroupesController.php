@@ -14,9 +14,22 @@ class GroupesController extends Controller
 
   public function __construct()
 	{
+    $this->middleware('jwt.verify');
 	    $this->middleware('auth');
 	}
   
+
+  public function indexJson(){
+    $groupes = Groupe::select('*')
+    ->where('archive_state', '=', 0)->get();
+    $eleves = Eleve::select('*')
+    ->where('archive_state', '=', 0)->get();
+     return response()->json([
+      'success' => true,
+      'groupes' => $groupes,
+      'eleves' => $eleves,
+  ]);
+  }
     public function index(){
       $groupes = Groupe::select('*')
       ->where('archive_state', '=', 0)->get();
