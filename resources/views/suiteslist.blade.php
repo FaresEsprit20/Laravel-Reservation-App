@@ -9,6 +9,17 @@
 
   <!-- Start Products -->
   <section class="reservationsView" id="reservationsView">
+  
+  @if ($message = Session::get('empty_locations'))
+  <x-bootstrapalertsiconssvg />
+ <div class="alert alert-primary d-flex align-items-center alert-dismissible fade show" role="alert">
+   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#info-fill"/></svg>
+   <div>
+     {{ $message }}
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+ </div>
+ @endif
     <div class="container-fluid">
       <div class="special-heading">Suites Vides</div>
         <p>Voir les Locations vides</p>

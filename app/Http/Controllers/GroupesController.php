@@ -48,7 +48,7 @@ class GroupesController extends Controller
         $groupe->save();
        
         return redirect()->route('groupes.index')
-                        ->with('success','Groupe created successfully.');
+                        ->with('create_group_success','Groupe created successfully.');
       }
 
       public function getGroupeById($id){
@@ -79,7 +79,7 @@ class GroupesController extends Controller
         $groupe->save();
 
         return redirect()->route('groupes.index')
-        ->with('success','Groupe updated successfully.');
+        ->with('edit_group_success','Groupe updated successfully.');
         
         }
 
@@ -96,7 +96,7 @@ class GroupesController extends Controller
           ]);
        
           return redirect()->route('groupes.index')
-        ->with('success','Groupe archivated successfully.');
+        ->with('archivate_group_success','Groupe archivated successfully.');
         
       }
 

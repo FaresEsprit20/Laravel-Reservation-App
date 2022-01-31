@@ -96,11 +96,11 @@ class SeancesController extends Controller
           
 
             return redirect()->route('seances.index')
-            ->with('success','Seance created successfully.');
+            ->with('create_seance_success','Seance created successfully.');
 
         }else{
             return redirect()->route('seances.index')
-            ->with('error','Can not create this seance on this date');
+            ->with('create_seance_error','Can not create this seance on this date');
         }
          
         //return request()->all();

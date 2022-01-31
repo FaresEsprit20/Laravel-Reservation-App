@@ -264,20 +264,8 @@ class LocatairesController extends Controller
               $facture->seances()->attach($Indexedseances);  
             }
 
-            return $seances;
-            //return back();
           }
-
-         
-          
-        
-          
-
-
-           //return $request->all();
-
-
-         // return back();
+          return back()->with('locataire_seance_facturer','Professeur seances has been billed');
 
    }
 
@@ -308,7 +296,7 @@ class LocatairesController extends Controller
     
         $locataire->save();
         
-        return back()->with('success','Locataire updated successfully.');
+        return back()->with('update_locataire_success','Locataire updated successfully.');
        
       }
 
@@ -345,7 +333,7 @@ class LocatairesController extends Controller
               ->update(['archive_state' => 1 ]);
            }
 
-             return back()->with('success','Locataire Seance paid successfully.');
+             return back()->with('locataire_seance_paid_success','Locataire Seance paid successfully.');
      }
 
      public function setLocatairePresent($idlocataire,$idseance){
@@ -397,7 +385,7 @@ class LocatairesController extends Controller
         $locataire->save();
 
         return redirect()->route('professeurs.index')
-                        ->with('success','Locataire created successfully.');
+                        ->with('create_locataire_success','Locataire created successfully.');
       }
 
       

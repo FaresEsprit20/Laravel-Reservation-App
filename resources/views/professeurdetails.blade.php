@@ -103,7 +103,16 @@
   <div class="col col-sm col-lg-2">
   </div>
   </div>
- 
+  @if ($message = Session::get('update_locataire_success'))
+  <x-bootstrapalertsiconssvg />
+ <div class="alert alert-primary d-flex align-items-center alert-dismissible fade show" role="alert">
+   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#info-fill"/></svg>
+   <div>
+     {{ $message }}
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+ </div>
+ @endif
 </section>
 <!-- End Professseur -->
 
@@ -285,16 +294,22 @@
 
 </form>
 
-
-      
-        </div>
-
-    </div>
+   </div>
   </div>
-  <div class="col col-sm col-lg-2">
+ </div>
+<div class="col col-sm col-lg-2">
   </div>
   </div>
- 
+  @if ($message = Session::get('locataire_seance_facturer'))
+  <x-bootstrapalertsiconssvg />
+ <div class="alert alert-primary d-flex align-items-center alert-dismissible fade show" role="alert">
+   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#info-fill"/></svg>
+   <div>
+     {{ $message }}
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+ </div>
+ @endif
 </section>
 
 <!-- End Groupes -->

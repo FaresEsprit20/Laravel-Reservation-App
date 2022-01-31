@@ -16,25 +16,13 @@
                       <a class="nav-link d-inline-block" aria-current="page" href="{{ route('home.index') }}">Accueil</a>
                       <i class="navbar-fa fa fa-home fa-2x  d-inline-block"></i>
                     </li>
-                    <li class="nav-item">
-                      
-                      <a class="nav-link d-inline-block" href="#features">Nos services</a>
-                      <i class="navbar-fa fa fa-pencil-square fa-2x d-inline-block"></i>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link d-inline-block" href="{{ route('reservations.index') }}">Réservations</a>
-                      <i class="navbar-fa fa fa-product-hunt fa-2x d-inline-block"></i>
-                    </li>
+                  
                     <li class="nav-item">
                       <a class="nav-link d-inline-block" href="{{ route('groupes.index') }}">Groupes</a>
                       <i class="navbar-fa fa fa-users fa-2x d-inline-block"></i>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link d-inline-block" href="{{ route('eleves.index') }}">Eleves</a>
-                      <i class="navbar-fa fa fa-users fa-2x d-inline-block"></i>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link d-inline-block" href="{{ route('paiement.index') }}">Payement</a>
                       <i class="navbar-fa fa fa-users fa-2x d-inline-block"></i>
                     </li>
                     <li class="nav-item">
@@ -50,8 +38,6 @@
                   <li><a class="dropdown-item" href="{{ route('locations.index') }}">Locations</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{{ route('professeurs.index') }}">Enseignants</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{{ route('factures.index') }}">Factures</a></li>
                 </ul>
               </li>
                     <li class="nav-item">

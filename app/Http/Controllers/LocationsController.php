@@ -8,6 +8,7 @@ use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class LocationsController extends Controller
 {
 
@@ -91,8 +92,11 @@ class LocationsController extends Controller
         ->whereBetween ('datetimedeb', [ $dtb, $dtf ])
         ->orwhereBetween('datetimefin', [ $dtb, $dtf ])
         ->distinct();
-    })->get();
+      })->get();
        
+      if(count($suites) == 0 ){
+        return View('suiteslist',compact('suites'))->with('empty_locations','0 available salles has been found');
+      }
        return View('suiteslist',compact('suites'));
 
     }
@@ -108,7 +112,7 @@ class LocationsController extends Controller
         $location->save();
            
         return redirect()->route('locations.index')
-                        ->with('success','Location created successfully.');
+                        ->with('create_location_success','Location created successfully.');
       }
 
       
@@ -126,7 +130,7 @@ class LocationsController extends Controller
         $location->location_name = $nomlocation;
         $location->save();
       
-        return back()->with('post-update','post has been done');
+        return back()->with('edit_location_success','Location has been updated');
       }
 
 

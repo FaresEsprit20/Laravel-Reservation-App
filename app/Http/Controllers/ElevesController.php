@@ -58,7 +58,7 @@ class ElevesController extends Controller
        // return $request->all();
         
           return redirect()->route('eleves.index')
-                ->with('success','Eleve created successfully.');
+                ->with('create_eleve_success','Eleve created successfully.');
       }
   
 
@@ -86,7 +86,7 @@ class ElevesController extends Controller
         $eleve->groupes()->sync($grp);
         $eleve->save();
         
-        return back()->with('success','Eleve updated successfully.');
+        return back()->with('edit_eleve_success','Eleve updated successfully.');
        
       }
 
@@ -113,7 +113,7 @@ class ElevesController extends Controller
                ->update(['archive_state' => 1 ]);
             }
 
-              return back()->with('success','Eleve Seance paid successfully.');
+              return back()->with('seance_eleve_paid_success','Eleve Seance paid successfully.');
       }
 
       public function editSeanceEleve($ideleve,$idseance){
@@ -341,21 +341,9 @@ class ElevesController extends Controller
                  $facture->seances()->attach($Indexedseances);  
                }
 
-               return $seances;
-               //return back();
              }
- 
-            
-             
-           
-             
 
-
-              //return $request->all();
-
-
-            // return back();
-
+             return back()->with('eleve_facturer_success','Eleve bill has been done');
       }
 
       public function getEleveById($id){
@@ -372,14 +360,7 @@ class ElevesController extends Controller
       }
 
 
-     public function findEleveGroups(Request $request){
-        $validateData = $request->validate([
-        'elevef'=>'required|integer|gt:0',
-        'chk'=>'required'
-        ]);
-        $eleve = $validateData['elevef'];      
-        return $request->all();
-      }
+
 
 
       

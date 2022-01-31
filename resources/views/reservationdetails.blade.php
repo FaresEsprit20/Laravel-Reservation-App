@@ -7,8 +7,6 @@
 <main>
 
 
-
-  
 <!-- Start Products -->
 <section class="reservationsView" id="reservationsView">
   <div class="container-fluid">
