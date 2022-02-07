@@ -61,60 +61,60 @@
 
       <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
         <div class="ms-2 me-auto">
-          <div class="fw-bold text-secondary">Seances</div>
+          <div class="fw-bold text-secondary">Active Seances</div>
           Nombre de seances
         </div>
-        <span style="width:34px;" id="loc" class="badge bg-primary rounded-pill text-center"></span>
+        <span style="width:34px;" id="loc" class="badge bg-primary rounded-pill text-center">{{ $IndexedSeances }}</span>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
         <div class="ms-2 me-auto ">
           <div class="fw-bold text-secondary">Seances</div>
           Nombre de seances archivées
         </div>
-        <span style="width:34px;" id="locarchv" class="badge bg-primary rounded-pill text-center"></span>
+        <span style="width:34px;" id="locarchv" class="badge bg-primary rounded-pill text-center">{{ $IndexedSeancesarchv }}</span>
       </li>
 
 <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
   <div class="ms-2 me-auto">
-    <div class="fw-bold text-secondary">Professeurs</div>
+    <div class="fw-bold text-secondary">Active Professeurs</div>
     Nombre de locataires
   </div>
-  <span style="width:34px;" id="loc" class="badge bg-primary rounded-pill text-center"></span>
+  <span style="width:34px;" id="loc" class="badge bg-primary rounded-pill text-center">{{ $IndexedLocataires }}</span>
 </li>
 <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
   <div class="ms-2 me-auto ">
     <div class="fw-bold text-secondary">Professeurs</div>
     Nombre de locataires archivés
   </div>
-  <span style="width:34px;" id="locarchv" class="badge bg-primary rounded-pill text-center"></span>
+  <span style="width:34px;" id="locarchv" class="badge bg-primary rounded-pill text-center">{{ $IndexedSeancesarchv }}</span>
 </li>
 <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
   <div class="ms-2 me-auto">
-    <div class="fw-bold text-secondary">Eleves</div>
+    <div class="fw-bold text-secondary">Active Eleves</div>
     Nombre de eleves
   </div>
-  <span style="width:34px;" id="loc" class="badge bg-primary rounded-pill text-center"></span>
+  <span style="width:34px;" id="loc" class="badge bg-primary rounded-pill text-center">{{ $IndexedEleves }}</span>
 </li>
 <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
   <div class="ms-2 me-auto ">
-    <div class="fw-bold text-secondary">Professeurs</div>
+    <div class="fw-bold text-secondary">Eleves</div>
     Nombre de eleves archivés
   </div>
-  <span style="width:34px;" id="locarchv" class="badge bg-primary rounded-pill text-center"></span>
+  <span style="width:34px;" id="locarchv" class="badge bg-primary rounded-pill text-center">{{ $IndexedElevesarchv }}</span>
 </li>
 <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
   <div class="ms-2 me-auto">
-    <div class="fw-bold text-secondary">Groupes</div>
+    <div class="fw-bold text-secondary">Active Groupes</div>
     Nombre de groupes
   </div>
-  <span style="width:34px;" id="grp" class="badge bg-primary rounded-pill text-center"></span>
+  <span style="width:34px;" id="grp" class="badge bg-primary rounded-pill text-center">{{ $IndexedGroupes }}</span>
 </li>
 <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-action">
   <div class="ms-2 me-auto">
     <div class="fw-bold text-secondary" >Groupes</div>
     Nombre de groupes archivés
   </div>
-  <span style="width:34px;" id="grparchv" class="badge bg-primary rounded-pill text-center"></span>
+  <span style="width:34px;" id="grparchv" class="badge bg-primary rounded-pill text-center">{{ $IndexedGroupesarchv }}</span>
 </li>
 
 </ul>
@@ -127,6 +127,9 @@
 </div>
 
 </section>
+
+
+
 <!-- End Products -->
 <!-- Start Stats -->
 <!--

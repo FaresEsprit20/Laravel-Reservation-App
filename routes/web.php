@@ -73,6 +73,8 @@ Route::get('/locations/view/{id}', [LocationsController::class,'getLocationById'
 Route::get('/locations/view/{id}/delete', [LocationsController::class,'deleteLocationById'])->name('location.delete');
 Route::get('/locations/suitesvides', [LocationsController::class,'suitesvidesView'])->name('suitesvides.list');
 Route::post('/locations/suitesvides/list', [LocationsController::class,'getSuitesVides'])->name('suitesvides.list.get');
+Route::get('/locations/getTotalPieChart', [LocationsController::class,'TotalChart']);
+
 
 Route::get('/professeurs', [LocatairesController::class,'professeursView'])->name('professeurs.index');
 Route::get('/professeurs/view/{id}', [LocatairesController::class,'getProfesseurById'])->name('get.professeur');

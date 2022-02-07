@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Locataire;
 use App\Models\Location;
 use App\Models\Seance;
 use Facade\FlareClient\View;
@@ -11,17 +12,100 @@ use Illuminate\Support\Facades\DB;
 
 class LocationsController extends Controller
 {
-
-  public function __construct()
-	{
-	    $this->middleware('auth');
-	}
-  
     public function index(){
       $locations = Location::select('*')
       ->where('archive_state', '=', 0)->get();
         return view('locations',compact('locations'));
     }
+
+    
+
+
+    public function TotalChart(){
+
+        $overalldata = $this->OverallChart();
+        $thisyeardata = $this->ThisYearChart();
+
+        $response = array();
+
+        $response['overalldata'] = $overalldata  ;
+        $response['thisyeardata'] = $thisyeardata  ;
+
+      return response()->json($response);
+    }
+
+
+
+    public function OverallChart(){
+
+ 
+      $location_names = Location::select('locations.id as location_id', 'locations.location_name')
+      ->join('seances','locations.id','=','seances.location_id')
+      ->where('locations.archive_state',0)
+      ->where('seances.archive_state',0)
+      ->get();
+      
+     $statsCollection = collect();
+    $statsarray = [];
+     $total_count = count(Seance::select('*')->where('archive_state',0)->get());
+
+      foreach($location_names as $location){
+        $location_statistics = Location::selectRaw('locations.id,locations.location_name,(COUNT(seances.location_id) / ?) * 100 as percentage ',[$total_count])
+        ->join('seances','locations.id','seances.location_id')
+        ->where('seances.archive_state',0)
+        ->where('seances.location_id','=',$location->location_id)->groupBy('locations.location_name')->get();
+        array_push($statsarray,$location_statistics);
+       
+      }
+      
+      foreach($statsarray as $array){
+        foreach($array as $item){
+        /*  array_push($labels,$item['location_name']);
+          array_push($indexedids,$item['id']);*/
+          $statsCollection->push($item);
+        }
+        
+      }
+
+      return $statsCollection;
+    }
+
+    public function ThisYearChart(){
+      
+      $location_names = Location::select('locations.id as location_id', 'locations.location_name')
+      ->join('seances','locations.id','=','seances.location_id')
+      ->where('locations.archive_state',0)
+      ->where('seances.archive_state',0)
+      ->whereYear('seances.date',date('Y'))
+      ->get();
+      
+     $statsCollection = collect();
+     $statsarray = [];
+     $total_count = count(Seance::select('*')->where('archive_state',0)
+     ->whereYear('seances.date', date('Y'))->get());
+
+      foreach($location_names as $location){
+        $location_statistics = Location::selectRaw('locations.id,locations.location_name,(COUNT(seances.location_id) / ?) * 100 as percentage ',[$total_count])
+        ->join('seances','locations.id','=','seances.location_id')
+        ->where('seances.archive_state',0)
+        ->where('seances.location_id','=',$location->location_id)
+        ->whereYear('seances.date', date('Y'))
+        ->groupBy('locations.location_name')
+        ->get();
+        array_push($statsarray,$location_statistics);
+      }
+      
+      foreach($statsarray as $array){
+        foreach($array as $item){
+      
+          $statsCollection->push($item);
+        }
+        
+      }
+
+      return $statsCollection;
+    }
+
 
     public function suitesvidesView(){
       return view('suitesvides');

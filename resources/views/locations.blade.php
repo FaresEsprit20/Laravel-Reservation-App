@@ -105,13 +105,40 @@
  
 </section>
 <!-- End Products -->
-</main>
 
+
+<section class="stats" id="stats">
+  <div class="container-fluid">
+    <h2 class="special-heading">Statistiques</h2>
+      <p>Statistiques des salles</p>
+
+      
+
+      <div class="row">
+      <div class="col col-lg-2 col-sm-1">
+      </div>
+      <div class="col-12 col-lg-8 col-sm-10">
+        <div class="stat">
+     <canvas id="totalreservationspie" height="250"></canvas>
+     </div>
+    </div>
+    <div class="col col-lg-2 col-sm-1">
+      </div>
+      </div>
+      
+      
+  </div>
+</section>
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection
 
 
 @section('script')
 <script>
+
+//Datatable initiation 
   $("#locationsDatatable").DataTable(
     {
         dom: 'Bfrtip',
@@ -120,5 +147,106 @@
         ]
     }
   );
+
+//global variables
+  var Url = "{{ url('locations/getTotalPieChart') }}";
+  var Labels = new Array();
+  var Percentages = new Array();
+  var colors = new Array();
+
+ var stats = {
+   labels: Labels,
+   percentages: Percentages
+ }
+
+ var dynamicColorsRGB = function() {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    return "rgb(" + r + "," + g + "," + b + ")";
+}
+
+    var generateColor = function(dt) {
+
+      var chart_colors = [];
+      var count_colors = dt.length;
+
+      for(var i = 0;i<count_colors;i++) {
+       chart_colors[i] = dynamicColorsRGB();
+      }
+       return chart_colors;
+    }
+
+    var makeChart = function(chartId,responsedata,title,chartType,config) {
+        stats.labels = [];
+        stats.percentages = [];
+
+      console.log(responsedata);
+            responsedata.forEach(function(data){
+                stats.labels.push(data.location_name);
+                stats.percentages.push(parseFloat(data.percentage));
+           
+                });
+
+     var options = {
+       plugins: {
+         title: {
+                display: true,
+                text: title,
+            },
+            legend: {
+                display: true,
+
+            }
+        },
+					responsive:true,
+				};
+        config.labels = stats.labels;
+        config.datasets[0].backgroundColor =  generateColor(stats.labels);
+        config.datasets[0].data = stats.percentages;
+       
+
+
+      var myChart = $(chartId);
+      var graph = new Chart(myChart, {
+					type: chartType,
+					data:config,
+          options: options
+				});
+        return myChart;
+    }
+
+ $(document).ready(function(){
+
+  $.ajax({
+			url: Url,
+			method:"GET",
+			dataType:"JSON",
+			success:function(response)
+			{
+       
+
+
+var TotalPieconfig = {
+  labels: [],
+					datasets:[
+						{
+							label:'Vote',
+							backgroundColor: [],
+							color:'#fff',
+							data: []
+						}
+					]
+				};
+
+  console.log(TotalPieconfig);
+  makeChart('#totalreservationspie',response.overalldata,'Overall Chart','pie',TotalPieconfig);
+
+}
+  });
+
+
+ });
+
 </script>
 @endsection
