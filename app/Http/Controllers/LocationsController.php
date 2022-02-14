@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Locataire;
 use App\Models\Location;
 use App\Models\Seance;
+use Carbon\Carbon;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,35 +19,36 @@ class LocationsController extends Controller
         return view('locations',compact('locations'));
     }
 
-    
-
 
     public function TotalChart(){
 
         $overalldata = $this->OverallChart();
         $thisyeardata = $this->ThisYearChart();
+        $monthlydata = $this->MonthlyChart();
+        $weeklydata = $this->WeeklyChart();
 
         $response = array();
 
-        $response['overalldata'] = $overalldata  ;
-        $response['thisyeardata'] = $thisyeardata  ;
+        $response['overalldata'] = $overalldata;
+        $response['thisyeardata'] = $thisyeardata;
+        $response['monthlydata'] = $monthlydata;
+        $response['weeklydata'] = $weeklydata;
 
       return response()->json($response);
     }
 
 
-
     public function OverallChart(){
 
- 
       $location_names = Location::select('locations.id as location_id', 'locations.location_name')
       ->join('seances','locations.id','=','seances.location_id')
       ->where('locations.archive_state',0)
       ->where('seances.archive_state',0)
+      ->groupBy('locations.id')
       ->get();
       
      $statsCollection = collect();
-    $statsarray = [];
+     $statsarray = [];
      $total_count = count(Seance::select('*')->where('archive_state',0)->get());
 
       foreach($location_names as $location){
@@ -63,8 +65,7 @@ class LocationsController extends Controller
         /*  array_push($labels,$item['location_name']);
           array_push($indexedids,$item['id']);*/
           $statsCollection->push($item);
-        }
-        
+        }        
       }
 
       return $statsCollection;
@@ -77,6 +78,7 @@ class LocationsController extends Controller
       ->where('locations.archive_state',0)
       ->where('seances.archive_state',0)
       ->whereYear('seances.date',date('Y'))
+      ->groupBy('locations.id')
       ->get();
       
      $statsCollection = collect();
@@ -97,15 +99,78 @@ class LocationsController extends Controller
       
       foreach($statsarray as $array){
         foreach($array as $item){
-      
           $statsCollection->push($item);
         }
-        
       }
 
       return $statsCollection;
     }
 
+
+    public function MonthlyChart(){
+
+     $statsarray = [];
+
+     $location_names = Location::select('locations.id as location_id', 'locations.location_name')
+     ->join('seances','locations.id','=','seances.location_id')
+     ->where('locations.archive_state',0)
+     ->where('seances.archive_state',0)
+     ->whereYear('seances.date',date('Y'))
+     ->groupBy('locations.id')
+     ->get();
+
+     foreach( $location_names as $location){
+        $year = [0,0,0,0,0,0,0,0,0,0,0,0]; //initialize all months to 0 for a single year
+     for($month = 0; $month <12; $month++)
+     {
+        $location_statistics = Location::select(DB::raw('locations.id'),DB::raw('locations.location_name'),
+         DB::raw('COUNT(seances.location_id) as percentage'))
+        ->join('seances','locations.id','=','seances.location_id')
+        ->where('seances.archive_state',0)
+        ->where('seances.location_id','=',$location->location_id)
+        ->whereYear('seances.date', date('Y'))
+        ->whereMonth('seances.date', '=', $month)
+        ->groupBy('locations.id')
+        ->get()
+        ->toArray();
+
+         if(count($location_statistics) > 0){
+          foreach($location_statistics as $key){
+            $year[$month -1] = $key['percentage'];//update each month with the total value
+            }   
+         }
+
+        }//endfor months
+        $merged['location_id'] = $location['location_id'];
+        $merged['location_name'] = $location['location_name'];
+        $merged['percentage'] = $year;
+         
+        
+        array_push($statsarray,$merged);
+      }
+
+      return $statsarray;
+
+    }
+
+    public function WeeklyChart(){
+
+      $statsarray = [];
+   
+         $location_statistics = Location::select(DB::raw('locations.id'),DB::raw('locations.location_name'),DB::raw('seances.date'),
+         DB::raw("DAYNAME(seances.date) as dayname"),DB::raw('COUNT(seances.location_id) as percentage'))
+         ->join('seances','locations.id','=','seances.location_id')
+         ->where('seances.archive_state',0)
+         ->whereBetween('seances.date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+         ->whereYear('seances.date', date('Y'))
+         ->groupBy('locations.id')
+         ->groupBy('seances.date')
+         ->get()
+         ->toArray();
+ 
+         return $location_statistics;
+    
+     }
 
     public function suitesvidesView(){
       return view('suitesvides');
